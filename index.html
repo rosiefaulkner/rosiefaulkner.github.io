@@ -1,1 +1,2017 @@
-<h1>Hello world</h1>
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="obsidian">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KAELEN VANCE // Principal AI Systems & Distributed Architecture</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       THEME TOKENS & CSS VARIABLES
+       ========================================================================== */
+    :root, [data-theme="obsidian"] {
+      --bg-base: #06080d;
+      --bg-surface: #0d1117;
+      --bg-elevated: #131922;
+      --bg-glass: rgba(13, 17, 23, 0.82);
+      --border-dim: #1f2937;
+      --border-bright: #334155;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-primary: #00f0ff;
+      --accent-primary-rgb: 0, 240, 255;
+      --accent-secondary: #10b981;
+      --accent-secondary-rgb: 16, 185, 129;
+      --accent-warn: #f59e0b;
+      --accent-danger: #ef4444;
+      --grid-color: rgba(0, 240, 255, 0.035);
+      --scanline-opacity: 0.03;
+    }
+
+    [data-theme="amber"] {
+      --bg-base: #0a0804;
+      --bg-surface: #141008;
+      --bg-elevated: #1f190d;
+      --bg-glass: rgba(20, 16, 8, 0.85);
+      --border-dim: #362813;
+      --border-bright: #5c431d;
+      --text-primary: #fef3c7;
+      --text-secondary: #d97706;
+      --text-muted: #92400e;
+      --accent-primary: #ffb000;
+      --accent-primary-rgb: 255, 176, 0;
+      --accent-secondary: #f97316;
+      --accent-secondary-rgb: 249, 115, 22;
+      --accent-warn: #eab308;
+      --accent-danger: #dc2626;
+      --grid-color: rgba(255, 176, 0, 0.045);
+      --scanline-opacity: 0.06;
+    }
+
+    [data-theme="violet"] {
+      --bg-base: #070510;
+      --bg-surface: #110d20;
+      --bg-elevated: #1a1430;
+      --bg-glass: rgba(17, 13, 32, 0.84);
+      --border-dim: #2b2147;
+      --border-bright: #463675;
+      --text-primary: #f5f3ff;
+      --text-secondary: #a78bfa;
+      --text-muted: #7c3aed;
+      --accent-primary: #c084fc;
+      --accent-primary-rgb: 192, 132, 252;
+      --accent-secondary: #ec4899;
+      --accent-secondary-rgb: 236, 72, 153;
+      --accent-warn: #f59e0b;
+      --accent-danger: #f43f5e;
+      --grid-color: rgba(192, 132, 252, 0.04);
+      --scanline-opacity: 0.035;
+    }
+
+    [data-theme="blueprint"] {
+      --bg-base: #f1f5f9;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f8fafc;
+      --bg-glass: rgba(255, 255, 255, 0.88);
+      --border-dim: #cbd5e1;
+      --border-bright: #94a3b8;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent-primary: #0284c7;
+      --accent-primary-rgb: 2, 132, 199;
+      --accent-secondary: #059669;
+      --accent-secondary-rgb: 5, 150, 105;
+      --accent-warn: #d97706;
+      --accent-danger: #dc2626;
+      --grid-color: rgba(2, 132, 199, 0.07);
+      --scanline-opacity: 0.0;
+    }
+
+    * {
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-bright) var(--bg-base);
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Engineering Grid & Scanline Overlay */
+    .cyber-grid-bg {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    }
+
+    .scanlines::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 40;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, var(--scanline-opacity)) 3px,
+        rgba(0, 0, 0, var(--scanline-opacity)) 4px
+      );
+    }
+
+    /* Custom Utility Classes bound to CSS Variables */
+    .bg-base { background-color: var(--bg-base); }
+    .bg-surface { background-color: var(--bg-surface); }
+    .bg-elevated { background-color: var(--bg-elevated); }
+    .bg-glass { background-color: var(--bg-glass); backdrop-filter: blur(12px); }
+    .border-dim { border-color: var(--border-dim); }
+    .border-bright { border-color: var(--border-bright); }
+    .text-main { color: var(--text-primary); }
+    .text-sub { color: var(--text-secondary); }
+    .text-mute { color: var(--text-muted); }
+    .text-accent { color: var(--accent-primary); }
+    .text-accent-sec { color: var(--accent-secondary); }
+    .bg-accent { background-color: var(--accent-primary); }
+    .bg-accent-sec { background-color: var(--accent-secondary); }
+
+    .cyber-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-dim);
+      border-radius: 0.75rem;
+      position: relative;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cyber-card:hover {
+      border-color: rgba(var(--accent-primary-rgb), 0.45);
+      box-shadow: 0 8px 30px -10px rgba(var(--accent-primary-rgb), 0.12);
+    }
+
+    /* Corner Tech Brackets */
+    .corner-brackets::before,
+    .corner-brackets::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-color: var(--accent-primary);
+      pointer-events: none;
+      opacity: 0.6;
+      transition: opacity 0.2s, width 0.2s, height 0.2s;
+    }
+    .corner-brackets::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--accent-primary);
+      border-left: 2px solid var(--accent-primary);
+      border-top-left-radius: 4px;
+    }
+    .corner-brackets::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid var(--accent-primary);
+      border-right: 2px solid var(--accent-primary);
+      border-bottom-right-radius: 4px;
+    }
+    .corner-brackets:hover::before,
+    .corner-brackets:hover::after {
+      opacity: 1;
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Buttons */
+    .btn-cyber-primary {
+      background: rgba(var(--accent-primary-rgb), 0.12);
+      color: var(--accent-primary);
+      border: 1px solid rgba(var(--accent-primary-rgb), 0.5);
+      box-shadow: 0 0 18px rgba(var(--accent-primary-rgb), 0.15);
+      transition: all 0.2s ease;
+    }
+    .btn-cyber-primary:hover {
+      background: var(--accent-primary);
+      color: var(--bg-base);
+      box-shadow: 0 0 25px rgba(var(--accent-primary-rgb), 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-cyber-secondary {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-dim);
+      transition: all 0.2s ease;
+    }
+    .btn-cyber-secondary:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      transform: translateY(-1px);
+    }
+
+    /* Pulse & Status Indicators */
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.12); }
+    }
+    .status-dot {
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    /* Cursor blink */
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s infinite;
+    }
+
+    /* Code syntax colors */
+    .syn-kw { color: #ff7b72; font-weight: 600; }
+    .syn-cls { color: #d2a8ff; }
+    .syn-str { color: #a5d6ff; }
+    .syn-num { color: #79c0ff; }
+    .syn-cmt { color: #8b949e; font-style: italic; }
+    .syn-fn { color: #d2a8ff; }
+    .syn-prop { color: #7ee787; }
+
+    [data-theme="blueprint"] .syn-kw { color: #cf222e; }
+    [data-theme="blueprint"] .syn-cls { color: #8250df; }
+    [data-theme="blueprint"] .syn-str { color: #0a3069; }
+    [data-theme="blueprint"] .syn-num { color: #0550ae; }
+    [data-theme="blueprint"] .syn-cmt { color: #57606a; }
+    [data-theme="blueprint"] .syn-prop { color: #116329; }
+
+    /* Heatmap Cell */
+    .heat-0 { background-color: rgba(148, 163, 184, 0.08); }
+    .heat-1 { background-color: rgba(var(--accent-secondary-rgb), 0.25); }
+    .heat-2 { background-color: rgba(var(--accent-secondary-rgb), 0.50); }
+    .heat-3 { background-color: rgba(var(--accent-secondary-rgb), 0.75); }
+    .heat-4 { background-color: rgba(var(--accent-primary-rgb), 0.95); box-shadow: 0 0 6px rgba(var(--accent-primary-rgb), 0.5); }
+  </style>
+</head>
+<body class="cyber-grid-bg scanlines min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Background Matrix Rain Canvas (Toggled via Terminal 'matrix' command or Command Palette) -->
+  <canvas id="matrixCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-700"></canvas>
+
+  <!-- ==========================================================================
+       1. TOP SYSTEM TELEMETRY & NAVIGATION BAR
+       ========================================================================== -->
+  <header class="sticky top-0 z-30 bg-glass border-b border-dim">
+    <!-- Top Micro Telemetry Strip -->
+    <div class="border-b border-dim/60 px-4 py-1.5 text-[11px] font-mono flex flex-wrap items-center justify-between gap-2 max-w-7xl mx-auto">
+      <div class="flex items-center space-x-4 overflow-x-auto no-scrollbar">
+        <span class="inline-flex items-center gap-1.5 text-accent-sec font-medium shrink-0">
+          <span class="w-2 h-2 rounded-full bg-accent-sec status-dot"></span>
+          SYS.ONLINE // <span id="uptimeMetric">99.998%</span>
+        </span>
+        <span class="text-mute hidden sm:inline">|</span>
+        <span class="text-sub shrink-0 hidden sm:inline">
+          BUILD: <span class="text-main font-semibold">main @ sha-8f92a1c</span>
+          <span class="ml-1 px-1.5 py-0.5 text-[10px] rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">PASSING</span>
+        </span>
+        <span class="text-mute hidden md:inline">|</span>
+        <span class="text-sub hidden md:inline shrink-0">
+          REGION: <span class="text-accent">us-east-1 // edge-node-04</span>
+        </span>
+      </div>
+
+      <div class="flex items-center space-x-3 ml-auto">
+        <span class="text-sub hidden lg:inline">
+          LATENCY: <span id="navPingMetric" class="text-accent font-semibold">11.4ms</span>
+        </span>
+        <span class="text-mute hidden lg:inline">|</span>
+        <span id="liveUtcClock" class="text-sub font-mono">UTC 00:00:00</span>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <!-- Brand Identity -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-elevated border border-dim flex items-center justify-center font-mono font-bold text-accent group-hover:border-bright transition-colors">
+          <span>KV</span>
+          <span class="text-[10px] align-top text-accent-sec ml-0.5">_</span>
+        </div>
+        <div>
+          <div class="font-mono font-bold text-sm tracking-tight flex items-center gap-2">
+            <span>kaelen.vance</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-elevated border border-dim text-accent">v4.2</span>
+          </div>
+          <div class="text-[11px] font-mono text-mute">Principal AI & Distributed Systems</div>
+        </div>
+      </a>
+
+      <!-- Section Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-mono text-sub">
+        <a href="#dag-section" class="hover:text-accent transition-colors">[01. DAG_PIPELINE]</a>
+        <a href="#terminal-section" class="hover:text-accent transition-colors">[02. ZSH_REPL]</a>
+        <a href="#bento-section" class="hover:text-accent transition-colors">[03. ARCH_SPEC]</a>
+        <a href="#repos-section" class="hover:text-accent transition-colors">[04. REPOSITORIES]</a>
+      </nav>
+
+      <!-- Theme Switcher & Command Palette Trigger -->
+      <div class="flex items-center gap-2">
+        <!-- Theme Selector Dropdown / Pills -->
+        <div class="relative flex items-center bg-elevated border border-dim rounded-lg p-1 text-xs font-mono">
+          <button onclick="setTheme('obsidian')" data-theme-btn="obsidian" title="Obsidian Cyan" class="px-2 py-1 rounded transition-all flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#00f0ff]"></span>
+            <span class="hidden xl:inline">Obsidian</span>
+          </button>
+          <button onclick="setTheme('amber')" data-theme-btn="amber" title="CRT Amber" class="px-2 py-1 rounded transition-all flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ffb000]"></span>
+            <span class="hidden xl:inline">Amber</span>
+          </button>
+          <button onclick="setTheme('violet')" data-theme-btn="violet" title="Neural Violet" class="px-2 py-1 rounded transition-all flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#c084fc]"></span>
+            <span class="hidden xl:inline">Violet</span>
+          </button>
+          <button onclick="setTheme('blueprint')" data-theme-btn="blueprint" title="Blueprint Light" class="px-2 py-1 rounded transition-all flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#0284c7]"></span>
+            <span class="hidden xl:inline">Blueprint</span>
+          </button>
+        </div>
+
+        <!-- Cmd + K Trigger Button -->
+        <button onclick="openCommandPalette()" class="btn-cyber-secondary px-3 py-1.5 rounded-lg text-xs font-mono flex items-center gap-2" title="Open Command Palette">
+          <i class="fa-solid fa-terminal text-accent text-[11px]"></i>
+          <span class="hidden sm:inline">Command</span>
+          <kbd class="px-1.5 py-0.5 text-[10px] rounded bg-base border border-dim text-sub">⌘K</kbd>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8 md:py-12 space-y-16 relative z-10">
+
+    <!-- ========================================================================
+         2. HERO SECTION WITH SPLIT LAYOUT & LIVE AGENTIC DAG VISUALIZER
+         ======================================================================== -->
+    <section id="dag-section" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      
+      <!-- Left Column: Developer Identity, Typewriter Headline & Quick Actions -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div class="space-y-5">
+          <!-- Developer Identity Badge -->
+          <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface border border-dim text-xs font-mono">
+            <span class="px-1.5 py-0.5 rounded bg-accent text-slate-950 font-bold text-[10px]">STAFF+</span>
+            <span class="text-sub">ID // <span class="text-main font-medium">kaelen-vance.github.io</span></span>
+            <span class="text-accent-sec flex items-center gap-1">
+              <i class="fa-solid fa-shield-halved text-[10px]"></i> Verified PGP
+            </span>
+          </div>
+
+          <!-- Glitch / Typewriter Headline -->
+          <div class="space-y-2">
+            <div class="font-mono text-xs uppercase tracking-widest text-accent flex items-center gap-2">
+              <span>// DETERMINISTIC_SYSTEMS_ARCHITECTURE</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl xl:text-5xl font-extrabold tracking-tight leading-[1.12] text-main">
+              Architecting <span id="typewriterText" class="text-accent underline decoration-dashed underline-offset-8 decoration-1">Deterministic AI Pipelines</span><span class="cursor-blink text-accent">_</span> &amp; Distributed Systems.
+            </h1>
+          </div>
+
+          <!-- Concise Engineering Bio -->
+          <p class="text-sub text-sm sm:text-base leading-relaxed">
+            Specializing in fault-tolerant <span class="text-main font-mono text-xs px-1.5 py-0.5 rounded bg-elevated border border-dim">LangGraph</span> state machines, context-free grammar guided decoding via <span class="text-main font-mono text-xs px-1.5 py-0.5 rounded bg-elevated border border-dim">Outlines</span>, strict runtime verification with <span class="text-main font-mono text-xs px-1.5 py-0.5 rounded bg-elevated border border-dim">Pydantic v2</span>, and high-throughput microservices secured by distributed Zero-Trust RBAC.
+          </p>
+
+          <!-- Key Telemetry Mini-Row -->
+          <div class="grid grid-cols-3 gap-3 pt-1">
+            <div class="cyber-card p-3">
+              <div class="text-[11px] font-mono text-mute">SCHEMA_COMPLIANCE</div>
+              <div class="text-lg sm:text-xl font-mono font-bold text-accent mt-0.5">100.0%</div>
+              <div class="text-[10px] font-mono text-sub">CFG Finite Automaton</div>
+            </div>
+            <div class="cyber-card p-3">
+              <div class="text-[11px] font-mono text-mute">P99_INFERENCE</div>
+              <div class="text-lg sm:text-xl font-mono font-bold text-accent-sec mt-0.5">18.4 ms</div>
+              <div class="text-[10px] font-mono text-sub">Rust / vLLM Router</div>
+            </div>
+            <div class="cyber-card p-3">
+              <div class="text-[11px] font-mono text-mute">OPEN_SOURCE</div>
+              <div class="text-lg sm:text-xl font-mono font-bold text-main mt-0.5">14.2k ★</div>
+              <div class="text-[10px] font-mono text-sub">Across 28 Core Repos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary CTAs & Social / PGP Copy Pills -->
+        <div class="space-y-4 pt-2">
+          <!-- Primary Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#repos-section" class="btn-cyber-primary px-4 py-2.5 rounded-lg font-mono text-xs font-semibold flex items-center gap-2">
+              <i class="fa-solid fa-diagram-project"></i>
+              <span>Explore Systems</span>
+            </a>
+            <button onclick="focusTerminalAndRun('help')" class="btn-cyber-secondary px-4 py-2.5 rounded-lg font-mono text-xs font-semibold flex items-center gap-2">
+              <i class="fa-solid fa-terminal text-accent"></i>
+              <span>Launch CLI</span>
+            </button>
+            <button onclick="copyFullPageHtml()" class="btn-cyber-secondary px-4 py-2.5 rounded-lg font-mono text-xs font-semibold flex items-center gap-2">
+              <i class="fa-regular fa-file-code text-accent-sec"></i>
+              <span>Copy index.html</span>
+            </button>
+          </div>
+
+          <!-- Quick Social / GitHub / PGP Key Copy Pills -->
+          <div class="pt-2 border-t border-dim flex flex-wrap items-center gap-2 text-xs font-mono">
+            <span class="text-mute text-[11px] mr-1">ENDPOINTS:</span>
+            <button onclick="copyTextWithToast('https://github.com/kaelen-vance-sys', 'GitHub Profile URL copied to clipboard')" class="px-2.5 py-1 rounded-md bg-elevated border border-dim hover:border-bright text-sub hover:text-main transition-colors flex items-center gap-1.5">
+              <i class="fa-brands fa-github"></i>
+              <span>github.com/kaelen-vance</span>
+              <i class="fa-regular fa-copy text-[10px] text-mute"></i>
+            </button>
+            <button onclick="copyTextWithToast('0x9F8B4C2A7E11D04F', 'PGP Fingerprint (0x9F8B...D04F) copied')" class="px-2.5 py-1 rounded-md bg-elevated border border-dim hover:border-bright text-sub hover:text-main transition-colors flex items-center gap-1.5">
+              <i class="fa-solid fa-key text-accent text-[10px]"></i>
+              <span>PGP: 0x9F8B...D04F</span>
+              <i class="fa-regular fa-copy text-[10px] text-mute"></i>
+            </button>
+            <button onclick="copyTextWithToast('ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKaelenVanceSysArchKey2026', 'SSH Public Key copied to clipboard')" class="px-2.5 py-1 rounded-md bg-elevated border border-dim hover:border-bright text-sub hover:text-main transition-colors flex items-center gap-1.5">
+              <i class="fa-solid fa-fingerprint text-accent-sec text-[10px]"></i>
+              <span>ssh-ed25519</span>
+              <i class="fa-regular fa-copy text-[10px] text-mute"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Canvas 'Agentic Execution Graph (DAG)' Visualizer -->
+      <div class="lg:col-span-6 flex flex-col">
+        <div class="cyber-card corner-brackets flex-1 flex flex-col overflow-hidden">
+          <!-- Card Top Header -->
+          <div class="px-4 py-3 border-b border-dim bg-elevated/60 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-accent status-dot"></span>
+              <h2 class="font-mono text-xs font-bold tracking-wide uppercase">Agentic Execution Graph (DAG)</h2>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-base border border-dim text-sub">INTERACTIVE_CANVAS</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button onclick="triggerDagSimulation('deterministic')" class="btn-cyber-primary px-2.5 py-1 rounded text-[11px] font-mono font-semibold flex items-center gap-1.5">
+                <i class="fa-solid fa-bolt text-[10px]"></i>
+                <span>Simulate Token Payload</span>
+              </button>
+              <button onclick="triggerDagSimulation('fallback')" class="btn-cyber-secondary px-2.5 py-1 rounded text-[11px] font-mono flex items-center gap-1" title="Simulate Malformed Stream triggering spaCy Fallback NER">
+                <i class="fa-solid fa-code-branch text-amber-400 text-[10px]"></i>
+                <span>Fallback Path</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Canvas Wrapper -->
+          <div class="relative flex-1 min-h-[320px] sm:min-h-[360px] bg-base/70 select-none">
+            <canvas id="dagCanvas" class="w-full h-full block cursor-pointer"></canvas>
+
+            <!-- Floating Overlay HUD Top-Left -->
+            <div class="absolute top-3 left-3 pointer-events-none space-y-1 font-mono text-[11px]">
+              <div class="px-2 py-1 rounded bg-surface/90 border border-dim text-sub">
+                MODE: <span id="dagModeStatus" class="text-accent font-semibold">CFG_DETERMINISTIC</span>
+              </div>
+              <div class="px-2 py-1 rounded bg-surface/90 border border-dim text-sub">
+                PACKETS_IN_FLIGHT: <span id="dagActivePackets" class="text-main font-semibold">0</span>
+              </div>
+            </div>
+
+            <!-- Floating Auto-Stream Toggle Top-Right -->
+            <div class="absolute top-3 right-3">
+              <button id="autoStreamBtn" onclick="toggleDagAutoStream()" class="px-2.5 py-1 rounded bg-surface/90 border border-dim hover:border-bright font-mono text-[11px] text-sub flex items-center gap-1.5 transition-colors">
+                <span id="autoStreamDot" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Auto-Stream: ON</span>
+              </button>
+            </div>
+
+            <!-- Hint Bottom-Right -->
+            <div class="absolute bottom-2 right-3 pointer-events-none text-[10px] font-mono text-mute">
+              [Click any node to inspect state &amp; dispatch packet]
+            </div>
+          </div>
+
+          <!-- Selected Node Inspector & Real-Time Telemetry Bar -->
+          <div class="p-3.5 border-t border-dim bg-elevated/40 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center font-mono text-xs">
+            <div class="sm:col-span-6 space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] uppercase text-mute">ACTIVE_NODE:</span>
+                <span id="dagNodeTitle" class="font-bold text-accent">[Outlines JSON Enforcer]</span>
+              </div>
+              <p id="dagNodeDesc" class="text-[11px] text-sub line-clamp-2">
+                Compiles Pydantic JSON Schema into a finite-state regex automaton to mask invalid token logits at O(1) step latency.
+              </p>
+            </div>
+            <div class="sm:col-span-6 grid grid-cols-3 gap-2 text-center">
+              <div class="p-2 rounded bg-base border border-dim">
+                <div class="text-[10px] text-mute">LATENCY</div>
+                <div id="dagTelemetryLatency" class="text-xs font-bold text-accent mt-0.5">4.2 ms</div>
+              </div>
+              <div class="p-2 rounded bg-base border border-dim">
+                <div class="text-[10px] text-mute">THROUGHPUT</div>
+                <div id="dagTelemetryThroughput" class="text-xs font-bold text-accent-sec mt-0.5">148 tok/s</div>
+              </div>
+              <div class="p-2 rounded bg-base border border-dim">
+                <div class="text-[10px] text-mute">VALIDATION</div>
+                <div id="dagTelemetrySchema" class="text-xs font-bold text-emerald-400 mt-0.5">STRICT_OK</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. INTERACTIVE EMBEDDED TERMINAL (ZSH / PYTHON REPL STYLE)
+         ======================================================================== -->
+    <section id="terminal-section" class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <div class="text-xs font-mono text-accent uppercase tracking-wider">// 02. INTERACTIVE_SHELL_INTERFACE</div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight">Embedded Systems CLI &amp; Schema Validator</h2>
+        </div>
+        <!-- Clickable Command Chips -->
+        <div class="flex flex-wrap items-center gap-1.5 font-mono text-xs">
+          <span class="text-mute text-[11px] mr-1">QUICK EXEC:</span>
+          <button onclick="runTerminalCommand('help')" class="px-2.5 py-1 rounded bg-surface border border-dim hover:border-bright text-accent transition-colors">help</button>
+          <button onclick="runTerminalCommand('whoami')" class="px-2.5 py-1 rounded bg-surface border border-dim hover:border-bright text-sub hover:text-main transition-colors">whoami</button>
+          <button onclick="runTerminalCommand('stack')" class="px-2.5 py-1 rounded bg-surface border border-dim hover:border-bright text-sub hover:text-main transition-colors">stack</button>
+          <button onclick="runTerminalCommand('projects')" class="px-2.5 py-1 rounded bg-surface border border-dim hover:border-bright text-sub hover:text-main transition-colors">projects</button>
+          <button onclick="runTerminalCommand('validate')" class="px-2.5 py-1 rounded bg-surface border border-dim hover:border-bright text-accent-sec transition-colors">validate</button>
+          <button onclick="runTerminalCommand('matrix')" class="px-2.5 py-1 rounded bg-surface border border-dim hover:border-bright text-sub hover:text-main transition-colors">matrix</button>
+          <button onclick="runTerminalCommand('clear')" class="px-2.5 py-1 rounded bg-surface border border-dim hover:border-bright text-mute hover:text-main transition-colors">clear</button>
+        </div>
+      </div>
+
+      <!-- Terminal Window -->
+      <div class="cyber-card overflow-hidden shadow-2xl">
+        <!-- Terminal Title Bar -->
+        <div class="px-4 py-2.5 bg-elevated border-b border-dim flex items-center justify-between text-xs font-mono">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+            <span class="ml-2 text-sub">kaelen@arch-node-01: ~/systems/runtime (zsh 5.9 // python 3.12)</span>
+          </div>
+          <div class="flex items-center gap-3 text-[11px] text-mute">
+            <span>UTF-8</span>
+            <span class="hidden sm:inline">SSH_AUTH_SOCK: ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Terminal Output History -->
+        <div id="terminalOutput" onclick="document.getElementById('terminalInput').focus()" class="p-4 sm:p-5 h-[340px] overflow-y-auto font-mono text-xs sm:text-sm space-y-3 bg-base/90 cursor-text">
+          <!-- Populated on init by JS -->
+        </div>
+
+        <!-- Terminal Input Line -->
+        <div class="px-4 py-3 bg-surface border-t border-dim flex items-center gap-2 font-mono text-xs sm:text-sm">
+          <span class="text-accent-sec font-bold shrink-0">kaelen@arch-node</span>
+          <span class="text-mute shrink-0">:</span>
+          <span class="text-accent font-bold shrink-0">~/dag-core</span>
+          <span class="text-main shrink-0">$</span>
+          <input
+            id="terminalInput"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Type a command (help, whoami, stack, projects, validate, matrix, clear)..."
+            class="w-full bg-transparent text-main focus:outline-none placeholder:text-mute/60"
+          />
+          <span class="text-[11px] text-mute hidden md:inline shrink-0">[Tab: Complete | ↑↓: History]</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. MULTI-VIEW PROFILE & ARCHITECTURE INSPECTOR (BENTO GRID + HEATMAP)
+         ======================================================================== -->
+    <section id="bento-section" class="space-y-6">
+      <!-- Header & Multi-View Switcher -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="text-xs font-mono text-accent uppercase tracking-wider">// 03. TELEMETRY_AND_SCHEMA_INSPECTOR</div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight">System Architecture &amp; Developer Contract</h2>
+        </div>
+
+        <!-- View Mode Segmented Control -->
+        <div class="inline-flex p-1 rounded-xl bg-surface border border-dim font-mono text-xs self-start">
+          <button onclick="switchProfileView('bento')" id="viewBtn-bento" class="px-3 py-1.5 rounded-lg transition-all flex items-center gap-2 bg-accent text-slate-950 font-semibold">
+            <i class="fa-solid fa-table-cells-large"></i>
+            <span>Interactive Bento UI</span>
+          </button>
+          <button onclick="switchProfileView('pydantic')" id="viewBtn-pydantic" class="px-3 py-1.5 rounded-lg transition-all flex items-center gap-2 text-sub hover:text-main">
+            <i class="fa-brands fa-python"></i>
+            <span>Pydantic Model (Python)</span>
+          </button>
+          <button onclick="switchProfileView('json')" id="viewBtn-json" class="px-3 py-1.5 rounded-lg transition-all flex items-center gap-2 text-sub hover:text-main">
+            <i class="fa-solid fa-brackets-curly"></i>
+            <span>JSON SchemaContract</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW A: INTERACTIVE BENTO UI -->
+      <div id="profileView-bento" class="grid grid-cols-1 md:grid-cols-12 gap-4">
+        
+        <!-- Bento Card 1: Core Competency - Deterministic AI & Guided Decoding -->
+        <div class="md:col-span-4 cyber-card p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-cyan-500/15 text-accent border border-cyan-500/30">DOMAIN_01</span>
+              <i class="fa-solid fa-microchip text-accent"></i>
+            </div>
+            <h3 class="font-bold text-base">Guided Decoding &amp; Agentic State</h3>
+            <p class="text-xs text-sub leading-relaxed">
+              Eliminating structural hallucinations by compiling Pydantic schemas into finite-state machines (Outlines) orchestrated over cyclical LangGraph workflows with deterministic fallback routing.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-dim space-y-2 font-mono text-xs">
+            <div class="flex justify-between text-[11px]">
+              <span class="text-sub">LangGraph / LangChain</span>
+              <span class="text-accent">99%</span>
+            </div>
+            <div class="w-full h-1.5 bg-base rounded-full overflow-hidden">
+              <div class="h-full bg-accent rounded-full" style="width: 99%"></div>
+            </div>
+            <div class="flex justify-between text-[11px] pt-1">
+              <span class="text-sub">Outlines / Pydantic v2 / spaCy</span>
+              <span class="text-accent-sec">98%</span>
+            </div>
+            <div class="w-full h-1.5 bg-base rounded-full overflow-hidden">
+              <div class="h-full bg-accent-sec rounded-full" style="width: 98%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: Distributed Systems & Zero-Trust RBAC -->
+        <div class="md:col-span-4 cyber-card p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-emerald-500/15 text-accent-sec border border-emerald-500/30">DOMAIN_02</span>
+              <i class="fa-solid fa-network-wired text-accent-sec"></i>
+            </div>
+            <h3 class="font-bold text-base">Zero-Trust RBAC &amp; Microservices</h3>
+            <p class="text-xs text-sub leading-relaxed">
+              Sub-millisecond policy evaluation engines using Google Zanzibar-inspired relation tuples, mTLS service meshes, and cryptographically verifiable capability tokens across multi-tenant clusters.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-dim space-y-2 font-mono text-xs">
+            <div class="flex justify-between text-[11px]">
+              <span class="text-sub">Rust / Go / gRPC / Protobuf</span>
+              <span class="text-accent">95%</span>
+            </div>
+            <div class="w-full h-1.5 bg-base rounded-full overflow-hidden">
+              <div class="h-full bg-accent rounded-full" style="width: 95%"></div>
+            </div>
+            <div class="flex justify-between text-[11px] pt-1">
+              <span class="text-sub">Kubernetes / Zanzibar RBAC / eBPF</span>
+              <span class="text-accent-sec">94%</span>
+            </div>
+            <div class="w-full h-1.5 bg-base rounded-full overflow-hidden">
+              <div class="h-full bg-accent-sec rounded-full" style="width: 94%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 3: Live Inference & Validation Telemetry Sparkline -->
+        <div class="md:col-span-4 cyber-card p-5 flex flex-col justify-between space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-mute uppercase">REALTIME_THROUGHPUT</span>
+              <div class="text-xl font-mono font-bold text-main flex items-baseline gap-2">
+                <span id="bentoTpsMetric">14,820</span>
+                <span class="text-xs font-normal text-accent-sec">req/sec</span>
+              </div>
+            </div>
+            <span class="px-2 py-1 rounded bg-elevated border border-dim font-mono text-[10px] text-accent">ZERO_DROPS</span>
+          </div>
+
+          <!-- Dynamic SVG Sparkline -->
+          <div class="h-20 w-full bg-base/60 rounded-lg border border-dim p-2 flex items-end">
+            <svg id="telemetrySparkline" viewBox="0 0 240 60" class="w-full h-full overflow-visible">
+              <defs>
+                <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--accent-primary)" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="var(--accent-primary)" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              <path id="sparkArea" d="M0,45 L20,38 L40,42 L60,25 L80,30 L100,18 L120,24 L140,14 L160,22 L180,12 L200,19 L220,8 L240,15 L240,60 L0,60 Z" fill="url(#sparkGrad)"></path>
+              <path id="sparkLine" d="M0,45 L20,38 L40,42 L60,25 L80,30 L100,18 L120,24 L140,14 L160,22 L180,12 L200,19 L220,8 L240,15" fill="none" stroke="var(--accent-primary)" stroke-width="2"></path>
+            </svg>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-1 font-mono text-[11px]">
+            <div class="p-2 rounded bg-elevated border border-dim">
+              <span class="text-mute block text-[10px]">FALLBACK_RATE</span>
+              <span class="text-main font-semibold">0.04% (spaCy NER)</span>
+            </div>
+            <div class="p-2 rounded bg-elevated border border-dim">
+              <span class="text-mute block text-[10px]">MEMORY_FOOTPRINT</span>
+              <span class="text-main font-semibold">42.8 MB / worker</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 4: Interactive 52-Week GitHub Contribution Heatmap -->
+        <div class="md:col-span-12 cyber-card p-5 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <i class="fa-brands fa-github text-lg text-accent"></i>
+              <div>
+                <h3 class="font-bold text-sm sm:text-base flex items-center gap-2">
+                  <span>52-Week Commit Telemetry &amp; Contribution Matrix</span>
+                  <span id="totalCommitsBadge" class="px-2 py-0.5 text-xs font-mono rounded bg-elevated border border-dim text-accent">2,847 commits / yr</span>
+                </h3>
+                <p class="text-xs text-sub font-mono">Hover any cell to inspect daily commit velocity &amp; subsystem activity</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span id="heatmapHoverLabel" class="text-xs font-mono text-sub bg-base px-2.5 py-1 rounded border border-dim">
+                Select or hover a cell
+              </span>
+              <button id="hfCommitBtn" onclick="toggleHighFrequencyCommits()" class="btn-cyber-primary px-3 py-1.5 rounded-lg font-mono text-xs font-semibold flex items-center gap-1.5">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+                <span>High-Frequency Commit Mode</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 52-Week Grid Container -->
+          <div class="overflow-x-auto pb-1">
+            <div id="heatmapGrid" class="inline-grid grid-flow-col grid-rows-7 gap-1 min-w-[720px] p-3 rounded-lg bg-base border border-dim">
+              <!-- Populated dynamically via JS (52 cols x 7 rows = 364 cells) -->
+            </div>
+          </div>
+
+          <!-- Heatmap Legend & Stats Footer -->
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-sub pt-1">
+            <div class="flex items-center gap-4">
+              <span>CURRENT_STREAK: <strong id="streakMetric" class="text-accent-sec">64 DAYS</strong></span>
+              <span>PEAK_VELOCITY: <strong id="peakVelocityMetric" class="text-main">39 commits/day</strong></span>
+              <span class="hidden sm:inline">PRIMARY_LANG: <strong class="text-accent">Python 68% · Rust 24% · TypeScript 8%</strong></span>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px]">
+              <span>Less</span>
+              <span class="w-3 h-3 rounded-sm heat-0 inline-block border border-dim"></span>
+              <span class="w-3 h-3 rounded-sm heat-1 inline-block"></span>
+              <span class="w-3 h-3 rounded-sm heat-2 inline-block"></span>
+              <span class="w-3 h-3 rounded-sm heat-3 inline-block"></span>
+              <span class="w-3 h-3 rounded-sm heat-4 inline-block"></span>
+              <span>More</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW B: PYDANTIC MODEL (PYTHON) -->
+      <div id="profileView-pydantic" class="hidden cyber-card overflow-hidden">
+        <div class="px-4 py-3 bg-elevated border-b border-dim flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+          <div class="flex items-center gap-2">
+            <i class="fa-brands fa-python text-accent"></i>
+            <span class="font-bold">architect_profile_schema.py</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px]">pydantic==2.9.2</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="runTerminalCommand('validate'); document.getElementById('terminal-section').scrollIntoView({behavior:'smooth'});" class="btn-cyber-primary px-2.5 py-1 rounded text-[11px] flex items-center gap-1.5">
+              <i class="fa-solid fa-play text-[10px]"></i>
+              <span>Execute model_validate() in CLI</span>
+            </button>
+            <button onclick="copyCodeBlock('pydanticCodeRaw', 'Pydantic Python Model copied to clipboard')" class="btn-cyber-secondary px-2.5 py-1 rounded text-[11px] flex items-center gap-1.5">
+              <i class="fa-regular fa-copy"></i>
+              <span>Copy Python</span>
+            </button>
+          </div>
+        </div>
+        <pre id="pydanticCodeRaw" class="p-5 text-xs sm:text-sm font-mono overflow-x-auto leading-relaxed bg-base/90"><code><span class="syn-kw">from</span> typing <span class="syn-kw">import</span> Literal, List
+<span class="syn-kw">from</span> pydantic <span class="syn-kw">import</span> BaseModel, Field, ConfigDict, confloat, conint
+
+
+<span class="syn-kw">class</span> <span class="syn-cls">ExecutionSLO</span>(BaseModel):
+    <span class="syn-cmt">"""Strict Service-Level Objective contract for deterministic inference."""</span>
+    p99_latency_ms: confloat(gt=<span class="syn-num">0.0</span>, le=<span class="syn-num">25.0</span>) = Field(default=<span class="syn-num">18.4</span>, description=<span class="syn-str">"End-to-end router + CFG mask latency"</span>)
+    schema_adherence_rate: Literal[<span class="syn-str">"100.0%"</span>] = <span class="syn-str">"100.0%"</span>
+    fallback_ner_engine: Literal[<span class="syn-str">"spacy-en_core_web_trf"</span>] = <span class="syn-str">"spacy-en_core_web_trf"</span>
+
+
+<span class="syn-kw">class</span> <span class="syn-cls">PrincipalArchitectSpec</span>(BaseModel):
+    model_config = ConfigDict(frozen=<span class="syn-kw">True</span>, extra=<span class="syn-str">"forbid"</span>)
+
+    handle: <span class="syn-cls">str</span> = Field(default=<span class="syn-str">"kaelen-vance"</span>, pattern=<span class="syn-str">r"^[a-z0-9-]+$"</span>)
+    role: <span class="syn-cls">str</span> = <span class="syn-str">"Principal AI Systems &amp; Distributed Architecture Engineer"</span>
+    pgp_fingerprint: <span class="syn-cls">str</span> = <span class="syn-str">"0x9F8B4C2A7E11D04F"</span>
+    core_stack: List[<span class="syn-cls">str</span>] = [
+        <span class="syn-str">"Python 3.12"</span>, <span class="syn-str">"LangGraph"</span>, <span class="syn-str">"LangChain"</span>, <span class="syn-str">"Pydantic v2"</span>,
+        <span class="syn-str">"Outlines (CFG)"</span>, <span class="syn-str">"spaCy NER"</span>, <span class="syn-str">"Rust"</span>, <span class="syn-str">"Distributed Zanzibar RBAC"</span>
+    ]
+    annual_commits: conint(ge=<span class="syn-num">1000</span>) = <span class="syn-num">2847</span>
+    runtime_slo: <span class="syn-cls">ExecutionSLO</span> = Field(default_factory=<span class="syn-cls">ExecutionSLO</span>)
+
+
+<span class="syn-cmt"># Instantiate &amp; verify deterministic contract at import time</span>
+architect_contract = <span class="syn-cls">PrincipalArchitectSpec</span>()
+<span class="syn-kw">assert</span> architect_contract.runtime_slo.schema_adherence_rate == <span class="syn-str">"100.0%"</span></code></pre>
+      </div>
+
+      <!-- VIEW C: JSON SCHEMA CONTRACT -->
+      <div id="profileView-json" class="hidden cyber-card overflow-hidden">
+        <div class="px-4 py-3 bg-elevated border-b border-dim flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-file-shield text-accent-sec"></i>
+            <span class="font-bold">architect_contract.schema.json</span>
+            <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-accent border border-cyan-500/30 text-[10px]">JSON Schema Draft 2020-12</span>
+          </div>
+          <button onclick="copyCodeBlock('jsonSchemaCodeRaw', 'JSON Schema Contract copied to clipboard')" class="btn-cyber-secondary px-2.5 py-1 rounded text-[11px] flex items-center gap-1.5">
+            <i class="fa-regular fa-copy"></i>
+            <span>Copy JSON Schema</span>
+          </button>
+        </div>
+        <pre id="jsonSchemaCodeRaw" class="p-5 text-xs sm:text-sm font-mono overflow-x-auto leading-relaxed bg-base/90"><code>{
+  <span class="syn-prop">"$schema"</span>: <span class="syn-str">"https://json-schema.org/draft/2020-12/schema"</span>,
+  <span class="syn-prop">"title"</span>: <span class="syn-str">"PrincipalArchitectSpec"</span>,
+  <span class="syn-prop">"type"</span>: <span class="syn-str">"object"</span>,
+  <span class="syn-prop">"additionalProperties"</span>: <span class="syn-kw">false</span>,
+  <span class="syn-prop">"required"</span>: [<span class="syn-str">"handle"</span>, <span class="syn-str">"role"</span>, <span class="syn-str">"pgp_fingerprint"</span>, <span class="syn-str">"core_stack"</span>, <span class="syn-str">"runtime_slo"</span>],
+  <span class="syn-prop">"properties"</span>: {
+    <span class="syn-prop">"handle"</span>: { <span class="syn-prop">"type"</span>: <span class="syn-str">"string"</span>, <span class="syn-prop">"const"</span>: <span class="syn-str">"kaelen-vance"</span> },
+    <span class="syn-prop">"role"</span>: { <span class="syn-prop">"type"</span>: <span class="syn-str">"string"</span> },
+    <span class="syn-prop">"pgp_fingerprint"</span>: { <span class="syn-prop">"type"</span>: <span class="syn-str">"string"</span>, <span class="syn-prop">"pattern"</span>: <span class="syn-str">"^0x[0-9A-F]{16}$"</span> },
+    <span class="syn-prop">"core_stack"</span>: {
+      <span class="syn-prop">"type"</span>: <span class="syn-str">"array"</span>,
+      <span class="syn-prop">"items"</span>: { <span class="syn-prop">"type"</span>: <span class="syn-str">"string"</span> },
+      <span class="syn-prop">"minItems"</span>: <span class="syn-num">6</span>
+    },
+    <span class="syn-prop">"runtime_slo"</span>: {
+      <span class="syn-prop">"type"</span>: <span class="syn-str">"object"</span>,
+      <span class="syn-prop">"properties"</span>: {
+        <span class="syn-prop">"p99_latency_ms"</span>: { <span class="syn-prop">"type"</span>: <span class="syn-str">"number"</span>, <span class="syn-prop">"maximum"</span>: <span class="syn-num">25.0</span> },
+        <span class="syn-prop">"schema_adherence_rate"</span>: { <span class="syn-prop">"const"</span>: <span class="syn-str">"100.0%"</span> },
+        <span class="syn-prop">"fallback_ner_engine"</span>: { <span class="syn-prop">"const"</span>: <span class="syn-str">"spacy-en_core_web_trf"</span> }
+      }
+    }
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. FEATURED REPOSITORIES & SYSTEM SPECIFICATIONS GRID
+         ======================================================================== -->
+    <section id="repos-section" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="text-xs font-mono text-accent uppercase tracking-wider">// 04. OPEN_SOURCE_SYSTEMS</div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight">Featured Repositories &amp; Architecture Specs</h2>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+          <button onclick="filterRepositories('all')" data-repo-filter="all" class="px-3 py-1.5 rounded-lg bg-accent text-slate-950 font-semibold transition-all">
+            All Systems (6)
+          </button>
+          <button onclick="filterRepositories('agentic')" data-repo-filter="agentic" class="px-3 py-1.5 rounded-lg bg-surface border border-dim text-sub hover:text-main transition-all">
+            Agentic Workflows
+          </button>
+          <button onclick="filterRepositories('schema')" data-repo-filter="schema" class="px-3 py-1.5 rounded-lg bg-surface border border-dim text-sub hover:text-main transition-all">
+            Schema Enforcement
+          </button>
+          <button onclick="filterRepositories('security')" data-repo-filter="security" class="px-3 py-1.5 rounded-lg bg-surface border border-dim text-sub hover:text-main transition-all">
+            Security &amp; RBAC
+          </button>
+        </div>
+      </div>
+
+      <!-- Repositories Grid (Rendered dynamically via JS) -->
+      <div id="repositoriesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER & DEPLOYMENT READY BANNER
+       ========================================================================== -->
+  <footer class="border-t border-dim bg-surface/60 mt-16">
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-sub">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-accent-sec"></span>
+        <span>KAELEN VANCE // DETERMINISTIC SYSTEMS ENGINEERING</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button onclick="openCommandPalette()" class="hover:text-accent transition-colors">[Press ⌘K / Ctrl+K for Command Palette]</button>
+        <span>·</span>
+        <button onclick="copyFullPageHtml()" class="text-accent hover:underline">Deploy to username.github.io</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       6. COMMAND PALETTE MODAL (CMD/CTRL + K)
+       ========================================================================== -->
+  <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden items-start justify-center pt-20 px-4 bg-black/75 backdrop-blur-sm">
+    <div class="cyber-card w-full max-w-xl overflow-hidden shadow-2xl border-bright">
+      <!-- Search Input Bar -->
+      <div class="px-4 py-3.5 bg-elevated border-b border-dim flex items-center gap-3">
+        <i class="fa-solid fa-magnifying-glass text-accent text-sm"></i>
+        <input
+          id="cmdPaletteInput"
+          type="text"
+          autocomplete="off"
+          placeholder="Type a command, theme, view, or action..."
+          class="w-full bg-transparent font-mono text-sm text-main focus:outline-none placeholder:text-mute"
+        />
+        <button onclick="closeCommandPalette()" class="px-2 py-0.5 rounded bg-base border border-dim font-mono text-[10px] text-sub hover:text-main">ESC</button>
+      </div>
+
+      <!-- Command List -->
+      <div id="cmdPaletteList" class="max-h-80 overflow-y-auto p-2 divide-y divide-gray-800/40 font-mono text-xs">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-4 py-2 bg-elevated border-t border-dim flex items-center justify-between text-[11px] font-mono text-mute">
+        <div class="flex items-center gap-3">
+          <span><kbd class="px-1 py-0.5 bg-base rounded border border-dim">↑↓</kbd> Navigate</span>
+          <span><kbd class="px-1 py-0.5 bg-base rounded border border-dim">↵</kbd> Execute</span>
+        </div>
+        <span>SYS_CMD_PALETTE_V4</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TOAST NOTIFICATION CONTAINER
+       ========================================================================== -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- ==========================================================================
+       APPLICATION JAVASCRIPT (SELF-CONTAINED)
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       1. STATE & CONFIGURATION
+       ========================================================================== */
+    let currentTheme = 'obsidian';
+    let matrixActive = false;
+    let highFrequencyCommits = false;
+    let dagAutoStream = true;
+    let selectedDagNodeIndex = 2; // Default: Outlines JSON Enforcer
+
+    const REPOSITORIES = [
+      {
+        id: 'langgraph-deterministic-router',
+        name: 'langgraph-cfg-router',
+        category: 'agentic',
+        stars: '4,820',
+        forks: '412',
+        status: 'PROD // v2.4.1',
+        lang: 'Python / Rust',
+        desc: 'Zero-hallucination cyclical state-machine router for LangGraph combining Outlines regex automatons with automatic spaCy transformer NER fallback.',
+        tags: ['LangGraph', 'Outlines', 'Pydantic-v2', 'State-Machine'],
+        clone: 'git clone https://github.com/kaelen-vance/langgraph-cfg-router.git'
+      },
+      {
+        id: 'pydantic-strict-enforcer',
+        name: 'pydantic-fsm-compiler',
+        category: 'schema',
+        stars: '3,490',
+        forks: '289',
+        status: 'STABLE // v1.9.0',
+        lang: 'Rust / PyO3',
+        desc: 'Compiles deeply nested Pydantic v2 BaseModel contracts into SIMD-accelerated token logit masks for sub-2ms structured LLM generation.',
+        tags: ['Pydantic', 'PyO3', 'JSON-Schema', 'Guided-Decoding'],
+        clone: 'git clone https://github.com/kaelen-vance/pydantic-fsm-compiler.git'
+      },
+      {
+        id: 'zanzibar-rbac-mesh',
+        name: 'aegis-zanzibar-rbac',
+        category: 'security',
+        stars: '2,910',
+        forks: '340',
+        status: 'PROD // v3.1.0',
+        lang: 'Go / gRPC',
+        desc: 'Distributed relationship-based access control (ReBAC) authorization engine with sub-millisecond graph check latency and cryptographic audit logs.',
+        tags: ['Zero-Trust', 'RBAC', 'gRPC', 'Distributed-Systems'],
+        clone: 'git clone https://github.com/kaelen-vance/aegis-zanzibar-rbac.git'
+      },
+      {
+        id: 'spacy-ner-guardrail',
+        name: 'spacy-deterministic-sink',
+        category: 'schema',
+        stars: '1,640',
+        forks: '154',
+        status: 'STABLE // v1.4.2',
+        lang: 'Python',
+        desc: 'Deterministic entity extraction guardrail that intercepts malformed LLM payloads and recovers typed entities via custom spaCy transformer pipelines.',
+        tags: ['spaCy', 'NER', 'Fallback-Pipeline', 'Pydantic'],
+        clone: 'git clone https://github.com/kaelen-vance/spacy-deterministic-sink.git'
+      },
+      {
+        id: 'multi-agent-consensus-dag',
+        name: 'chronos-agent-dag',
+        category: 'agentic',
+        stars: '1,120',
+        forks: '98',
+        status: 'BETA // v0.9.4',
+        lang: 'Python / AsyncIO',
+        desc: 'Byzantine fault-tolerant execution engine for multi-agent tool invocation with deterministic replay logs and OpenTelemetry tracing.',
+        tags: ['LangChain', 'DAG', 'OpenTelemetry', 'AsyncIO'],
+        clone: 'git clone https://github.com/kaelen-vance/chronos-agent-dag.git'
+      },
+      {
+        id: 'mtls-token-enclave',
+        name: 'enclave-capability-auth',
+        category: 'security',
+        stars: '890',
+        forks: '76',
+        status: 'PROD // v2.0.0',
+        lang: 'Rust',
+        desc: 'Hardware-backed capability token minting service using Biscuit tokens and eBPF socket-level identity enforcement for AI worker pods.',
+        tags: ['Rust', 'eBPF', 'mTLS', 'Biscuit-Tokens'],
+        clone: 'git clone https://github.com/kaelen-vance/enclave-capability-auth.git'
+      }
+    ];
+
+    /* ==========================================================================
+       2. THEME ENGINE & LIVE TELEMETRY CLOCK
+       ========================================================================== */
+    function setTheme(themeName) {
+      currentTheme = themeName;
+      document.documentElement.setAttribute('data-theme', themeName);
+      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+        if (btn.getAttribute('data-theme-btn') === themeName) {
+          btn.classList.add('bg-base', 'text-accent', 'border', 'border-dim');
+        } else {
+          btn.classList.remove('bg-base', 'text-accent', 'border', 'border-dim');
+        }
+      });
+      showToast(`Theme switched to ${themeName.toUpperCase()}`, 'info');
+    }
+
+    function updateClocksAndMetrics() {
+      const now = new Date();
+      const utcStr = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+      const clockEl = document.getElementById('liveUtcClock');
+      if (clockEl) clockEl.textContent = utcStr;
+
+      // Subtle jitter on latency & throughput metrics
+      const ping = (10.8 + Math.random() * 1.4).toFixed(1);
+      const pingEl = document.getElementById('navPingMetric');
+      if (pingEl) pingEl.textContent = `${ping}ms`;
+
+      const tps = (14750 + Math.floor(Math.random() * 180)).toLocaleString();
+      const tpsEl = document.getElementById('bentoTpsMetric');
+      if (tpsEl) tpsEl.textContent = tps;
+    }
+
+    /* ==========================================================================
+       3. TYPEWRITER HEADLINE ROTATOR
+       ========================================================================== */
+    const HEADLINE_PHRASES = [
+      'Deterministic AI Pipelines',
+      'CFG Guided Decoding Engines',
+      'Zero-Trust RBAC Microservices',
+      'Fault-Tolerant LangGraph DAGs'
+    ];
+    let phraseIdx = 0;
+    let charIdx = HEADLINE_PHRASES[0].length;
+    let isDeleting = false;
+
+    function stepTypewriter() {
+      const target = document.getElementById('typewriterText');
+      if (!target) return;
+      const currentPhrase = HEADLINE_PHRASES[phraseIdx];
+
+      if (!isDeleting) {
+        charIdx++;
+        target.textContent = currentPhrase.substring(0, charIdx);
+        if (charIdx >= currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(stepTypewriter, 2600);
+          return;
+        }
+        setTimeout(stepTypewriter, 55);
+      } else {
+        charIdx--;
+        target.textContent = currentPhrase.substring(0, charIdx);
+        if (charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % HEADLINE_PHRASES.length;
+          setTimeout(stepTypewriter, 220);
+          return;
+        }
+        setTimeout(stepTypewriter, 28);
+      }
+    }
+
+    /* ==========================================================================
+       4. INTERACTIVE CANVAS AGENTIC EXECUTION GRAPH (DAG) VISUALIZER
+       ========================================================================== */
+    const DAG_NODES = [
+      {
+        id: 'input',
+        label: 'Input Stream',
+        sub: 'gRPC / Token Ingress',
+        nx: 0.13, ny: 0.24,
+        latency: '0.8 ms',
+        throughput: '420 tok/s',
+        schema: 'RAW_STREAM',
+        desc: 'Ingests high-concurrency user prompts and tool telemetry over multiplexed HTTP/2 gRPC streams.'
+      },
+      {
+        id: 'router',
+        label: 'LangGraph Router',
+        sub: 'Cyclical State Machine',
+        nx: 0.48, ny: 0.20,
+        latency: '2.1 ms',
+        throughput: '310 tok/s',
+        schema: 'STATE_VALID',
+        desc: 'Evaluates conditional edges and dispatches execution state across specialized deterministic worker nodes.'
+      },
+      {
+        id: 'outlines',
+        label: 'Outlines JSON Enforcer',
+        sub: 'CFG Regex Automaton',
+        nx: 0.84, ny: 0.24,
+        latency: '4.2 ms',
+        throughput: '148 tok/s',
+        schema: 'CFG_LOCKED',
+        desc: 'Compiles Pydantic JSON Schema into a finite-state regex automaton to mask invalid token logits at O(1) step latency.'
+      },
+      {
+        id: 'pydantic',
+        label: 'Pydantic Validator',
+        sub: 'Rust Core v2 Check',
+        nx: 0.24, ny: 0.74,
+        latency: '0.4 ms',
+        throughput: '980 tok/s',
+        schema: 'STRICT_OK',
+        desc: 'Executes zero-copy Rust-backed type coercion, invariant checks, and cryptographic signature verification.'
+      },
+      {
+        id: 'spacy',
+        label: 'spaCy Fallback NER',
+        sub: 'Transformer Recovery',
+        nx: 0.56, ny: 0.78,
+        latency: '6.8 ms',
+        throughput: '215 tok/s',
+        schema: 'NER_RECOVERED',
+        desc: 'Triggered automatically on degraded upstream streams to extract typed entities deterministically via custom NER.'
+      },
+      {
+        id: 'sink',
+        label: 'Structured Sink',
+        sub: 'Verified Event Bus',
+        nx: 0.86, ny: 0.74,
+        latency: '1.1 ms',
+        throughput: '640 tok/s',
+        schema: 'COMMITTED',
+        desc: 'Publishes 100% schema-compliant, strictly typed payloads to downstream microservices and vector stores.'
+      }
+    ];
+
+    // Directed Edges: [fromIndex, toIndex, isFallbackEdge]
+    const DAG_EDGES = [
+      [0, 1, false], // Input Stream -> LangGraph Router
+      [1, 2, false], // LangGraph Router -> Outlines JSON Enforcer
+      [2, 3, false], // Outlines JSON Enforcer -> Pydantic Validator
+      [3, 5, false], // Pydantic Validator -> Structured Sink
+      [1, 4, true],  // LangGraph Router -> spaCy Fallback NER (Fallback path)
+      [3, 4, true],  // Pydantic Validator -> spaCy Fallback NER (Validation recovery)
+      [4, 5, true]   // spaCy Fallback NER -> Structured Sink
+    ];
+
+    let dagPackets = [];
+    let dagCanvas, dagCtx;
+
+    function initDagCanvas() {
+      dagCanvas = document.getElementById('dagCanvas');
+      if (!dagCanvas) return;
+      dagCtx = dagCanvas.getContext('2d');
+
+      const resizeCanvas = () => {
+        const rect = dagCanvas.parentElement.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        dagCanvas.width = rect.width * dpr;
+        dagCanvas.height = rect.height * dpr;
+        dagCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      // Click listener on DAG nodes
+      dagCanvas.addEventListener('click', (e) => {
+        const rect = dagCanvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+
+        DAG_NODES.forEach((node, idx) => {
+          const nx = node.nx * rect.width;
+          const ny = node.ny * rect.height;
+          const dist = Math.hypot(mx - nx, my - ny);
+          if (dist < 48) {
+            selectDagNode(idx);
+            spawnPacketFromNode(idx);
+          }
+        });
+      });
+
+      // Spawn initial simulation payload
+      triggerDagSimulation('deterministic');
+      requestAnimationFrame(renderDagLoop);
+    }
+
+    function selectDagNode(idx) {
+      selectedDagNodeIndex = idx;
+      const node = DAG_NODES[idx];
+      document.getElementById('dagNodeTitle').textContent = `[${node.label}]`;
+      document.getElementById('dagNodeDesc').textContent = node.desc;
+      document.getElementById('dagTelemetryLatency').textContent = node.latency;
+      document.getElementById('dagTelemetryThroughput').textContent = node.throughput;
+      document.getElementById('dagTelemetrySchema').textContent = node.schema;
+    }
+
+    function spawnPacketFromNode(startIdx) {
+      const outgoing = DAG_EDGES.filter(edge => edge[0] === startIdx);
+      outgoing.forEach(edge => {
+        dagPackets.push({
+          from: edge[0],
+          to: edge[1],
+          progress: 0,
+          speed: 0.018 + Math.random() * 0.008,
+          isFallback: edge[2],
+          chainMode: edge[2] ? 'fallback' : 'deterministic'
+        });
+      });
+    }
+
+    function triggerDagSimulation(mode = 'deterministic') {
+      const modeLabel = document.getElementById('dagModeStatus');
+      if (mode === 'fallback') {
+        if (modeLabel) {
+          modeLabel.textContent = 'SPACY_FALLBACK_RECOVERY';
+          modeLabel.className = 'text-amber-400 font-semibold';
+        }
+        selectDagNode(4);
+        // Spawn Input -> Router
+        dagPackets.push({ from: 0, to: 1, progress: 0, speed: 0.022, isFallback: true, chainMode: 'fallback' });
+      } else {
+        if (modeLabel) {
+          modeLabel.textContent = 'CFG_DETERMINISTIC';
+          modeLabel.className = 'text-accent font-semibold';
+        }
+        // Spawn Input -> Router
+        dagPackets.push({ from: 0, to: 1, progress: 0, speed: 0.022, isFallback: false, chainMode: 'deterministic' });
+      }
+    }
+
+    function toggleDagAutoStream() {
+      dagAutoStream = !dagAutoStream;
+      const btn = document.getElementById('autoStreamBtn');
+      if (btn) {
+        btn.innerHTML = `
+          <span class="w-2 h-2 rounded-full ${dagAutoStream ? 'bg-emerald-400' : 'bg-slate-500'}"></span>
+          <span>Auto-Stream: ${dagAutoStream ? 'ON' : 'OFF'}</span>
+        `;
+      }
+    }
+
+    function renderDagLoop() {
+      if (!dagCanvas || !dagCtx) return;
+      const width = dagCanvas.clientWidth;
+      const height = dagCanvas.clientHeight;
+
+      const styles = getComputedStyle(document.documentElement);
+      const accentPrimary = styles.getPropertyValue('--accent-primary').trim() || '#00f0ff';
+      const accentSecondary = styles.getPropertyValue('--accent-secondary').trim() || '#10b981';
+      const borderDim = styles.getPropertyValue('--border-dim').trim() || '#1f2937';
+      const bgSurface = styles.getPropertyValue('--bg-surface').trim() || '#0d1117';
+      const textMain = styles.getPropertyValue('--text-primary').trim() || '#f1f5f9';
+      const textSub = styles.getPropertyValue('--text-secondary').trim() || '#94a3b8';
+
+      dagCtx.clearRect(0, 0, width, height);
+
+      // Auto-spawn packets periodically if Auto-Stream is active
+      if (dagAutoStream && dagPackets.length === 0 && Math.random() < 0.04) {
+        triggerDagSimulation(Math.random() < 0.82 ? 'deterministic' : 'fallback');
+      }
+
+      // Draw Directed Edges
+      DAG_EDGES.forEach(([uIdx, vIdx, isFallback]) => {
+        const u = DAG_NODES[uIdx];
+        const v = DAG_NODES[vIdx];
+        const x1 = u.nx * width;
+        const y1 = u.ny * height;
+        const x2 = v.nx * width;
+        const y2 = v.ny * height;
+
+        dagCtx.save();
+        dagCtx.beginPath();
+        if (isFallback) {
+          dagCtx.setLineDash([5, 5]);
+          dagCtx.strokeStyle = 'rgba(245, 158, 11, 0.35)';
+        } else {
+          dagCtx.strokeStyle = borderDim;
+        }
+        dagCtx.lineWidth = 1.75;
+        dagCtx.moveTo(x1, y1);
+        dagCtx.lineTo(x2, y2);
+        dagCtx.stroke();
+
+        // Draw directional arrow head at midpoint
+        const mx = (x1 + x2) / 2;
+        const my = (y1 + y2) / 2;
+        const angle = Math.atan2(y2 - y1, x2 - x1);
+        dagCtx.translate(mx, my);
+        dagCtx.rotate(angle);
+        dagCtx.beginPath();
+        dagCtx.moveTo(-5, -4);
+        dagCtx.lineTo(5, 0);
+        dagCtx.lineTo(-5, 4);
+        dagCtx.strokeStyle = isFallback ? '#f59e0b' : accentPrimary;
+        dagCtx.setLineDash([]);
+        dagCtx.stroke();
+        dagCtx.restore();
+      });
+
+      // Update & Draw Packets in Flight
+      const nextPackets = [];
+      dagPackets.forEach(pkt => {
+        pkt.progress += pkt.speed;
+        const u = DAG_NODES[pkt.from];
+        const v = DAG_NODES[pkt.to];
+        const x1 = u.nx * width;
+        const y1 = u.ny * height;
+        const x2 = v.nx * width;
+        const y2 = v.ny * height;
+
+        const cx = x1 + (x2 - x1) * pkt.progress;
+        const cy = y1 + (y2 - y1) * pkt.progress;
+
+        // Glowing Packet Orb
+        dagCtx.save();
+        dagCtx.beginPath();
+        const pktColor = pkt.isFallback ? '#f59e0b' : accentPrimary;
+        dagCtx.fillStyle = pktColor;
+        dagCtx.shadowColor = pktColor;
+        dagCtx.shadowBlur = 12;
+        dagCtx.arc(cx, cy, 4.5, 0, Math.PI * 2);
+        dagCtx.fill();
+        dagCtx.restore();
+
+        if (pkt.progress < 1) {
+          nextPackets.push(pkt);
+        } else {
+          // Packet arrived at destination node; cascade down the DAG
+          if (pkt.chainMode === 'deterministic') {
+            if (pkt.to === 1) nextPackets.push({ from: 1, to: 2, progress: 0, speed: 0.022, isFallback: false, chainMode: 'deterministic' });
+            else if (pkt.to === 2) nextPackets.push({ from: 2, to: 3, progress: 0, speed: 0.022, isFallback: false, chainMode: 'deterministic' });
+            else if (pkt.to === 3) nextPackets.push({ from: 3, to: 5, progress: 0, speed: 0.024, isFallback: false, chainMode: 'deterministic' });
+          } else if (pkt.chainMode === 'fallback') {
+            if (pkt.to === 1) nextPackets.push({ from: 1, to: 4, progress: 0, speed: 0.022, isFallback: true, chainMode: 'fallback' });
+            else if (pkt.to === 4) nextPackets.push({ from: 4, to: 5, progress: 0, speed: 0.022, isFallback: true, chainMode: 'fallback' });
+          }
+        }
+      });
+      dagPackets = nextPackets;
+
+      const pktCountEl = document.getElementById('dagActivePackets');
+      if (pktCountEl) pktCountEl.textContent = String(dagPackets.length);
+
+      // Draw DAG Nodes
+      DAG_NODES.forEach((node, idx) => {
+        const nx = node.nx * width;
+        const ny = node.ny * height;
+        const isSelected = idx === selectedDagNodeIndex;
+        const boxW = Math.min(148, width * 0.28);
+        const boxH = 48;
+
+        dagCtx.save();
+        dagCtx.beginPath();
+        dagCtx.roundRect(nx - boxW / 2, ny - boxH / 2, boxW, boxH, 8);
+        dagCtx.fillStyle = bgSurface;
+        dagCtx.fill();
+
+        dagCtx.lineWidth = isSelected ? 2 : 1.2;
+        dagCtx.strokeStyle = isSelected ? accentPrimary : (idx === 4 ? '#f59e0b' : borderDim);
+        if (isSelected) {
+          dagCtx.shadowColor = accentPrimary;
+          dagCtx.shadowBlur = 14;
+        }
+        dagCtx.stroke();
+        dagCtx.restore();
+
+        // Node Status Dot
+        dagCtx.beginPath();
+        dagCtx.fillStyle = idx === 4 ? '#f59e0b' : (isSelected ? accentPrimary : accentSecondary);
+        dagCtx.arc(nx - boxW / 2 + 11, ny - 6, 3, 0, Math.PI * 2);
+        dagCtx.fill();
+
+        // Node Title
+        dagCtx.font = '600 10.5px "JetBrains Mono", monospace';
+        dagCtx.fillStyle = textMain;
+        dagCtx.textAlign = 'left';
+        dagCtx.fillText(node.label.substring(0, 20), nx - boxW / 2 + 19, ny - 3);
+
+        // Node Subtitle
+        dagCtx.font = '400 9.5px "JetBrains Mono", monospace';
+        dagCtx.fillStyle = textSub;
+        dagCtx.fillText(node.sub, nx - boxW / 2 + 11, ny + 12);
+      });
+
+      requestAnimationFrame(renderDagLoop);
+    }
+
+    /* ==========================================================================
+       5. INTERACTIVE EMBEDDED TERMINAL (ZSH / PYTHON REPL)
+       ========================================================================== */
+    const cmdHistory = [];
+    let historyCursor = -1;
+
+    const TERMINAL_BOOT_BANNER = `
+<div class="text-sub space-y-1">
+  <div><span class="text-accent font-bold">KAELEN_VANCE_OS</span> // Release 4.2.0-arch (tty1) · Python 3.12.6 · Pydantic 2.9.2</div>
+  <div>Type <span class="text-accent font-semibold">help</span> or click any command chip above to inspect architecture, stack, or run live schema validation.</div>
+</div>`;
+
+    function initTerminal() {
+      const out = document.getElementById('terminalOutput');
+      if (out) out.innerHTML = TERMINAL_BOOT_BANNER;
+      runTerminalCommand('whoami', false);
+
+      const input = document.getElementById('terminalInput');
+      if (!input) return;
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const val = input.value.trim();
+          input.value = '';
+          if (val) {
+            cmdHistory.unshift(val);
+            historyCursor = -1;
+            runTerminalCommand(val, true);
+          }
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (historyCursor < cmdHistory.length - 1) {
+            historyCursor++;
+            input.value = cmdHistory[historyCursor];
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (historyCursor > 0) {
+            historyCursor--;
+            input.value = cmdHistory[historyCursor];
+          } else {
+            historyCursor = -1;
+            input.value = '';
+          }
+        } else if (e.key === 'Tab') {
+          e.preventDefault();
+          const available = ['help', 'whoami', 'stack', 'projects', 'validate', 'matrix', 'clear', 'simulate'];
+          const curr = input.value.trim().toLowerCase();
+          const match = available.find(c => c.startsWith(curr));
+          if (match) input.value = match;
+        }
+      });
+    }
+
+    function focusTerminalAndRun(cmd) {
+      document.getElementById('terminal-section').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        document.getElementById('terminalInput').focus();
+        runTerminalCommand(cmd, true);
+      }, 300);
+    }
+
+    function appendTerminalBlock(html) {
+      const out = document.getElementById('terminalOutput');
+      if (!out) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'space-y-1';
+      wrapper.innerHTML = html;
+      out.appendChild(wrapper);
+      out.scrollTop = out.scrollHeight;
+    }
+
+    function runTerminalCommand(rawCmd, echoCmd = true) {
+      const cmd = rawCmd.trim().toLowerCase();
+      const out = document.getElementById('terminalOutput');
+
+      if (cmd === 'clear') {
+        if (out) out.innerHTML = TERMINAL_BOOT_BANNER;
+        return;
+      }
+
+      if (echoCmd) {
+        appendTerminalBlock(`
+          <div class="flex items-center gap-2 pt-1">
+            <span class="text-accent-sec font-bold">kaelen@arch-node</span>:<span class="text-accent font-bold">~/dag-core</span>$
+            <span class="text-main font-semibold">${escapeHtml(rawCmd)}</span>
+          </div>
+        `);
+      }
+
+      switch (cmd) {
+        case 'help':
+          appendTerminalBlock(`
+            <div class="pl-3 border-l-2 border-dim space-y-1 text-sub">
+              <div class="text-main font-semibold">Available Shell Commands:</div>
+              <div><span class="text-accent inline-block w-24">whoami</span> Display architect profile &amp; systems philosophy</div>
+              <div><span class="text-accent inline-block w-24">stack</span> Render categorized tech stack &amp; proficiency matrix</div>
+              <div><span class="text-accent inline-block w-24">projects</span> List featured open-source repositories &amp; star metrics</div>
+              <div><span class="text-accent inline-block w-24">validate</span> Execute live Pydantic v2 / Outlines CFG schema test</div>
+              <div><span class="text-accent inline-block w-24">simulate</span> Dispatch token payload across the Agentic DAG canvas</div>
+              <div><span class="text-accent inline-block w-24">matrix</span> Toggle background digital cyber-rain canvas</div>
+              <div><span class="text-accent inline-block w-24">clear</span> Clear terminal buffer</div>
+            </div>
+          `);
+          break;
+
+        case 'whoami':
+          appendTerminalBlock(`
+            <div class="pl-3 border-l-2 border-cyan-500/40 space-y-1 text-sub">
+              <div><span class="text-main font-bold">Kaelen Vance</span> — Principal AI Systems &amp; Distributed Architecture Engineer</div>
+              <div><span class="text-accent">Philosophy:</span> "Probabilistic models require deterministic harnesses. Never parse raw LLM strings with regex; enforce context-free grammars at logit generation time."</div>
+              <div><span class="text-accent-sec">Focus Areas:</span> LangGraph Multi-Agent DAGs · Outlines Guided Decoding · Pydantic v2 Contracts · Distributed Zanzibar RBAC</div>
+            </div>
+          `);
+          break;
+
+        case 'stack':
+          appendTerminalBlock(`
+            <div class="pl-3 border-l-2 border-emerald-500/40 space-y-1.5 text-xs">
+              <div class="text-main font-bold">CORE_ENGINEERING_STACK // TELEMETRY</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-sub">
+                <div>Python 3.12 / AsyncIO   <span class="text-accent">[██████████] 99%</span></div>
+                <div>LangGraph / LangChain   <span class="text-accent">[██████████] 98%</span></div>
+                <div>Pydantic v2 / Outlines  <span class="text-accent-sec">[██████████] 98%</span></div>
+                <div>spaCy Transformer NER   <span class="text-accent-sec">[█████████░] 94%</span></div>
+                <div>Distributed RBAC / Auth <span class="text-accent">[█████████░] 95%</span></div>
+                <div>Rust / Go / gRPC        <span class="text-accent">[█████████░] 92%</span></div>
+              </div>
+            </div>
+          `);
+          break;
+
+        case 'projects':
+          appendTerminalBlock(`
+            <div class="pl-3 border-l-2 border-dim space-y-1 text-xs">
+              <div class="text-main font-bold">FEATURED_REPOSITORIES (Top 4 of 28):</div>
+              ${REPOSITORIES.slice(0, 4).map(r => `
+                <div class="flex flex-wrap items-center justify-between gap-2 py-0.5">
+                  <span class="text-accent font-semibold">${r.name}</span>
+                  <span class="text-sub">${r.desc.substring(0, 68)}...</span>
+                  <span class="text-amber-400">★ ${r.stars}</span>
+                </div>
+              `).join('')}
+            </div>
+          `);
+          break;
+
+        case 'validate':
+          appendTerminalBlock(`
+            <div class="pl-3 border-l-2 border-emerald-500/60 space-y-1 text-xs">
+              <div class="text-accent">[1/3] Compiling Pydantic v2 BaseModel -> Outlines FSM Regex Automaton... <span class="text-emerald-400">DONE (1.4ms)</span></div>
+              <div class="text-sub">[2/3] Sampling token stream with logit mask: <code class="text-main">{"node":"langgraph_router","confidence":0.994,"rbac_scope":"system:admin","entities":["Pydantic","Outlines"]}</code></div>
+              <div class="text-emerald-400 font-bold">[3/3] ✔ ValidationPASS: 0 schema violations · Latency: 3.8ms · Zero fallback retries required.</div>
+            </div>
+          `);
+          triggerDagSimulation('deterministic');
+          break;
+
+        case 'simulate':
+          triggerDagSimulation('deterministic');
+          appendTerminalBlock(`<div class="text-accent">⚡ Dispatched token payload into Agentic Execution Graph (DAG). Inspect telemetry above.</div>`);
+          break;
+
+        case 'matrix':
+          toggleMatrixRain();
+          appendTerminalBlock(`<div class="text-accent-sec">Matrix digital rain background ${matrixActive ? 'ENABLED' : 'DISABLED'}.</div>`);
+          break;
+
+        default:
+          appendTerminalBlock(`
+            <div class="text-rose-400">zsh: command not found: ${escapeHtml(rawCmd)}. Type <span class="text-accent underline cursor-pointer" onclick="runTerminalCommand('help')">help</span> for available commands.</div>
+          `);
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    /* ==========================================================================
+       6. MULTI-VIEW BENTO SWITCHER & 52-WEEK CONTRIBUTION HEATMAP
+       ========================================================================== */
+    function switchProfileView(view) {
+      ['bento', 'pydantic', 'json'].forEach(v => {
+        const panel = document.getElementById(`profileView-${v}`);
+        const btn = document.getElementById(`viewBtn-${v}`);
+        if (v === view) {
+          panel.classList.remove('hidden');
+          btn.className = 'px-3 py-1.5 rounded-lg transition-all flex items-center gap-2 bg-accent text-slate-950 font-semibold';
+        } else {
+          panel.classList.add('hidden');
+          btn.className = 'px-3 py-1.5 rounded-lg transition-all flex items-center gap-2 text-sub hover:text-main';
+        }
+      });
+    }
+
+    function generateContributionHeatmap(highFreq = false) {
+      const grid = document.getElementById('heatmapGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      let totalCommits = 0;
+      const totalCells = 52 * 7;
+      const now = new Date();
+
+      for (let i = totalCells - 1; i >= 0; i--) {
+        const cellDate = new Date(now);
+        cellDate.setDate(now.getDate() - i);
+        const dateStr = cellDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+        // Generate realistic deterministic-looking commit intensity
+        let level = 0;
+        const r = Math.random();
+        if (highFreq) {
+          if (r > 0.08) level = r > 0.65 ? 4 : (r > 0.35 ? 3 : 2);
+        } else {
+          if (r > 0.22) level = r > 0.86 ? 4 : (r > 0.62 ? 3 : (r > 0.38 ? 2 : 1));
+        }
+
+        const count = level === 0 ? 0 : (level * 4 + Math.floor(Math.random() * 5));
+        totalCommits += count;
+
+        const cell = document.createElement('div');
+        cell.className = `w-3 h-3 rounded-[2px] heat-${level} cursor-pointer transition-transform hover:scale-125`;
+        cell.addEventListener('mouseenter', () => {
+          const lbl = document.getElementById('heatmapHoverLabel');
+          if (lbl) lbl.textContent = `${count} commits on ${dateStr}`;
+        });
+        grid.appendChild(cell);
+      }
+
+      const badge = document.getElementById('totalCommitsBadge');
+      if (badge) badge.textContent = `${totalCommits.toLocaleString()} commits / yr`;
+
+      const streak = document.getElementById('streakMetric');
+      if (streak) streak.textContent = highFreq ? '184 DAYS (SPRINT)' : '64 DAYS';
+
+      const peak = document.getElementById('peakVelocityMetric');
+      if (peak) peak.textContent = highFreq ? '62 commits/day' : '39 commits/day';
+    }
+
+    function toggleHighFrequencyCommits() {
+      highFrequencyCommits = !highFrequencyCommits;
+      generateContributionHeatmap(highFrequencyCommits);
+      showToast(
+        highFrequencyCommits
+          ? 'High-Frequency Release Sprint Telemetry Activated'
+          : 'Restored Baseline Annual Commit Telemetry',
+        'success'
+      );
+    }
+
+    /* ==========================================================================
+       7. FEATURED REPOSITORIES RENDERER & FILTER
+       ========================================================================== */
+    function renderRepositories(filter = 'all') {
+      const container = document.getElementById('repositoriesGrid');
+      if (!container) return;
+
+      const list = filter === 'all'
+        ? REPOSITORIES
+        : REPOSITORIES.filter(r => r.category === filter);
+
+      container.innerHTML = list.map(repo => `
+        <article class="cyber-card p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <!-- Top Row: Status & Stars -->
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="px-2 py-0.5 rounded bg-elevated border border-dim text-accent font-semibold">${repo.status}</span>
+              <div class="flex items-center gap-3 text-sub">
+                <span><i class="fa-regular fa-star text-amber-400 mr-1"></i>${repo.stars}</span>
+                <span><i class="fa-solid fa-code-fork text-mute mr-1"></i>${repo.forks}</span>
+              </div>
+            </div>
+
+            <!-- Repo Title & Language -->
+            <div>
+              <h3 class="font-mono font-bold text-base text-main flex items-center gap-2">
+                <i class="fa-solid fa-cube text-accent text-xs"></i>
+                <span>${repo.name}</span>
+              </h3>
+              <span class="text-[11px] font-mono text-mute">${repo.lang}</span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-xs text-sub leading-relaxed">${repo.desc}</p>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              ${repo.tags.map(t => `<span class="px-2 py-0.5 text-[10px] font-mono rounded bg-base border border-dim text-sub">${t}</span>`).join('')}
+            </div>
+          </div>
+
+          <!-- One-Click Git Clone Copy Bar -->
+          <div class="pt-3 border-t border-dim flex items-center justify-between gap-2">
+            <code class="text-[11px] font-mono text-mute truncate bg-base px-2.5 py-1.5 rounded border border-dim flex-1">${repo.clone}</code>
+            <button
+              onclick="copyTextWithToast('${repo.clone}', 'Copied git clone snippet for ${repo.name}')"
+              class="btn-cyber-secondary px-2.5 py-1.5 rounded text-xs font-mono shrink-0 flex items-center gap-1.5"
+              title="Copy git clone command"
+            >
+              <i class="fa-regular fa-copy text-accent"></i>
+              <span>Clone</span>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function filterRepositories(category) {
+      document.querySelectorAll('[data-repo-filter]').forEach(btn => {
+        if (btn.getAttribute('data-repo-filter') === category) {
+          btn.className = 'px-3 py-1.5 rounded-lg bg-accent text-slate-950 font-semibold transition-all';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg bg-surface border border-dim text-sub hover:text-main transition-all';
+        }
+      });
+      renderRepositories(category);
+    }
+
+    /* ==========================================================================
+       8. COMMAND PALETTE (CMD/CTRL + K)
+       ========================================================================== */
+    const PALETTE_ACTIONS = [
+      { title: 'Simulate Token Payload in Agentic DAG', category: 'DAG Visualizer', icon: 'fa-bolt', action: () => triggerDagSimulation('deterministic') },
+      { title: 'Simulate Malformed JSON Fallback (spaCy NER)', category: 'DAG Visualizer', icon: 'fa-code-branch', action: () => triggerDagSimulation('fallback') },
+      { title: 'Execute Live Pydantic Schema Validation in CLI', category: 'Terminal', icon: 'fa-check-double', action: () => focusTerminalAndRun('validate') },
+      { title: 'Inspect Engineering Tech Stack in CLI', category: 'Terminal', icon: 'fa-layer-group', action: () => focusTerminalAndRun('stack') },
+      { title: 'Switch View: Pydantic BaseModel (Python)', category: 'Architecture View', icon: 'fa-python', action: () => { switchProfileView('pydantic'); document.getElementById('bento-section').scrollIntoView({behavior:'smooth'}); } },
+      { title: 'Switch View: JSON Schema Contract', category: 'Architecture View', icon: 'fa-file-code', action: () => { switchProfileView('json'); document.getElementById('bento-section').scrollIntoView({behavior:'smooth'}); } },
+      { title: 'Theme: Obsidian Cyber-Engineering (Default)', category: 'Appearance', icon: 'fa-palette', action: () => setTheme('obsidian') },
+      { title: 'Theme: CRT Amber Phosphor', category: 'Appearance', icon: 'fa-palette', action: () => setTheme('amber') },
+      { title: 'Theme: Neural Violet', category: 'Appearance', icon: 'fa-palette', action: () => setTheme('violet') },
+      { title: 'Theme: Blueprint High-Contrast Light', category: 'Appearance', icon: 'fa-palette', action: () => setTheme('blueprint') },
+      { title: 'Toggle Matrix Digital Rain Background', category: 'FX', icon: 'fa-code', action: () => toggleMatrixRain() },
+      { title: 'Deploy: Copy Complete index.html Source', category: 'GitHub Pages', icon: 'fa-copy', action: () => copyFullPageHtml() }
+    ];
+
+    let selectedPaletteIdx = 0;
+    let filteredPaletteActions = [...PALETTE_ACTIONS];
+
+    function openCommandPalette() {
+      const modal = document.getElementById('commandPaletteModal');
+      const input = document.getElementById('cmdPaletteInput');
+      if (!modal || !input) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      input.value = '';
+      selectedPaletteIdx = 0;
+      renderCommandPaletteList('');
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function closeCommandPalette() {
+      const modal = document.getElementById('commandPaletteModal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function renderCommandPaletteList(query) {
+      const listEl = document.getElementById('cmdPaletteList');
+      if (!listEl) return;
+      const q = query.trim().toLowerCase();
+      filteredPaletteActions = PALETTE_ACTIONS.filter(item =>
+        item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
+      );
+
+      if (selectedPaletteIdx >= filteredPaletteActions.length) {
+        selectedPaletteIdx = Math.max(0, filteredPaletteActions.length - 1);
+      }
+
+      if (filteredPaletteActions.length === 0) {
+        listEl.innerHTML = `<div class="p-4 text-center text-mute">No matching system commands found.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = filteredPaletteActions.map((item, idx) => `
+        <button
+          onclick="executePaletteItem(${idx})"
+          onmouseenter="selectedPaletteIdx=${idx}"
+          class="w-full px-3 py-2.5 rounded-lg flex items-center justify-between text-left transition-colors ${idx === selectedPaletteIdx ? 'bg-elevated text-accent border border-dim' : 'text-sub hover:bg-elevated/60 hover:text-main'}"
+        >
+          <div class="flex items-center gap-3">
+            <i class="fa-solid ${item.icon} w-4 text-center text-accent"></i>
+            <span class="font-medium">${item.title}</span>
+          </div>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-base border border-dim text-mute">${item.category}</span>
+        </button>
+      `).join('');
+    }
+
+    function executePaletteItem(idx) {
+      const item = filteredPaletteActions[idx];
+      if (!item) return;
+      closeCommandPalette();
+      item.action();
+    }
+
+    /* ==========================================================================
+       9. MATRIX DIGITAL RAIN BACKGROUND EFFECT
+       ========================================================================== */
+    let matrixInterval = null;
+    function toggleMatrixRain() {
+      matrixActive = !matrixActive;
+      const canvas = document.getElementById('matrixCanvas');
+      if (!canvas) return;
+
+      if (!matrixActive) {
+        canvas.classList.replace('opacity-25', 'opacity-0');
+        if (matrixInterval) clearInterval(matrixInterval);
+        return;
+      }
+
+      canvas.classList.replace('opacity-0', 'opacity-25');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const chars = '01{}[]<>λΣΠΔΩ_PYDANTIC_DAG_CFG_RBAC'.split('');
+      const fontSize = 14;
+      const columns = Math.floor(canvas.width / fontSize);
+      const drops = Array(columns).fill(1);
+
+      if (matrixInterval) clearInterval(matrixInterval);
+      matrixInterval = setInterval(() => {
+        ctx.fillStyle = 'rgba(6, 8, 13, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() || '#00f0ff';
+        ctx.fillStyle = accent;
+        ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }, 45);
+    }
+
+    /* ==========================================================================
+       10. CLIPBOARD & TOAST NOTIFICATION UTILITIES
+       ========================================================================== */
+    function copyTextToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function copyTextWithToast(text, message) {
+      copyTextToClipboard(text);
+      showToast(message, 'success');
+    }
+
+    function copyCodeBlock(elementId, message) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      copyTextToClipboard(el.innerText);
+      showToast(message, 'success');
+    }
+
+    function copyFullPageHtml() {
+      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      copyTextToClipboard(fullHtml);
+      showToast('Complete index.html copied! Paste directly into your username.github.io repo.', 'success');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'cyber-card p-3.5 bg-elevated border-bright shadow-xl flex items-center gap-3 font-mono text-xs pointer-events-auto transition-all duration-300';
+      const iconClass = type === 'success' ? 'fa-circle-check text-accent-sec' : 'fa-terminal text-accent';
+
+      toast.innerHTML = `
+        <i class="fa-solid ${iconClass} text-sm shrink-0"></i>
+        <div class="flex-1 text-main">${message}</div>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(8px)';
+        setTimeout(() => toast.remove(), 250);
+      }, 3200);
+    }
+
+    /* ==========================================================================
+       11. INITIALIZATION & GLOBAL KEYBOARD SHORTCUTS
+       ========================================================================== */
+    window.onload = function () {
+      setTheme('obsidian');
+      updateClocksAndMetrics();
+      setInterval(updateClocksAndMetrics, 1000);
+      setTimeout(stepTypewriter, 1500);
+
+      initDagCanvas();
+      initTerminal();
+      generateContributionHeatmap(false);
+      renderRepositories('all');
+
+      // Global Cmd/Ctrl + K Listener
+      window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          const modal = document.getElementById('commandPaletteModal');
+          if (modal.classList.contains('hidden')) {
+            openCommandPalette();
+          } else {
+            closeCommandPalette();
+          }
+        } else if (e.key === 'Escape') {
+          closeCommandPalette();
+        }
+      });
+
+      // Command Palette Input Filtering & Keyboard Navigation
+      const paletteInput = document.getElementById('cmdPaletteInput');
+      if (paletteInput) {
+        paletteInput.addEventListener('input', (e) => {
+          selectedPaletteIdx = 0;
+          renderCommandPaletteList(e.target.value);
+        });
+        paletteInput.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            selectedPaletteIdx = (selectedPaletteIdx + 1) % Math.max(1, filteredPaletteActions.length);
+            renderCommandPaletteList(paletteInput.value);
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            selectedPaletteIdx = (selectedPaletteIdx - 1 + filteredPaletteActions.length) % Math.max(1, filteredPaletteActions.length);
+            renderCommandPaletteList(paletteInput.value);
+          } else if (e.key === 'Enter') {
+            e.preventDefault();
+            executePaletteItem(selectedPaletteIdx);
+          }
+        });
+      }
+
+      // Close Command Palette when clicking backdrop
+      document.getElementById('commandPaletteModal').addEventListener('click', (e) => {
+        if (e.target.id === 'commandPaletteModal') closeCommandPalette();
+      });
+    };
+  </script>
+</body>
+</html>
+```
