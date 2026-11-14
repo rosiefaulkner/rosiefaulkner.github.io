@@ -1,0 +1,406 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al-Mufradat v3.0 — Levantine & Jordanian Arabic Studio</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Naskh Arabic, IBM Plex Sans Arabic, Scheherazade New for ultra-legible Arabic, Plus Jakarta Sans for English UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Scheherazade+New:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: {
+              50: '#FCFBF7',
+              100: '#F7F2E7',
+              200: '#EFE5D1',
+              300: '#E2D1B3',
+            },
+            levant: {
+              teal: '#0F4C5C',
+              tealLight: '#1B6B7D',
+              tealDark: '#09323D',
+              terracotta: '#C85A32',
+              terracottaLight: '#E07A5F',
+              gold: '#D4A359',
+              olive: '#2A7B6F',
+              slate: '#1E293B'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            arabic: ['"Noto Naskh Arabic"', '"IBM Plex Sans Arabic"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --arabic-font: 'Noto Naskh Arabic', 'IBM Plex Sans Arabic', serif;
+      --arabic-base-scale: 1.12;
+      --arabic-user-zoom: 1.0;
+    }
+
+    body.arabic-mode-naskh {
+      --arabic-font: 'Noto Naskh Arabic', serif;
+      --arabic-base-scale: 1.14;
+    }
+
+    body.arabic-mode-modern {
+      --arabic-font: 'IBM Plex Sans Arabic', sans-serif;
+      --arabic-base-scale: 1.05;
+    }
+
+    body.arabic-mode-classic {
+      --arabic-font: 'Scheherazade New', 'Noto Naskh Arabic', serif;
+      --arabic-base-scale: 1.28;
+    }
+
+    body {
+      background-color: #F7F2E7;
+      color: #1E293B;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-arabic {
+      font-family: var(--arabic-font);
+      line-height: 1.9;
+      letter-spacing: 0px;
+      word-spacing: 3px;
+      padding-top: 0.12em;
+      padding-bottom: 0.12em;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .arabic-tile-text {
+      font-size: calc(1.5rem * var(--arabic-base-scale) * var(--arabic-user-zoom));
+    }
+
+    .arabic-hero-text {
+      font-size: calc(2.25rem * var(--arabic-base-scale) * var(--arabic-user-zoom));
+    }
+
+    @media (min-width: 640px) {
+      .arabic-tile-text {
+        font-size: calc(1.7rem * var(--arabic-base-scale) * var(--arabic-user-zoom));
+      }
+      .arabic-hero-text {
+        font-size: calc(2.9rem * var(--arabic-base-scale) * var(--arabic-user-zoom));
+      }
+    }
+
+    @keyframes pulseSpeaker {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200, 90, 50, 0.6); }
+      50% { transform: scale(1.14); box-shadow: 0 0 0 8px rgba(200, 90, 50, 0); }
+    }
+    .speaker-playing {
+      animation: pulseSpeaker 0.75s infinite ease-in-out;
+      background-color: #C85A32 !important;
+      color: #FFFFFF !important;
+      border-color: #C85A32 !important;
+    }
+
+    /* Subtle Levantine Geometric Header Pattern */
+    .levant-pattern {
+      background-color: #0F4C5C;
+      background-image: radial-gradient(rgba(212, 163, 89, 0.16) 1.5px, transparent 1.5px),
+                        radial-gradient(rgba(212, 163, 89, 0.12) 1.5px, #0F4C5C 1.5px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+    }
+
+    /* 3D Flashcard Flip Styles */
+    .perspective-1000 {
+      perspective: 1200px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+
+    /* Tile Animations */
+    @keyframes popIn {
+      0% { transform: scale(0.94); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    @keyframes matchPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); background-color: #D1FAE5; border-color: #10B981; }
+      100% { transform: scale(0.96); opacity: 0.32; }
+    }
+
+    .animate-pop {
+      animation: popIn 0.22s ease-out forwards;
+    }
+    .animate-shake {
+      animation: shake 0.35s ease-in-out;
+    }
+    .tile-matched {
+      animation: matchPulse 0.42s ease-out forwards;
+      pointer-events: none;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F7F2E7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C9B99B;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0F4C5C;
+    }
+  </style>
+</head>
+<body class="arabic-mode-naskh min-h-screen flex flex-col justify-between selection:bg-levant-terracotta selection:text-white">
+
+  <!-- Hidden Cloud TTS Audio Element (with no-referrer policy for reliable streaming) -->
+  <audio id="cloudArabicAudio" referrerpolicy="no-referrer" preload="none" class="hidden"></audio>
+
+  <!-- Top Header & Global Controls -->
+  <header class="levant-pattern text-white shadow-lg border-b-4 border-levant-gold/40 sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+      <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3">
+        
+        <!-- Brand Title & Subtitle -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-levant-terracotta flex items-center justify-center shadow-md border border-white/20 shrink-0">
+              <span class="font-arabic text-2xl font-bold text-sand-50">ع</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-sand-50">Al-Mufradat Studio</h1>
+                <span class="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-200 border border-emerald-400/40">
+                  v3.0 Audit Edition
+                </span>
+                <button onclick="openAuditModal()" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-levant-gold/25 hover:bg-levant-gold/40 text-sand-50 border border-levant-gold/50 transition flex items-center gap-1" title="Inspect UX & Code Audit Fixes">
+                  <i class="fa-solid fa-wand-magic-sparkles text-levant-gold"></i>
+                  <span>UX &amp; Code Fixes</span>
+                </button>
+              </div>
+              <p class="text-xs text-sand-200/90">Levantine, Jordanian &amp; MSA Personal Study Archive</p>
+            </div>
+          </div>
+
+          <!-- Mobile Quick Actions -->
+          <div class="flex items-center gap-1.5 xl:hidden">
+            <button onclick="toggleTtsSpeed()" id="mobileSpeedBtn" class="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-sand-100 border border-white/15 transition" title="Toggle Audio Pronunciation Speed">
+              1.0x
+            </button>
+            <button onclick="openResetModal()" class="p-2 rounded-lg bg-white/10 hover:bg-red-500/30 text-sand-100 transition" title="Reset Mastery Progress">
+              <i class="fa-solid fa-rotate-left"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Global Progress & Filter Bar -->
+        <div class="flex flex-wrap items-center gap-2 justify-between xl:justify-end">
+          
+          <!-- 3-Tier SRS Progress Pill -->
+          <div class="flex items-center gap-2.5 bg-levant-tealDark/85 border border-white/15 px-3 py-1.5 rounded-xl">
+            <div class="text-xs flex items-center gap-2">
+              <span title="Mastered Words" class="text-emerald-300 font-bold"><i class="fa-solid fa-circle-check mr-1"></i><span id="masteredCountText">0</span></span>
+              <span class="text-white/25">|</span>
+              <button onclick="activateWeakWordsFilter()" title="Click to drill Weak / Needs Review words" class="text-amber-300 hover:text-amber-200 font-bold underline decoration-dotted">
+                <i class="fa-solid fa-triangle-exclamation mr-1"></i>Review: <span id="learningCountText">0</span>
+              </button>
+              <span class="text-white/25">|</span>
+              <span class="text-sand-200 text-[11px]">Total: <span id="totalCountText">0</span></span>
+            </div>
+            <div class="w-16 h-2 bg-white/15 rounded-full overflow-hidden hidden sm:block">
+              <div id="masteryProgressBar" class="h-full bg-gradient-to-r from-levant-gold to-emerald-400 transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Deck Focus / Smart SRS Filter -->
+          <div class="relative">
+            <select id="globalDeckFocusSelect" onchange="handleDeckFocusChange(this.value)" aria-label="Filter by word type or SRS status"
+              class="bg-white/10 hover:bg-white/15 text-sand-50 text-xs font-semibold rounded-xl px-2.5 py-2 border border-white/20 focus:outline-none focus:ring-2 focus:ring-levant-gold cursor-pointer">
+              <option value="all" class="text-slate-900">Deck: All Personal Items</option>
+              <option value="weak" class="text-slate-900">⚠️ Needs Review (Weak / Missed)</option>
+              <option value="unmastered" class="text-slate-900">🎯 Unmastered Only</option>
+              <option value="idioms" class="text-slate-900">🔥 Street Slang &amp; Idioms</option>
+              <option value="words" class="text-slate-900">⚡ Short Words (Fast Match)</option>
+              <option value="arabizi" class="text-slate-900">💬 Arabizi Notes (Ma7roog, Sa7eej...)</option>
+              <option value="sentences" class="text-slate-900">🗣️ Full Sentences &amp; Prompts</option>
+            </select>
+          </div>
+
+          <!-- Category Filter Select -->
+          <div class="relative">
+            <select id="globalCategorySelect" onchange="handleCategoryChange(this.value)" aria-label="Filter vocabulary category"
+              class="bg-white/10 hover:bg-white/15 text-sand-50 text-xs font-semibold rounded-xl px-2.5 py-2 border border-white/20 focus:outline-none focus:ring-2 focus:ring-levant-gold cursor-pointer">
+              <option value="all" class="text-slate-900">All 8 Categories</option>
+              <option value="Street Slang & Idioms" class="text-slate-900">Street Slang &amp; Idioms</option>
+              <option value="Work, Tech & Hustle" class="text-slate-900">Work, Tech &amp; Hustle</option>
+              <option value="Emotions & Character" class="text-slate-900">Emotions &amp; Character</option>
+              <option value="Social & Conversation" class="text-slate-900">Social &amp; Conversation</option>
+              <option value="Crime, Law & Politics" class="text-slate-900">Crime, Law &amp; Politics</option>
+              <option value="Health & Body" class="text-slate-900">Health &amp; Body</option>
+              <option value="Nature, Animals & Shapes" class="text-slate-900">Nature, Animals &amp; Shapes</option>
+              <option value="Everyday, Cars & House" class="text-slate-900">Everyday, Cars &amp; House</option>
+            </select>
+          </div>
+
+          <!-- Arabic Font & Zoom Controls -->
+          <div class="flex items-center bg-white/10 rounded-xl border border-white/20 p-0.5">
+            <select id="arabicFontSelect" onchange="changeArabicFontMode(this.value)" aria-label="Select Arabic Font Style"
+              class="bg-transparent text-sand-50 text-xs font-semibold px-2 py-1.5 focus:outline-none cursor-pointer"
+              title="Change Arabic Script Font">
+              <option value="naskh" class="text-slate-900">Font: Clear Naskh</option>
+              <option value="modern" class="text-slate-900">Font: Modern Sans</option>
+              <option value="classic" class="text-slate-900">Font: Classic Large</option>
+            </select>
+            <button onclick="adjustArabicZoom(-0.1)" class="px-2 py-1 text-xs font-bold text-sand-200 hover:text-white hover:bg-white/10 rounded-lg transition" title="Decrease Arabic Font Size">A-</button>
+            <button onclick="adjustArabicZoom(0.1)" class="px-2 py-1 text-xs font-bold text-sand-200 hover:text-white hover:bg-white/10 rounded-lg transition" title="Increase Arabic Font Size">A+</button>
+          </div>
+
+          <!-- Transliteration Toggle Button -->
+          <button id="translitToggleBtn" onclick="toggleTransliteration()"
+            class="flex items-center gap-1.5 text-xs font-bold px-2.5 py-2 rounded-xl border transition bg-levant-gold text-levant-tealDark border-levant-gold shadow-sm"
+            title="Show or Hide Transliteration">
+            <i class="fa-solid fa-language"></i>
+            <span id="translitBtnText">Translit: ON</span>
+          </button>
+
+          <!-- Audio Speed (1.0x / 0.75x) + Test Audio -->
+          <div class="hidden xl:flex items-center gap-1.5">
+            <button id="desktopSpeedBtn" onclick="toggleTtsSpeed()"
+              class="px-2.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-sand-50 text-xs font-bold border border-white/20 transition"
+              title="Toggle Arabic Pronunciation Speed (Normal 1.0x vs Slow 0.75x)">
+              <i class="fa-solid fa-gauge-high mr-1 text-levant-gold"></i><span id="desktopSpeedText">1.0x</span>
+            </button>
+            <button onclick="speakArabic('أهلاً وسهلاً بك في استوديو المفردات', this)"
+              class="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl border border-white/25 bg-levant-terracotta hover:bg-levant-terracottaLight text-white shadow-sm transition"
+              title="Test Sanitized Arabic Audio Engine">
+              <i class="fa-solid fa-volume-high"></i>
+              <span>Test Audio</span>
+            </button>
+            <button id="desktopSoundBtn" onclick="toggleSoundEffects()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-sand-100 border border-white/15 transition" title="Toggle UI Sound Effects">
+              <i id="desktopSoundIcon" class="fa-solid fa-bell"></i>
+            </button>
+            <button onclick="openResetModal()" class="p-2 rounded-xl bg-white/10 hover:bg-red-500/40 text-sand-100 border border-white/15 transition" title="Reset Mastery Progress">
+              <i class="fa-solid fa-rotate-left"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navigation Tabs (5 Interactive Modes) -->
+      <nav class="mt-3 pt-2 border-t border-white/15 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">
+        <button onclick="switchTab('match')" id="tab-match"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap bg-sand-50 text-levant-teal shadow">
+          <i class="fa-solid fa-table-cells-large text-levant-terracotta"></i>
+          <span>1. Grid Match</span>
+        </button>
+        <button onclick="switchTab('quiz')" id="tab-quiz"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap text-sand-100 hover:bg-white/10">
+          <i class="fa-solid fa-bolt text-levant-gold"></i>
+          <span>2. Smart Quiz Blitz</span>
+        </button>
+        <button onclick="switchTab('flashcards')" id="tab-flashcards"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap text-sand-100 hover:bg-white/10">
+          <i class="fa-solid fa-layer-group text-emerald-300"></i>
+          <span>3. SRS Flashcards</span>
+        </button>
+        <button onclick="switchTab('cloze')" id="tab-cloze"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap text-sand-100 hover:bg-white/10">
+          <i class="fa-solid fa-puzzle-piece text-pink-300"></i>
+          <span>4. Idiom &amp; Cloze Builder</span>
+        </button>
+        <button onclick="switchTab('vault')" id="tab-vault"
+          class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap text-sand-100 hover:bg-white/10">
+          <i class="fa-solid fa-book-open text-amber-300"></i>
+          <span id="vaultTabLabel">5. Word Vault</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+
+    <!-- ========================================== -->
+    <!-- MODE 1: GRID MATCH (SPEED MATCHING GAME)   -->
+    <!-- ========================================== -->
+    <section id="section-match" class="space-y-5">
+      <!-- Game Control Bar -->
+      <div class="bg-sand-50 rounded-2xl p-4 shadow-sm border border-sand-200 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-3 sm:gap-5">
+          <!-- Score -->
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-levant-teal/10 text-levant-teal flex items-center justify-center font-bold">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+              <p class="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Score</p>
+              <p id="matchScore" class="text-lg font-extrabold text-levant-teal">0</p>
+            </div>
+          </div>
+
+          <!-- Combo Multiplier -->
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-levant-terracotta/10 text-levant-terracotta flex items-center justify-center font-bold">
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <div>
+              <p class="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Combo</p>
+              <p id="matchCombo" class="text-lg font-extrabold text-levant-terracotta">1x</p>
+            </div>
+          </div>
+
+          <!-- Timer -->
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-stopwatch"></i>
+            </div>
+            <div>
+              <p class="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Time</p>
+              <p id="matchTimer" class="text-lg font-extrabold text-slate-700 font-mono">00:00</p>
+            </div>
+          </div>
+
+          <!-- Best Time -->
+          <div class="hidden sm:flex items-center gap-2.5 pl-3 border-l border-sand-200">
+            <div>
+              <p class="text-[11px] uppercase tracking-wider font-semibold text-slate-400">Best Time</p>
+              <p id="matchBestTime" class="text-sm font-bold text-emerald-700 font-mono">--:--</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Board Size & New Board Controls -->
+       
