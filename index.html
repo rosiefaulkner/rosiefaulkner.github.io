@@ -158,22 +158,58 @@
         }
 
         /* Custom Utility Classes bound to CSS Variables */
-        .bg-base { background-color: var(--bg-base); }
-        .bg-surface { background-color: var(--bg-surface); }
-        .bg-elevated { background-color: var(--bg-elevated); }
+        .bg-base {
+            background-color: var(--bg-base);
+        }
+
+        .bg-surface {
+            background-color: var(--bg-surface);
+        }
+
+        .bg-elevated {
+            background-color: var(--bg-elevated);
+        }
+
         .bg-glass {
             background-color: var(--bg-glass);
             backdrop-filter: blur(12px);
         }
-        .border-dim { border-color: var(--border-dim); }
-        .border-bright { border-color: var(--border-bright); }
-        .text-main { color: var(--text-primary); }
-        .text-sub { color: var(--text-secondary); }
-        .text-mute { color: var(--text-muted); }
-        .text-accent { color: var(--accent-primary); }
-        .text-accent-sec { color: var(--accent-secondary); }
-        .bg-accent { background-color: var(--accent-primary); }
-        .bg-accent-sec { background-color: var(--accent-secondary); }
+
+        .border-dim {
+            border-color: var(--border-dim);
+        }
+
+        .border-bright {
+            border-color: var(--border-bright);
+        }
+
+        .text-main {
+            color: var(--text-primary);
+        }
+
+        .text-sub {
+            color: var(--text-secondary);
+        }
+
+        .text-mute {
+            color: var(--text-muted);
+        }
+
+        .text-accent {
+            color: var(--accent-primary);
+        }
+
+        .text-accent-sec {
+            color: var(--accent-secondary);
+        }
+
+        .bg-accent {
+            background-color: var(--accent-primary);
+        }
+
+        .bg-accent-sec {
+            background-color: var(--accent-secondary);
+        }
 
         .cyber-card {
             background-color: var(--bg-surface);
@@ -254,51 +290,130 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.45; transform: scale(1.12); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.45;
+                transform: scale(1.12);
+            }
         }
 
-        .status-dot { animation: pulse-glow 2s infinite ease-in-out; }
+        .status-dot {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
 
         @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
+
+            0%,
+            49% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
         }
 
-        .cursor-blink { animation: blink 1s infinite; }
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
 
         /* Code syntax colors */
-        .syn-kw { color: #ff7b72; font-weight: 600; }
-        .syn-cls { color: #d2a8ff; }
-        .syn-str { color: #a5d6ff; }
-        .syn-num { color: #79c0ff; }
-        .syn-cmt { color: #8b949e; font-style: italic; }
-        .syn-fn { color: #d2a8ff; }
-        .syn-prop { color: #7ee787; }
+        .syn-kw {
+            color: #ff7b72;
+            font-weight: 600;
+        }
 
-        [data-theme="blueprint"] .syn-kw { color: #cf222e; }
-        [data-theme="blueprint"] .syn-cls { color: #8250df; }
-        [data-theme="blueprint"] .syn-str { color: #0a3069; }
-        [data-theme="blueprint"] .syn-num { color: #0550ae; }
-        [data-theme="blueprint"] .syn-cmt { color: #57606a; }
-        [data-theme="blueprint"] .syn-prop { color: #116329; }
+        .syn-cls {
+            color: #d2a8ff;
+        }
+
+        .syn-str {
+            color: #a5d6ff;
+        }
+
+        .syn-num {
+            color: #79c0ff;
+        }
+
+        .syn-cmt {
+            color: #8b949e;
+            font-style: italic;
+        }
+
+        .syn-fn {
+            color: #d2a8ff;
+        }
+
+        .syn-prop {
+            color: #7ee787;
+        }
+
+        [data-theme="blueprint"] .syn-kw {
+            color: #cf222e;
+        }
+
+        [data-theme="blueprint"] .syn-cls {
+            color: #8250df;
+        }
+
+        [data-theme="blueprint"] .syn-str {
+            color: #0a3069;
+        }
+
+        [data-theme="blueprint"] .syn-num {
+            color: #0550ae;
+        }
+
+        [data-theme="blueprint"] .syn-cmt {
+            color: #57606a;
+        }
+
+        [data-theme="blueprint"] .syn-prop {
+            color: #116329;
+        }
 
         /* Heatmap Cell */
-        .heat-0 { background-color: rgba(148, 163, 184, 0.08); }
-        .heat-1 { background-color: rgba(var(--accent-secondary-rgb), 0.25); }
-        .heat-2 { background-color: rgba(var(--accent-secondary-rgb), 0.50); }
-        .heat-3 { background-color: rgba(var(--accent-secondary-rgb), 0.75); }
+        .heat-0 {
+            background-color: rgba(148, 163, 184, 0.08);
+        }
+
+        .heat-1 {
+            background-color: rgba(var(--accent-secondary-rgb), 0.25);
+        }
+
+        .heat-2 {
+            background-color: rgba(var(--accent-secondary-rgb), 0.50);
+        }
+
+        .heat-3 {
+            background-color: rgba(var(--accent-secondary-rgb), 0.75);
+        }
+
         .heat-4 {
             background-color: rgba(var(--accent-primary-rgb), 0.95);
             box-shadow: 0 0 6px rgba(var(--accent-primary-rgb), 0.5);
         }
 
         /* No scrollbar utility */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
         /* Print / Export PDF Mode */
         @media print {
+
             .scanlines::after,
             #matrixCanvas,
             header,
@@ -307,20 +422,35 @@
             .no-print {
                 display: none !important;
             }
+
             body {
                 background: #ffffff !important;
                 color: #0f172a !important;
             }
+
             .cyber-card {
                 border: 1px solid #cbd5e1 !important;
                 background: #ffffff !important;
                 box-shadow: none !important;
                 break-inside: avoid;
             }
-            .text-main { color: #0f172a !important; }
-            .text-sub { color: #334155 !important; }
-            .text-mute { color: #475569 !important; }
-            .text-accent, .text-accent-sec { color: #0284c7 !important; }
+
+            .text-main {
+                color: #0f172a !important;
+            }
+
+            .text-sub {
+                color: #334155 !important;
+            }
+
+            .text-mute {
+                color: #475569 !important;
+            }
+
+            .text-accent,
+            .text-accent-sec {
+                color: #0284c7 !important;
+            }
         }
     </style>
 </head>
@@ -481,7 +611,8 @@
                             class="text-main font-mono text-xs px-1.5 py-0.5 rounded bg-elevated border border-dim">GraphRAG</span>,
                         and <span
                             class="text-main font-mono text-xs px-1.5 py-0.5 rounded bg-elevated border border-dim">MCP</span>
-                        for security, observability, and PII masking. From QuickBooks agentic lead gen demoed by Intuit's
+                        for security, observability, and PII masking. From QuickBooks agentic lead gen demoed by
+                        Intuit's
                         CEO in <em>Fortune</em> to payment localization saving Mailchimp <strong>$9M/year</strong>, I
                         engineer solutions that directly hit the bottom line, and build robots &amp; Raspberry Pi home
                         automation in my lab after hours.
@@ -548,10 +679,10 @@
                             <span>@rosiefaulkner</span>
                         </a>
                         <button
-                            onclick="copyTextWithToast('faulknerproject@gmail.com', 'Email faulknerproject@gmail.com copied to clipboard')"
+                            onclick="copyTextWithToast('rosie.faulkner.eng@gmail.com', 'Email rosie.faulkner.eng@gmail.com copied to clipboard')"
                             class="px-2.5 py-1 rounded-md bg-elevated border border-dim hover:border-bright text-sub hover:text-main transition-colors flex items-center gap-1.5">
                             <i class="fa-regular fa-envelope text-accent-sec text-[11px]"></i>
-                            <span>faulknerproject@gmail.com</span>
+                            <span>rosie.faulkner.eng@gmail.com</span>
                             <i class="fa-regular fa-copy text-[10px] text-mute"></i>
                         </button>
                     </div>
@@ -625,7 +756,8 @@
                                 <span id="dagNodeTitle" class="font-bold text-accent">[LangGraph Router]</span>
                             </div>
                             <p id="dagNodeDesc" class="text-[11px] text-sub leading-relaxed">
-                                Stateful Python &amp; Kotlin agent coordinator routing multi-step QuickBooks lead gen and
+                                Stateful Python &amp; Kotlin agent coordinator routing multi-step QuickBooks lead gen
+                                and
                                 tool calls with persistent memory.
                             </p>
                         </div>
@@ -658,7 +790,8 @@
                 <div>
                     <div class="text-xs font-mono text-accent uppercase tracking-wider">// 02.
                         INTERACTIVE_CV_SHELL</div>
-                    <h2 class="text-xl sm:text-2xl font-bold tracking-tight">RosieOS CLI // Query Experience, Stack &amp;
+                    <h2 class="text-xl sm:text-2xl font-bold tracking-tight">RosieOS CLI // Query Experience, Stack
+                        &amp;
                         Credentials</h2>
                 </div>
                 <!-- Clickable Command Chips -->
@@ -1038,7 +1171,7 @@
     name: <span class="syn-cls">str</span> = <span class="syn-str">"Rosie Faulkner"</span>
     role: <span class="syn-cls">str</span> = <span class="syn-str">"Senior Software Engineer @ Intuit"</span>
     location: <span class="syn-cls">str</span> = <span class="syn-str">"Atlanta, Georgia, United States"</span>
-    email: <span class="syn-cls">str</span> = <span class="syn-str">"faulknerproject@gmail.com"</span>
+    email: <span class="syn-cls">str</span> = <span class="syn-str">"rosie.faulkner.eng@gmail.com"</span>
     github: HttpUrl = <span class="syn-str">"https://github.com/rosiefaulkner"</span>
     linkedin: HttpUrl = <span class="syn-str">"https://www.linkedin.com/in/rosiefaulkner/"</span>
     education_highest: <span class="syn-cls">str</span> = <span class="syn-str">"M.S. Information Technology, Nova Southeastern University (2024)"</span>
@@ -1078,7 +1211,7 @@ cv_profile = <span class="syn-cls">RosieFaulknerSpec</span>()
   <span class="syn-prop">"headline"</span>: <span class="syn-str">"Senior Software Engineer @ Intuit | Context Engineering &amp; Agentic AI | GraphRAG, LangGraph, Python"</span>,
   <span class="syn-prop">"location"</span>: <span class="syn-str">"Atlanta, Georgia, United States"</span>,
   <span class="syn-prop">"contact"</span>: {
-    <span class="syn-prop">"email"</span>: <span class="syn-str">"faulknerproject@gmail.com"</span>,
+    <span class="syn-prop">"email"</span>: <span class="syn-str">"rosie.faulkner.eng@gmail.com"</span>,
     <span class="syn-prop">"linkedin"</span>: <span class="syn-str">"https://www.linkedin.com/in/rosiefaulkner/"</span>,
     <span class="syn-prop">"github"</span>: <span class="syn-str">"https://github.com/rosiefaulkner"</span>,
     <span class="syn-prop">"medium"</span>: <span class="syn-str">"https://medium.com/@rosiefaulkner"</span>
@@ -1114,7 +1247,8 @@ cv_profile = <span class="syn-cls">RosieFaulknerSpec</span>()
                     <div class="text-xs font-mono text-accent uppercase tracking-wider">// 05. OPEN_SOURCE_PORTFOLIO
                     </div>
                     <h2 class="text-xl sm:text-2xl font-bold tracking-tight">GitHub Repositories &amp; Agentic Systems
-                        <span class="text-sm font-mono font-normal text-sub">(24 Featured · 84 Total)</span></h2>
+                        <span class="text-sm font-mono font-normal text-sub">(24 Featured · 84 Total)</span>
+                    </h2>
                 </div>
 
                 <!-- Search + GitHub Link -->
@@ -1125,7 +1259,8 @@ cv_profile = <span class="syn-cls">RosieFaulknerSpec</span>()
                             placeholder="Filter repos (LangGraph, MCP, Kotlin...)"
                             class="pl-8 pr-3 py-1.5 rounded-lg bg-surface border border-dim focus:border-accent focus:outline-none text-xs font-mono text-main placeholder:text-mute w-64" />
                     </div>
-                    <a href="https://github.com/rosiefaulkner?tab=repositories" target="_blank" rel="noopener noreferrer"
+                    <a href="https://github.com/rosiefaulkner?tab=repositories" target="_blank"
+                        rel="noopener noreferrer"
                         class="btn-cyber-secondary px-3 py-1.5 rounded-lg flex items-center gap-1.5">
                         <i class="fa-brands fa-github text-accent"></i>
                         <span>All 84 on GitHub ↗</span>
@@ -1204,7 +1339,8 @@ cv_profile = <span class="syn-cls">RosieFaulknerSpec</span>()
                             <p class="text-xs text-sub leading-relaxed">
                                 Organizational information systems, software methods, and systems infrastructure.
                                 Coursework: Java, Python, Matlab, SQL, Networking, Cybersecurity. Built Kotlin Android
-                                applications (<span class="font-mono text-main">kotlin-android-restaurant-order-online</span>,
+                                applications (<span
+                                    class="font-mono text-main">kotlin-android-restaurant-order-online</span>,
                                 <span class="font-mono text-main">faculty-directory-app</span>).
                             </p>
                         </div>
@@ -1316,13 +1452,17 @@ cv_profile = <span class="syn-cls">RosieFaulknerSpec</span>()
                     <button onclick="filterPublications('all')" data-pub-filter="all"
                         class="px-2.5 py-1 rounded bg-accent text-slate-950 font-semibold">All (29)</button>
                     <button onclick="filterPublications('ai')" data-pub-filter="ai"
-                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">AI &amp; Agents (7)</button>
+                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">AI &amp;
+                        Agents (7)</button>
                     <button onclick="filterPublications('systems')" data-pub-filter="systems"
-                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">Systems, Cloud &amp; Data (11)</button>
+                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">Systems,
+                        Cloud &amp; Data (11)</button>
                     <button onclick="filterPublications('frontend')" data-pub-filter="frontend"
-                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">React &amp; Frontend (6)</button>
+                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">React &amp;
+                        Frontend (6)</button>
                     <button onclick="filterPublications('print')" data-pub-filter="print"
-                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">Economics, Media &amp; Print (5)</button>
+                        class="px-2.5 py-1 rounded bg-elevated border border-dim text-sub hover:text-main">Economics,
+                        Media &amp; Print (5)</button>
                 </div>
                 <div id="publicationsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
             </div>
@@ -2595,7 +2735,7 @@ cv_profile = <span class="syn-cls">RosieFaulknerSpec</span>()
                 case 'contact':
                     appendTerminalBlock(`
                         <div class="pl-3 border-l-2 border-dim space-y-1 text-xs text-sub">
-                          <div><span class="text-accent">Email:</span> faulknerproject@gmail.com</div>
+                          <div><span class="text-accent">Email:</span> rosie.faulkner.eng@gmail.com</div>
                           <div><span class="text-accent">LinkedIn:</span> https://www.linkedin.com/in/rosiefaulkner/</div>
                           <div><span class="text-accent">GitHub:</span> https://github.com/rosiefaulkner</div>
                           <div><span class="text-accent">Medium:</span> https://medium.com/@rosiefaulkner</div>
@@ -2954,7 +3094,7 @@ cv_profile = <span class="syn-cls">RosieFaulknerSpec</span>()
             { title: 'Switch View: Pydantic CV Model (Python)', category: 'Schema View', icon: 'fa-python', action: () => { switchProfileView('pydantic'); document.getElementById('bento-section').scrollIntoView({ behavior: 'smooth' }); } },
             { title: 'Switch View: Structured JSON CV Contract', category: 'Schema View', icon: 'fa-brackets-curly', action: () => { switchProfileView('json'); document.getElementById('bento-section').scrollIntoView({ behavior: 'smooth' }); } },
             { title: 'Print / Export CV as PDF', category: 'Export', icon: 'fa-file-pdf', action: () => window.print() },
-            { title: 'Copy Email (faulknerproject@gmail.com)', category: 'Contact', icon: 'fa-envelope', action: () => copyTextWithToast('faulknerproject@gmail.com', 'Email copied to clipboard') },
+            { title: 'Copy Email (rosie.faulkner.eng@gmail.com)', category: 'Contact', icon: 'fa-envelope', action: () => copyTextWithToast('rosie.faulkner.eng@gmail.com', 'Email copied to clipboard') },
             { title: 'Open LinkedIn Profile (in/rosiefaulkner)', category: 'External', icon: 'fa-arrow-up-right-from-square', action: () => window.open('https://www.linkedin.com/in/rosiefaulkner/', '_blank') },
             { title: 'Theme: Obsidian Cyan (Default)', category: 'Appearance', icon: 'fa-palette', action: () => setTheme('obsidian') },
             { title: 'Theme: CRT Amber Phosphor', category: 'Appearance', icon: 'fa-palette', action: () => setTheme('amber') },
