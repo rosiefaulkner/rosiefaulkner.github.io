@@ -100,4 +100,426 @@
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+    <!-- HERO SECTION -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-xs">
+          <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+          <span>AI Systems Architect & Senior Backend Engineer</span>
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-none">
+          Rosie <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-500">Faulkner</span>
+        </h1>
+
+        <p class="text-slate-300 text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
+          Architecting resilient deterministic AI pipelines, robust RAG workflows, and enterprise-grade multi-agent LLM systems. Former Senior Software Engineer at Intuit specializing in fault-tolerant Python architectures.
+        </p>
+
+        <!-- QUICK PILLS -->
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="px-3 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-cyan-300">LangChain</span>
+          <span class="px-3 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-cyan-300">LangGraph</span>
+          <span class="px-3 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-purple-300">Pydantic v2</span>
+          <span class="px-3 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-amber-300">Outlines JSON</span>
+          <span class="px-3 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-emerald-300">spaCy Fallback NER</span>
+          <span class="px-3 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-xs text-slate-300">RBAC Architecture</span>
+        </div>
+
+        <div class="flex items-center space-x-4 pt-4">
+          <a href="#dag-visualizer" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-lg shadow-cyan-500/20 transition flex items-center space-x-2">
+            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+            <span>Explore Agent DAG</span>
+          </a>
+          <a href="#cli-terminal" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 px-6 py-3 rounded-lg font-mono text-sm transition flex items-center space-x-2">
+            <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
+            <span>Launch CLI</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- LIVE SYSTEM STATUS CARD -->
+      <div class="lg:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
+        <div class="absolute -right-12 -top-12 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400"></i>
+            <span class="font-mono text-sm font-bold text-white">PIPELINE TELEMETRY</span>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">STATUS: OK</span>
+        </div>
+
+        <div class="space-y-4 pt-4 font-mono text-xs">
+          <div class="flex justify-between items-center py-1 border-b border-slate-800/50">
+            <span class="text-slate-400">Primary Engine:</span>
+            <span class="text-cyan-300">LangGraph Agent Router</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-slate-800/50">
+            <span class="text-slate-400">Schema Enforcement:</span>
+            <span class="text-purple-300">Outlines + Pydantic v2</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-slate-800/50">
+            <span class="text-slate-400">Fallback Handler:</span>
+            <span class="text-emerald-300">spaCy Entity Extractor</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-slate-800/50">
+            <span class="text-slate-400">Access Control:</span>
+            <span class="text-amber-300">Enterprise RBAC Matrix</span>
+          </div>
+          <div class="flex justify-between items-center pt-2">
+            <span class="text-slate-500">LATENCY: 42ms // RECALL: 99.8%</span>
+            <span class="text-cyan-400 font-bold">v2.4.0-stable</span>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+          <span>Target Environment: Production</span>
+          <span class="text-cyan-400 font-mono">github.io/rosiefaulkner</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE AGENTIC DAG VISUALIZER -->
+    <section id="dag-visualizer" class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-white flex items-center space-x-2">
+            <i data-lucide="git-merge" class="w-6 h-6 text-cyan-400"></i>
+            <span>Interactive Agentic State Graph</span>
+          </h2>
+          <p class="text-slate-400 text-sm mt-1">Simulate packet flow through LangGraph nodes, Pydantic validators, and spaCy fallbacks.</p>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button onclick="runSimulation('normal')" class="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 px-4 py-2 rounded font-mono text-xs transition flex items-center space-x-2">
+            <i data-lucide="play" class="w-3.5 h-3.5"></i>
+            <span>Run Normal Flow</span>
+          </button>
+          <button onclick="runSimulation('fallback')" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-4 py-2 rounded font-mono text-xs transition flex items-center space-x-2">
+            <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+            <span>Trigger Fallback NER</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CANVAS VISUALIZER -->
+      <div class="relative bg-[#070a12] border border-slate-800 rounded-xl p-6 overflow-x-auto">
+        <div class="flex items-center justify-between min-w-[700px] gap-4 relative">
+          
+          <!-- Node 1 -->
+          <div id="node-input" class="flex-1 bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-center transition-all duration-300">
+            <div class="text-cyan-400 font-mono text-xs font-bold mb-1">01 // INPUT</div>
+            <div class="text-sm font-semibold text-white">Unstructured Stream</div>
+            <div class="text-[11px] text-slate-400 mt-1">Customer Leads &amp; CRM Data</div>
+          </div>
+
+          <div class="text-slate-600 font-mono">→</div>
+
+          <!-- Node 2 -->
+          <div id="node-router" class="flex-1 bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-center transition-all duration-300">
+            <div class="text-cyan-400 font-mono text-xs font-bold mb-1">02 // ROUTER</div>
+            <div class="text-sm font-semibold text-white">LangGraph Agent</div>
+            <div class="text-[11px] text-slate-400 mt-1">Intent &amp; State Orchestration</div>
+          </div>
+
+          <div class="text-slate-600 font-mono">→</div>
+
+          <!-- Node 3 -->
+          <div id="node-enforcer" class="flex-1 bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-center transition-all duration-300">
+            <div class="text-purple-400 font-mono text-xs font-bold mb-1">03 // ENFORCER</div>
+            <div class="text-sm font-semibold text-white">Outlines JSON Engine</div>
+            <div class="text-[11px] text-slate-400 mt-1">Model-Agnostic Schema Lock</div>
+          </div>
+
+          <div class="text-slate-600 font-mono">→</div>
+
+          <!-- Node 4 -->
+          <div id="node-validator" class="flex-1 bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-center transition-all duration-300">
+            <div class="text-emerald-400 font-mono text-xs font-bold mb-1">04 // VALIDATOR</div>
+            <div class="text-sm font-semibold text-white">Pydantic v2 Model</div>
+            <div class="text-[11px] text-slate-400 mt-1">Strict Type &amp; Contract Check</div>
+          </div>
+
+        </div>
+
+        <div id="simulation-log" class="mt-6 pt-4 border-t border-slate-800/80 font-mono text-xs text-slate-400 flex items-center justify-between">
+          <span>Ready for pipeline execution. Click above to test simulation flow.</span>
+          <span class="text-cyan-400">DAG State: IDLE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE ZSH / PYTHON CLI TERMINAL -->
+    <section id="cli-terminal" class="bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+      <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+          <span class="ml-2 font-mono text-xs text-slate-400">rosie@architect-cli:~ (zsh)</span>
+        </div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-slate-500">
+          <span>Type <code class="text-cyan-400">help</code> for commands</span>
+        </div>
+      </div>
+
+      <div id="terminal-output" class="p-6 font-mono text-xs sm:text-sm text-slate-300 space-y-3 max-h-96 overflow-y-auto bg-[#070a12]/90">
+        <div><span class="text-cyan-400">rosie@systems:~$</span> python3 -m ai_architect --profile "Rosie Faulkner"</div>
+        <div class="text-slate-400">Initializing AI Systems Architect environment...</div>
+        <div class="text-emerald-400">[SUCCESS] Loaded Pydantic v2 models, LangGraph agents, and spaCy fallback extractors.</div>
+        <div class="text-slate-400">Type <span class="text-cyan-300 font-bold">help</span> to view available system commands or click the chips below.</div>
+      </div>
+
+      <div class="p-3 bg-slate-950 border-t border-slate-800 flex flex-wrap gap-2 items-center">
+        <button onclick="runCommand('help')" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 font-mono text-xs text-cyan-300">help</button>
+        <button onclick="runCommand('whoami')" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 font-mono text-xs text-cyan-300">whoami</button>
+        <button onclick="runCommand('stack')" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 font-mono text-xs text-cyan-300">stack</button>
+        <button onclick="runCommand('projects')" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 font-mono text-xs text-cyan-300">projects</button>
+        <button onclick="runCommand('validate')" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 font-mono text-xs text-cyan-300">validate</button>
+        <button onclick="runCommand('clear')" class="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 font-mono text-xs text-slate-400 ml-auto">clear</button>
+      </div>
+
+      <div class="p-4 bg-[#070a12] border-t border-slate-800 flex items-center space-x-2">
+        <span class="text-cyan-400 font-mono text-sm">&gt;</span>
+        <input type="text" id="terminal-input" onkeydown="handleTerminalInput(event)" placeholder="Type a command (e.g. whoami, stack, validate)..." class="w-full bg-transparent font-mono text-sm text-slate-100 focus:outline-none">
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE BENTO GRID -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1: Core Expertise -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+          <i data-lucide="cpu" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white">LLM Orchestration &amp; RAG</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Building structured LangChain modules and stateful LangGraph agents for autonomous customer lead aggregation and automated evaluations.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-1.5 font-mono text-[11px] text-cyan-300">
+          <span class="bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">LangGraph</span>
+          <span class="bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">RAG Pipelines</span>
+          <span class="bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">Automated Evals</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Deterministic Contracts -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+          <i data-lucide="code" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white">Schemas &amp; Fallbacks</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Enforcing strict JSON outputs via Outlines and Pydantic v2 models, integrated with spaCy entity fallback extractors for bulletproof reliability.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-1.5 font-mono text-[11px] text-purple-300">
+          <span class="bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">Pydantic v2</span>
+          <span class="bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">Outlines JSON</span>
+          <span class="bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">spaCy NER</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Enterprise Architecture -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+          <i data-lucide="shield" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white">Enterprise Engineering</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Designing explicit Role-Based Access Control (RBAC) rules, permission matrices, and scalable backend microservices from former Intuit engineering experience.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-1.5 font-mono text-[11px] text-amber-300">
+          <span class="bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">RBAC Specs</span>
+          <span class="bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Intuit Alum</span>
+          <span class="bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Scalable APIs</span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 bg-[#090d16] mt-20 py-8 px-4 text-center font-mono text-xs text-slate-500 space-y-2">
+    <div>ROSIS_FAULKNER // GITHUB_PAGES_DEPLOYED // 2026</div>
+    <div>Built with Cyber-Minimalist Architecture &bull; Powered by Python, LangGraph &amp; Tailwind CSS</div>
+  </footer>
+
+  <!-- COMMAND PALETTE MODAL -->
+  <div id="cmd-palette" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4" onclick="closeCmdPalette(event)">
+    <div class="bg-slate-900 border border-slate-700 rounded-xl max-w-lg w-full p-4 shadow-2xl space-y-3" onclick="event.stopPropagation()">
+      <div class="flex items-center space-x-2 border-b border-slate-800 pb-3">
+        <i data-lucide="search" class="w-4 h-4 text-cyan-400"></i>
+        <input type="text" id="cmd-input" placeholder="Type a command or navigate..." class="w-full bg-transparent font-mono text-sm text-slate-100 focus:outline-none">
+        <button onclick="closeCmdPalette()" class="text-slate-500 hover:text-slate-300 font-mono text-xs border border-slate-700 px-1.5 py-0.5 rounded">ESC</button>
+      </div>
+      <div class="space-y-1 font-mono text-xs">
+        <a href="https://www.linkedin.com/in/rosiefaulkner/" target="_blank" class="flex items-center justify-between p-2 rounded hover:bg-slate-800 text-slate-300 hover:text-cyan-300 transition">
+          <span class="flex items-center space-x-2"><i data-lucide="linkedin" class="w-3.5 h-3.5 text-cyan-400"></i><span>Open LinkedIn Profile</span></span>
+          <span class="text-slate-600">External</span>
+        </a>
+        <button onclick="runCommand('whoami'); closeCmdPalette();" class="w-full text-left flex items-center justify-between p-2 rounded hover:bg-slate-800 text-slate-300 hover:text-cyan-300 transition">
+          <span class="flex items-center space-x-2"><i data-lucide="user" class="w-3.5 h-3.5 text-cyan-400"></i><span>Run `whoami` in Terminal</span></span>
+          <span class="text-slate-600">CLI</span>
+        </button>
+        <button onclick="runCommand('stack'); closeCmdPalette();" class="w-full text-left flex items-center justify-between p-2 rounded hover:bg-slate-800 text-slate-300 hover:text-cyan-300 transition">
+          <span class="flex items-center space-x-2"><i data-lucide="cpu" class="w-3.5 h-3.5 text-cyan-400"></i><span>View Tech Stack</span></span>
+          <span class="text-slate-600">CLI</span>
+        </button>
+        <button onclick="setTheme('cyan'); closeCmdPalette();" class="w-full text-left flex items-center justify-between p-2 rounded hover:bg-slate-800 text-slate-300 hover:text-cyan-300 transition">
+          <span class="flex items-center space-x-2"><i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400"></i><span>Switch Theme: Cyber Cyan</span></span>
+          <span class="text-slate-600">Theme</span>
+        </button>
+        <button onclick="setTheme('amber'); closeCmdPalette();" class="w-full text-left flex items-center justify-between p-2 rounded hover:bg-slate-800 text-slate-300 hover:text-cyan-300 transition">
+          <span class="flex items-center space-x-2"><i data-lucide="palette" class="w-3.5 h-3.5 text-amber-400"></i><span>Switch Theme: CRT Amber</span></span>
+          <span class="text-slate-600">Theme</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Theme Engine
+    function setTheme(color) {
+      document.body.className = `theme-${color} bg-[#070a12] text-slate-100 min-h-screen selection:bg-${color === 'amber' ? 'amber' : color === 'violet' ? 'purple' : color === 'emerald' ? 'emerald' : 'cyan'}-500/30 antialiased`;
+    }
+
+    // Command Palette
+    function openCmdPalette() {
+      document.getElementById('cmd-palette').classList.remove('hidden');
+      document.getElementById('cmd-input').focus();
+    }
+    function closeCmdPalette(e) {
+      if (!e || e.target.id === 'cmd-palette' || e.type === 'click') {
+        document.getElementById('cmd-palette').classList.add('hidden');
+      }
+    }
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        openCmdPalette();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('cmd-palette').classList.add('hidden');
+      }
+    });
+
+    // Terminal Simulator
+    function handleTerminalInput(e) {
+      if (e.key === 'Enter') {
+        const input = e.target.value.trim();
+        if (input) {
+          runCommand(input);
+          e.target.value = '';
+        }
+      }
+    }
+
+    function runCommand(cmd) {
+      const output = document.getElementById('terminal-output');
+      const cleanCmd = cmd.toLowerCase().trim();
+      
+      const cmdDiv = document.createElement('div');
+      cmdDiv.innerHTML = `<span class="text-cyan-400">rosie@systems:~$</span> ${escapeHtml(cmd)}`;
+      output.appendChild(cmdDiv);
+
+      const resDiv = document.createElement('div');
+      resDiv.className = "text-slate-300";
+
+      switch(cleanCmd) {
+        case 'help':
+          resDiv.innerHTML = `Available commands:<br>
+            &nbsp;&nbsp;<span class="text-cyan-300 font-bold">whoami</span>    - Display professional background &amp; engineering profile<br>
+            &nbsp;&nbsp;<span class="text-cyan-300 font-bold">stack</span>     - List core technical stack &amp; libraries<br>
+            &nbsp;&nbsp;<span class="text-cyan-300 font-bold">projects</span>  - Highlight recent AI &amp; backend projects<br>
+            &nbsp;&nbsp;<span class="text-cyan-300 font-bold">validate</span>  - Run Pydantic v2 schema validation check<br>
+            &nbsp;&nbsp;<span class="text-cyan-300 font-bold">clear</span>     - Clear terminal screen`;
+          break;
+        case 'whoami':
+          resDiv.innerHTML = `Rosie Faulkner — Senior Software Engineer &amp; AI Systems Architect.<br>Former Senior Software Engineer at Intuit. Specializing in Python backend systems, LangChain/LangGraph agent pipelines, and strict schema enforcement.`;
+          break;
+        case 'stack':
+          resDiv.innerHTML = `Core Stack:<br>
+            - Languages: Python, JavaScript/TypeScript<br>
+            - AI &amp; Orchestration: LangChain, LangGraph, Pydantic v2, Outlines, spaCy<br>
+            - Architecture: Enterprise RBAC, RAG Pipelines, Automated Evals, REST/GraphQL APIs`;
+          break;
+        case 'projects':
+          resDiv.innerHTML = `Notable Systems:<br>
+            1. QuickBooks CRM Agentic Lead Aggregator (LangGraph + Pydantic)<br>
+            2. Model-Agnostic JSON Schema Enforcer (Outlines Python)<br>
+            3. Enterprise RBAC Specification &amp; Permission Matrix Engine`;
+          break;
+        case 'validate':
+          resDiv.innerHTML = `<span class="text-emerald-400">[VALIDATION SUCCESS]</span> Pydantic v2 model schema compiled successfully. 0 validation errors found. Outlines contract verified.`;
+          break;
+        case 'clear':
+          output.innerHTML = '';
+          return;
+        default:
+          resDiv.innerHTML = `<span class="text-red-400">zsh: command not found: ${escapeHtml(cmd)}. Type 'help' for available commands.</span>`;
+      }
+
+      output.appendChild(resDiv);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    // DAG Simulation Flow
+    function runSimulation(type) {
+      const log = document.getElementById('simulation-log');
+      const nInput = document.getElementById('node-input');
+      const nRouter = document.getElementById('node-router');
+      const nEnforcer = document.getElementById('node-enforcer');
+      const nValidator = document.getElementById('node-validator');
+
+      // Reset styles
+      [nInput, nRouter, nEnforcer, nValidator].forEach(n => {
+        n.className = "flex-1 bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-center transition-all duration-300";
+      });
+
+      if (type === 'normal') {
+        log.innerHTML = `<span class="text-cyan-400">Running LangGraph agent pipeline... [STEP 1/4: Input received]</span>`;
+        nInput.className = "flex-1 bg-cyan-950/80 border border-cyan-400 rounded-xl p-4 text-center shadow-lg shadow-cyan-500/20";
+        
+        setTimeout(() => {
+          log.innerHTML = `<span class="text-cyan-400">Routing state through LangGraph router... [STEP 2/4]</span>`;
+          nRouter.className = "flex-1 bg-cyan-950/80 border border-cyan-400 rounded-xl p-4 text-center shadow-lg shadow-cyan-500/20";
+        }, 600);
+
+        setTimeout(() => {
+          log.innerHTML = `<span class="text-purple-400">Enforcing Outlines JSON schema... [STEP 3/4]</span>`;
+          nEnforcer.className = "flex-1 bg-purple-950/80 border border-purple-400 rounded-xl p-4 text-center shadow-lg shadow-purple-500/20";
+        }, 1200);
+
+        setTimeout(() => {
+          log.innerHTML = `<span class="text-emerald-400">[SUCCESS] Pydantic v2 validated payload successfully. Pipeline complete!</span>`;
+          nValidator.className = "flex-1 bg-emerald-950/80 border border-emerald-400 rounded-xl p-4 text-center shadow-lg shadow-emerald-500/20";
+        }, 1800);
+      } else {
+        log.innerHTML = `<span class="text-amber-400">[WARNING] LLM validation failed. Triggering spaCy NER fallback...</span>`;
+        nInput.className = "flex-1 bg-amber-950/80 border border-amber-400 rounded-xl p-4 text-center shadow-lg shadow-amber-500/20";
+        
+        setTimeout(() => {
+          log.innerHTML = `<span class="text-amber-400">Extracting entities via spaCy fallback model...</span>`;
+          nEnforcer.className = "flex-1 bg-amber-950/80 border border-amber-400 rounded-xl p-4 text-center shadow-lg shadow-amber-500/20";
+        }, 800);
+
+        setTimeout(() => {
+          log.innerHTML = `<span class="text-emerald-400">[RECOVERY SUCCESS] Entities successfully rescued and serialized via fallback sink.</span>`;
+          nValidator.className = "flex-1 bg-emerald-950/80 border border-emerald-400 rounded-xl p-4 text-center shadow-lg shadow-emerald-500/20";
+        }, 1600);
+      }
+    }
+  </script>
+</body>
+</html>
