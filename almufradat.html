@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +10,9 @@
   <!-- Google Fonts: Noto Naskh Arabic, IBM Plex Sans Arabic, Scheherazade New for ultra-legible Arabic, Plus Jakarta Sans for English UI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Scheherazade+New:wght@500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Scheherazade+New:wght@500;600;700&display=swap"
+    rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -97,15 +100,26 @@
       .arabic-tile-text {
         font-size: calc(1.7rem * var(--arabic-base-scale) * var(--arabic-user-zoom));
       }
+
       .arabic-hero-text {
         font-size: calc(2.9rem * var(--arabic-base-scale) * var(--arabic-user-zoom));
       }
     }
 
     @keyframes pulseSpeaker {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200, 90, 50, 0.6); }
-      50% { transform: scale(1.14); box-shadow: 0 0 0 8px rgba(200, 90, 50, 0); }
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(200, 90, 50, 0.6);
+      }
+
+      50% {
+        transform: scale(1.14);
+        box-shadow: 0 0 0 8px rgba(200, 90, 50, 0);
+      }
     }
+
     .speaker-playing {
       animation: pulseSpeaker 0.75s infinite ease-in-out;
       background-color: #C85A32 !important;
@@ -117,7 +131,7 @@
     .levant-pattern {
       background-color: #0F4C5C;
       background-image: radial-gradient(rgba(212, 163, 89, 0.16) 1.5px, transparent 1.5px),
-                        radial-gradient(rgba(212, 163, 89, 0.12) 1.5px, #0F4C5C 1.5px);
+        radial-gradient(rgba(212, 163, 89, 0.12) 1.5px, #0F4C5C 1.5px);
       background-size: 28px 28px;
       background-position: 0 0, 14px 14px;
     }
@@ -126,40 +140,77 @@
     .perspective-1000 {
       perspective: 1200px;
     }
+
     .transform-style-3d {
       transform-style: preserve-3d;
       transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .backface-hidden {
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
+
     .rotate-y-180 {
       transform: rotateY(180deg);
     }
 
     /* Tile Animations */
     @keyframes popIn {
-      0% { transform: scale(0.94); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+      0% {
+        transform: scale(0.94);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
+
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
     }
+
     @keyframes matchPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); background-color: #D1FAE5; border-color: #10B981; }
-      100% { transform: scale(0.96); opacity: 0.32; }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+        background-color: #D1FAE5;
+        border-color: #10B981;
+      }
+
+      100% {
+        transform: scale(0.96);
+        opacity: 0.32;
+      }
     }
 
     .animate-pop {
       animation: popIn 0.22s ease-out forwards;
     }
+
     .animate-shake {
       animation: shake 0.35s ease-in-out;
     }
+
     .tile-matched {
       animation: matchPulse 0.42s ease-out forwards;
       pointer-events: none;
@@ -170,19 +221,24 @@
       width: 8px;
       height: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: #F7F2E7;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #C9B99B;
       border-radius: 9999px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #0F4C5C;
     }
   </style>
 </head>
-<body class="arabic-mode-naskh min-h-screen flex flex-col justify-between selection:bg-levant-terracotta selection:text-white">
+
+<body
+  class="arabic-mode-naskh min-h-screen flex flex-col justify-between selection:bg-levant-terracotta selection:text-white">
 
   <!-- Hidden Cloud TTS Audio Element (with no-referrer policy for reliable streaming) -->
   <audio id="cloudArabicAudio" referrerpolicy="no-referrer" preload="none" class="hidden"></audio>
@@ -191,20 +247,24 @@
   <header class="levant-pattern text-white shadow-lg border-b-4 border-levant-gold/40 sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
       <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3">
-        
+
         <!-- Brand Title & Subtitle -->
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-levant-terracotta flex items-center justify-center shadow-md border border-white/20 shrink-0">
+            <div
+              class="w-11 h-11 rounded-xl bg-levant-terracotta flex items-center justify-center shadow-md border border-white/20 shrink-0">
               <span class="font-arabic text-2xl font-bold text-sand-50">ع</span>
             </div>
             <div>
               <div class="flex items-center gap-2 flex-wrap">
                 <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-sand-50">Al-Mufradat Studio</h1>
-                <span class="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-200 border border-emerald-400/40">
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-200 border border-emerald-400/40">
                   v3.0 Audit Edition
                 </span>
-                <button onclick="openAuditModal()" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-levant-gold/25 hover:bg-levant-gold/40 text-sand-50 border border-levant-gold/50 transition flex items-center gap-1" title="Inspect UX & Code Audit Fixes">
+                <button onclick="openAuditModal()"
+                  class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-levant-gold/25 hover:bg-levant-gold/40 text-sand-50 border border-levant-gold/50 transition flex items-center gap-1"
+                  title="Inspect UX & Code Audit Fixes">
                   <i class="fa-solid fa-wand-magic-sparkles text-levant-gold"></i>
                   <span>UX &amp; Code Fixes</span>
                 </button>
@@ -215,10 +275,14 @@
 
           <!-- Mobile Quick Actions -->
           <div class="flex items-center gap-1.5 xl:hidden">
-            <button onclick="toggleTtsSpeed()" id="mobileSpeedBtn" class="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-sand-100 border border-white/15 transition" title="Toggle Audio Pronunciation Speed">
+            <button onclick="toggleTtsSpeed()" id="mobileSpeedBtn"
+              class="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-sand-100 border border-white/15 transition"
+              title="Toggle Audio Pronunciation Speed">
               1.0x
             </button>
-            <button onclick="openResetModal()" class="p-2 rounded-lg bg-white/10 hover:bg-red-500/30 text-sand-100 transition" title="Reset Mastery Progress">
+            <button onclick="openResetModal()"
+              class="p-2 rounded-lg bg-white/10 hover:bg-red-500/30 text-sand-100 transition"
+              title="Reset Mastery Progress">
               <i class="fa-solid fa-rotate-left"></i>
             </button>
           </div>
@@ -226,26 +290,31 @@
 
         <!-- Global Progress & Filter Bar -->
         <div class="flex flex-wrap items-center gap-2 justify-between xl:justify-end">
-          
+
           <!-- 3-Tier SRS Progress Pill -->
           <div class="flex items-center gap-2.5 bg-levant-tealDark/85 border border-white/15 px-3 py-1.5 rounded-xl">
             <div class="text-xs flex items-center gap-2">
-              <span title="Mastered Words" class="text-emerald-300 font-bold"><i class="fa-solid fa-circle-check mr-1"></i><span id="masteredCountText">0</span></span>
+              <span title="Mastered Words" class="text-emerald-300 font-bold"><i
+                  class="fa-solid fa-circle-check mr-1"></i><span id="masteredCountText">0</span></span>
               <span class="text-white/25">|</span>
-              <button onclick="activateWeakWordsFilter()" title="Click to drill Weak / Needs Review words" class="text-amber-300 hover:text-amber-200 font-bold underline decoration-dotted">
+              <button onclick="activateWeakWordsFilter()" title="Click to drill Weak / Needs Review words"
+                class="text-amber-300 hover:text-amber-200 font-bold underline decoration-dotted">
                 <i class="fa-solid fa-triangle-exclamation mr-1"></i>Review: <span id="learningCountText">0</span>
               </button>
               <span class="text-white/25">|</span>
               <span class="text-sand-200 text-[11px]">Total: <span id="totalCountText">0</span></span>
             </div>
             <div class="w-16 h-2 bg-white/15 rounded-full overflow-hidden hidden sm:block">
-              <div id="masteryProgressBar" class="h-full bg-gradient-to-r from-levant-gold to-emerald-400 transition-all duration-300" style="width: 0%"></div>
+              <div id="masteryProgressBar"
+                class="h-full bg-gradient-to-r from-levant-gold to-emerald-400 transition-all duration-300"
+                style="width: 0%"></div>
             </div>
           </div>
 
           <!-- Deck Focus / Smart SRS Filter -->
           <div class="relative">
-            <select id="globalDeckFocusSelect" onchange="handleDeckFocusChange(this.value)" aria-label="Filter by word type or SRS status"
+            <select id="globalDeckFocusSelect" onchange="handleDeckFocusChange(this.value)"
+              aria-label="Filter by word type or SRS status"
               class="bg-white/10 hover:bg-white/15 text-sand-50 text-xs font-semibold rounded-xl px-2.5 py-2 border border-white/20 focus:outline-none focus:ring-2 focus:ring-levant-gold cursor-pointer">
               <option value="all" class="text-slate-900">Deck: All Personal Items</option>
               <option value="weak" class="text-slate-900">⚠️ Needs Review (Weak / Missed)</option>
@@ -259,7 +328,8 @@
 
           <!-- Category Filter Select -->
           <div class="relative">
-            <select id="globalCategorySelect" onchange="handleCategoryChange(this.value)" aria-label="Filter vocabulary category"
+            <select id="globalCategorySelect" onchange="handleCategoryChange(this.value)"
+              aria-label="Filter vocabulary category"
               class="bg-white/10 hover:bg-white/15 text-sand-50 text-xs font-semibold rounded-xl px-2.5 py-2 border border-white/20 focus:outline-none focus:ring-2 focus:ring-levant-gold cursor-pointer">
               <option value="all" class="text-slate-900">All 8 Categories</option>
               <option value="Street Slang & Idioms" class="text-slate-900">Street Slang &amp; Idioms</option>
@@ -275,15 +345,20 @@
 
           <!-- Arabic Font & Zoom Controls -->
           <div class="flex items-center bg-white/10 rounded-xl border border-white/20 p-0.5">
-            <select id="arabicFontSelect" onchange="changeArabicFontMode(this.value)" aria-label="Select Arabic Font Style"
+            <select id="arabicFontSelect" onchange="changeArabicFontMode(this.value)"
+              aria-label="Select Arabic Font Style"
               class="bg-transparent text-sand-50 text-xs font-semibold px-2 py-1.5 focus:outline-none cursor-pointer"
               title="Change Arabic Script Font">
               <option value="naskh" class="text-slate-900">Font: Clear Naskh</option>
               <option value="modern" class="text-slate-900">Font: Modern Sans</option>
               <option value="classic" class="text-slate-900">Font: Classic Large</option>
             </select>
-            <button onclick="adjustArabicZoom(-0.1)" class="px-2 py-1 text-xs font-bold text-sand-200 hover:text-white hover:bg-white/10 rounded-lg transition" title="Decrease Arabic Font Size">A-</button>
-            <button onclick="adjustArabicZoom(0.1)" class="px-2 py-1 text-xs font-bold text-sand-200 hover:text-white hover:bg-white/10 rounded-lg transition" title="Increase Arabic Font Size">A+</button>
+            <button onclick="adjustArabicZoom(-0.1)"
+              class="px-2 py-1 text-xs font-bold text-sand-200 hover:text-white hover:bg-white/10 rounded-lg transition"
+              title="Decrease Arabic Font Size">A-</button>
+            <button onclick="adjustArabicZoom(0.1)"
+              class="px-2 py-1 text-xs font-bold text-sand-200 hover:text-white hover:bg-white/10 rounded-lg transition"
+              title="Increase Arabic Font Size">A+</button>
           </div>
 
           <!-- Transliteration Toggle Button -->
@@ -307,10 +382,14 @@
               <i class="fa-solid fa-volume-high"></i>
               <span>Test Audio</span>
             </button>
-            <button id="desktopSoundBtn" onclick="toggleSoundEffects()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-sand-100 border border-white/15 transition" title="Toggle UI Sound Effects">
+            <button id="desktopSoundBtn" onclick="toggleSoundEffects()"
+              class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-sand-100 border border-white/15 transition"
+              title="Toggle UI Sound Effects">
               <i id="desktopSoundIcon" class="fa-solid fa-bell"></i>
             </button>
-            <button onclick="openResetModal()" class="p-2 rounded-xl bg-white/10 hover:bg-red-500/40 text-sand-100 border border-white/15 transition" title="Reset Mastery Progress">
+            <button onclick="openResetModal()"
+              class="p-2 rounded-xl bg-white/10 hover:bg-red-500/40 text-sand-100 border border-white/15 transition"
+              title="Reset Mastery Progress">
               <i class="fa-solid fa-rotate-left"></i>
             </button>
           </div>
@@ -357,11 +436,13 @@
     <!-- ========================================== -->
     <section id="section-match" class="space-y-5">
       <!-- Game Control Bar -->
-      <div class="bg-sand-50 rounded-2xl p-4 shadow-sm border border-sand-200 flex flex-wrap items-center justify-between gap-4">
+      <div
+        class="bg-sand-50 rounded-2xl p-4 shadow-sm border border-sand-200 flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-center gap-3 sm:gap-5">
           <!-- Score -->
           <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-xl bg-levant-teal/10 text-levant-teal flex items-center justify-center font-bold">
+            <div
+              class="w-10 h-10 rounded-xl bg-levant-teal/10 text-levant-teal flex items-center justify-center font-bold">
               <i class="fa-solid fa-trophy"></i>
             </div>
             <div>
@@ -372,7 +453,8 @@
 
           <!-- Combo Multiplier -->
           <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-xl bg-levant-terracotta/10 text-levant-terracotta flex items-center justify-center font-bold">
+            <div
+              class="w-10 h-10 rounded-xl bg-levant-terracotta/10 text-levant-terracotta flex items-center justify-center font-bold">
               <i class="fa-solid fa-fire"></i>
             </div>
             <div>
@@ -402,4 +484,2742 @@
         </div>
 
         <!-- Board Size & New Board Controls -->
-       
+        <div class="flex flex-wrap items-center gap-2.5">
+          <div class="inline-flex rounded-xl bg-sand-100 p-1 border border-sand-200">
+            <button id="gridSize6Btn" onclick="setMatchPairs(6)"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white shadow-sm">
+              4×3 (6 Pairs)
+            </button>
+            <button id="gridSize8Btn" onclick="setMatchPairs(8)"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              4×4 (8 Pairs)
+            </button>
+          </div>
+
+          <button onclick="initMatchGame()"
+            class="flex items-center gap-2 px-4 py-2 rounded-xl bg-levant-terracotta hover:bg-levant-terracottaLight text-white font-bold text-xs sm:text-sm shadow-sm transition active:scale-95">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>New Board</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Instructions & Length-Guard Info Banner -->
+      <div class="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-slate-600 px-1">
+        <p>
+          <i class="fa-solid fa-shield-halved text-levant-teal mr-1.5"></i>
+          <strong>Smart Tile Guard Active:</strong> Long multi-sentence paragraphs are automatically excluded from speed
+          tiles so cards stay crisp. Mismatched words are auto-saved to your <strong>Needs Review</strong> deck.
+        </p>
+        <span id="matchRemainingText" class="font-bold text-levant-teal whitespace-nowrap">6 pairs left</span>
+      </div>
+
+      <!-- Grid Board Container -->
+      <div id="matchGridContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <!-- Round Complete Overlay Card -->
+      <div id="matchWinBanner"
+        class="hidden bg-gradient-to-br from-levant-teal to-levant-tealDark text-white rounded-2xl p-6 sm:p-8 shadow-xl border-2 border-levant-gold/50 text-center space-y-4 animate-pop">
+        <div
+          class="w-16 h-16 rounded-2xl bg-levant-gold/20 border border-levant-gold/40 flex items-center justify-center mx-auto text-3xl text-levant-gold">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold">Mabrouk! Board Cleared!</h2>
+        <p id="matchWinStats" class="text-sand-100 text-sm sm:text-base max-w-md mx-auto"></p>
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+          <button onclick="initMatchGame()"
+            class="px-6 py-3 rounded-xl bg-levant-terracotta hover:bg-levant-terracottaLight text-white font-bold shadow-lg transition">
+            <i class="fa-solid fa-play mr-2"></i>Play Another Round
+          </button>
+          <button onclick="markCurrentMatchWordsMastered()" id="markBatchMasteredBtn"
+            class="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-sand-50 font-semibold border border-white/25 transition">
+            <i class="fa-solid fa-check-double mr-2 text-emerald-300"></i>Mark All Cleanly Matched Words as Mastered
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MODE 2: SMART QUIZ BLITZ                   -->
+    <!-- ========================================== -->
+    <section id="section-quiz" class="hidden space-y-5">
+      <!-- Quiz Header Controls -->
+      <div
+        class="bg-sand-50 rounded-2xl p-4 shadow-sm border border-sand-200 flex flex-wrap items-center justify-between gap-4">
+        <!-- Direction Selector -->
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">Direction:</span>
+          <div class="inline-flex rounded-xl bg-sand-100 p-1 border border-sand-200">
+            <button onclick="setQuizDirection('ar-en')" id="dir-ar-en"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white shadow-sm">
+              Arabic → English
+            </button>
+            <button onclick="setQuizDirection('en-ar')" id="dir-en-ar"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              English → Arabic
+            </button>
+            <button onclick="setQuizDirection('mixed')" id="dir-mixed"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              Mixed
+            </button>
+          </div>
+        </div>
+
+        <!-- Mode & Stats -->
+        <div class="flex flex-wrap items-center gap-4">
+          <button onclick="toggleQuizSurvivalMode()" id="quizSurvivalToggle"
+            class="px-3 py-1.5 rounded-xl text-xs font-bold border border-sand-300 bg-white text-slate-700 hover:bg-sand-100 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-heart text-rose-500"></i>
+            <span id="quizModeLabel">Mode: 10-Q Round (3 Hearts)</span>
+          </button>
+
+          <!-- Hearts Display -->
+          <div id="quizHeartsContainer" class="flex items-center gap-1 text-lg text-rose-500">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+          </div>
+
+          <!-- Streak Counter -->
+          <div
+            class="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-800 px-3 py-1.5 rounded-xl text-xs font-bold">
+            <i class="fa-solid fa-bolt text-amber-500"></i>
+            <span>Streak: <span id="quizStreak">0</span></span>
+            <span class="text-slate-400">|</span>
+            <span>Best: <span id="quizBestStreak">0</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Quiz Card -->
+      <div id="quizActiveContainer"
+        class="max-w-3xl mx-auto bg-sand-50 rounded-3xl shadow-md border border-sand-200 overflow-hidden">
+        <!-- Top Progress Bar -->
+        <div
+          class="bg-sand-100 px-6 py-3 border-b border-sand-200 flex items-center justify-between text-xs font-bold text-slate-500">
+          <div class="flex items-center gap-2">
+            <span id="quizQuestionCounter">Question 1 of 10</span>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Length-Matched
+              Distractors</span>
+          </div>
+          <span id="quizCategoryBadge"
+            class="px-2.5 py-1 rounded-full bg-levant-teal/10 text-levant-teal">Category</span>
+        </div>
+
+        <!-- Prompt Area -->
+        <div class="p-6 sm:p-8 text-center space-y-3">
+          <div class="flex items-center justify-center gap-3">
+            <h2 id="quizPromptText" class="text-2xl sm:text-4xl font-extrabold text-slate-800"></h2>
+            <button id="quizAudioBtn" onclick="speakCurrentQuizWord()"
+              class="w-11 h-11 rounded-full bg-levant-teal/10 hover:bg-levant-teal text-levant-teal hover:text-white transition flex items-center justify-center shadow-sm shrink-0"
+              title="Listen to Pure Arabic Pronunciation (Shortcut: R)">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+          <p id="quizPromptTranslit" class="text-sm sm:text-base font-medium text-levant-terracotta italic"></p>
+          <p id="quizArabiziBadge"
+            class="hidden text-xs font-bold text-slate-500 bg-sand-200/80 inline-block px-3 py-1 rounded-full"></p>
+        </div>
+
+        <!-- 4 Multiple Choice Options -->
+        <div id="quizOptionsGrid" class="px-6 pb-6 sm:px-8 sm:pb-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Options injected via JS -->
+        </div>
+
+        <!-- Feedback & Next Bar -->
+        <div id="quizFeedbackBar"
+          class="hidden px-6 py-4 bg-sand-100 border-t border-sand-200 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div id="quizFeedbackIcon"
+              class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold shrink-0"></div>
+            <div>
+              <p id="quizFeedbackTitle" class="text-sm font-extrabold"></p>
+              <p id="quizFeedbackSub" class="text-xs text-slate-600"></p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="quizMasterToggleBtn" onclick="toggleMasteryFromQuiz()"
+              class="px-3 py-2 rounded-xl text-xs font-bold border transition"></button>
+            <button onclick="nextQuizQuestion()"
+              class="px-5 py-2.5 rounded-xl bg-levant-teal hover:bg-levant-tealLight text-white font-bold text-xs sm:text-sm shadow transition">
+              Next (Enter) <i class="fa-solid fa-arrow-right ml-1.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz Round Summary View -->
+      <div id="quizSummaryContainer"
+        class="hidden max-w-3xl mx-auto bg-sand-50 rounded-3xl p-6 sm:p-8 shadow-md border border-sand-200 space-y-6 animate-pop">
+        <div class="text-center space-y-2">
+          <div
+            class="w-16 h-16 rounded-2xl bg-levant-teal/10 text-levant-teal flex items-center justify-center mx-auto text-3xl">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <h3 id="quizSummaryTitle" class="text-2xl font-extrabold text-slate-800">Round Complete!</h3>
+          <p id="quizSummarySubtitle" class="text-sm text-slate-600"></p>
+        </div>
+
+        <!-- Missed Words Review List -->
+        <div id="quizMissedSection" class="space-y-3">
+          <div class="flex items-center justify-between border-b border-sand-200 pb-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Words Added to Your "Needs Review"
+              Deck</h4>
+            <button onclick="drillWeakWordsInFlashcards()"
+              class="text-xs font-bold text-levant-terracotta hover:underline">
+              Drill Weak Words in Flashcards →
+            </button>
+          </div>
+          <div id="quizMissedList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <button onclick="startNewQuizRound()"
+            class="px-6 py-3 rounded-xl bg-levant-terracotta hover:bg-levant-terracottaLight text-white font-bold shadow-md transition">
+            <i class="fa-solid fa-rotate-right mr-2"></i>Start New Quiz Blitz
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MODE 3: SRS SMART FLASHCARDS               -->
+    <!-- ========================================== -->
+    <section id="section-flashcards" class="hidden space-y-5">
+      <!-- Deck Controls -->
+      <div
+        class="bg-sand-50 rounded-2xl p-4 shadow-sm border border-sand-200 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">SRS Deck Filter:</span>
+          <div class="inline-flex rounded-xl bg-sand-100 p-1 border border-sand-200">
+            <button id="fcFilterAll" onclick="setFlashcardFilter('all')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white shadow-sm">
+              All in Deck
+            </button>
+            <button id="fcFilterWeak" onclick="setFlashcardFilter('weak')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              ⚠️ Needs Review Only
+            </button>
+            <button id="fcFilterUnmastered" onclick="setFlashcardFilter('unmastered')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              Unmastered
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span id="fcProgressText" class="text-xs sm:text-sm font-bold text-levant-teal">Card 1 of 340</span>
+          <button onclick="shuffleFlashcards()"
+            class="px-3.5 py-2 rounded-xl bg-sand-100 hover:bg-sand-200 text-slate-700 font-bold text-xs border border-sand-300 transition">
+            <i class="fa-solid fa-shuffle mr-1.5"></i>Shuffle
+          </button>
+        </div>
+      </div>
+
+      <!-- 3D Flashcard Container -->
+      <div class="max-w-2xl mx-auto">
+        <div id="fcEmptyState" class="hidden bg-sand-50 rounded-3xl p-10 text-center border border-sand-200 space-y-4">
+          <div
+            class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-2xl">
+            <i class="fa-solid fa-check-double"></i>
+          </div>
+          <h3 class="text-xl font-extrabold text-slate-800">No Cards in This SRS Filter!</h3>
+          <p class="text-sm text-slate-600">You have either mastered all cards in this filter or haven't marked any
+            cards as "Needs Review" yet.</p>
+          <button onclick="setFlashcardFilter('all')"
+            class="px-5 py-2.5 rounded-xl bg-levant-teal text-white font-bold text-xs sm:text-sm">
+            Show All Cards in Deck
+          </button>
+        </div>
+
+        <div id="fcStage" class="space-y-5">
+          <!-- Clickable 3D Flip Card -->
+          <div class="perspective-1000 w-full h-80 sm:h-96 cursor-pointer select-none" onclick="flipFlashcard()">
+            <div id="flashcardInner" class="w-full h-full relative transform-style-3d">
+
+              <!-- FRONT OF CARD (Pure Arabic Script + Optional Translit) -->
+              <div
+                class="absolute inset-0 backface-hidden bg-sand-50 rounded-3xl shadow-lg border-2 border-sand-200 p-6 sm:p-8 flex flex-col justify-between">
+                <div class="flex items-center justify-between gap-2">
+                  <span id="fcFrontCategory"
+                    class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-levant-teal/10 text-levant-teal">Category</span>
+                  <div class="flex items-center gap-2">
+                    <span id="fcFrontSrsBadge" class="text-xs font-bold px-2.5 py-1 rounded-full"></span>
+                    <button onclick="event.stopPropagation(); speakCurrentFlashcard(this);"
+                      class="w-10 h-10 rounded-full bg-levant-teal/10 hover:bg-levant-teal text-levant-teal hover:text-white transition flex items-center justify-center"
+                      title="Pronounce Arabic (Shortcut: R)">
+                      <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="my-auto text-center space-y-3 px-2 overflow-y-auto max-h-52">
+                  <p id="fcFrontArabic" dir="rtl" class="font-arabic arabic-hero-text font-bold text-slate-800"></p>
+                  <p id="fcFrontTranslit" class="text-base sm:text-lg font-medium text-levant-terracotta italic"></p>
+                  <p id="fcFrontArabizi"
+                    class="hidden text-xs font-bold text-slate-500 bg-sand-200/80 inline-block px-3 py-1 rounded-full">
+                  </p>
+                </div>
+
+                <div class="text-center text-xs font-semibold text-slate-400 flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-rotate"></i>
+                  <span>Click card or press <kbd class="px-1.5 py-0.5 bg-sand-200 text-slate-700 rounded">Space</kbd> to
+                    flip • <kbd class="px-1.5 py-0.5 bg-sand-200 text-slate-700 rounded">R</kbd> for Audio</span>
+                </div>
+              </div>
+
+              <!-- BACK OF CARD (English Meaning + Context) -->
+              <div
+                class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-levant-teal to-levant-tealDark text-white rounded-3xl shadow-lg border-2 border-levant-gold/50 p-6 sm:p-8 flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                  <span
+                    class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/15 text-sand-100">English
+                    Translation &amp; Usage</span>
+                  <button onclick="event.stopPropagation(); speakCurrentFlashcard(this);"
+                    class="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 text-white transition flex items-center justify-center"
+                    title="Pronounce Arabic">
+                    <i class="fa-solid fa-volume-high"></i>
+                  </button>
+                </div>
+
+                <div class="my-auto text-center space-y-4 px-2 overflow-y-auto max-h-56">
+                  <h3 id="fcBackEnglish" class="text-xl sm:text-2xl font-extrabold text-sand-50 leading-snug"></h3>
+                  <div class="pt-3 border-t border-white/15 space-y-1">
+                    <p id="fcBackArabic" dir="rtl" class="font-arabic arabic-tile-text font-bold text-levant-gold"></p>
+                    <p id="fcBackTranslit" class="text-sm text-sand-200 italic"></p>
+                  </div>
+                </div>
+
+                <div class="text-center text-xs text-sand-200/80">
+                  Grade with buttons below or <kbd class="px-1.5 py-0.5 bg-white/20 rounded">←</kbd> Needs Review / <kbd
+                    class="px-1.5 py-0.5 bg-white/20 rounded">→</kbd> Mastered
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Flashcard 3-Tier SRS Action Buttons -->
+          <div class="grid grid-cols-3 gap-3">
+            <button onclick="gradeFlashcard(1)"
+              class="flex flex-col sm:flex-row items-center justify-center gap-2 py-3.5 px-4 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-900 border-2 border-amber-300 font-bold text-xs sm:text-sm shadow-sm transition active:scale-95">
+              <i class="fa-solid fa-triangle-exclamation text-amber-600 text-base"></i>
+              <span>Needs Review (←)</span>
+            </button>
+
+            <button onclick="flipFlashcard()"
+              class="flex flex-col sm:flex-row items-center justify-center gap-2 py-3.5 px-4 rounded-2xl bg-sand-50 hover:bg-sand-100 text-slate-700 border-2 border-sand-300 font-bold text-xs sm:text-sm shadow-sm transition active:scale-95">
+              <i class="fa-solid fa-arrows-rotate text-levant-teal text-base"></i>
+              <span>Flip Card (Space)</span>
+            </button>
+
+            <button onclick="gradeFlashcard(2)"
+              class="flex flex-col sm:flex-row items-center justify-center gap-2 py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-sm transition active:scale-95">
+              <i class="fa-solid fa-check-circle text-base"></i>
+              <span>Mastered (→)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MODE 4: IDIOM & SENTENCE CLOZE BUILDER     -->
+    <!-- ========================================== -->
+    <section id="section-cloze" class="hidden space-y-5">
+      <div
+        class="bg-sand-50 rounded-2xl p-4 shadow-sm border border-sand-200 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h3 class="text-sm sm:text-base font-extrabold text-levant-teal flex items-center gap-2">
+            <i class="fa-solid fa-puzzle-piece text-levant-terracotta"></i>
+            <span>Jordanian &amp; Levantine Idiom Cloze Recall</span>
+          </h3>
+          <p class="text-xs text-slate-500">Complete the missing Arabic word in your personal proverbs, street idioms,
+            and sentences.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-bold bg-levant-teal/10 text-levant-teal px-3 py-1.5 rounded-xl">
+            Score: <span id="clozeScore">0</span>
+          </span>
+          <button onclick="nextClozeQuestion()"
+            class="px-4 py-2 rounded-xl bg-levant-terracotta hover:bg-levant-terracottaLight text-white font-bold text-xs shadow-sm transition">
+            <i class="fa-solid fa-shuffle mr-1.5"></i>Skip / Next Idiom
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="max-w-3xl mx-auto bg-sand-50 rounded-3xl shadow-md border border-sand-200 overflow-hidden p-6 sm:p-8 space-y-6">
+        <div class="flex items-center justify-between">
+          <span id="clozeCategoryBadge"
+            class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-levant-teal/10 text-levant-teal">Street
+            Slang &amp; Idioms</span>
+          <button onclick="speakCurrentClozeFull(this)"
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sand-100 hover:bg-levant-teal text-levant-teal hover:text-white text-xs font-bold transition"
+            title="Hear Full Phrase Spoken">
+            <i class="fa-solid fa-volume-high"></i>
+            <span>Hear Full Phrase</span>
+          </button>
+        </div>
+
+        <!-- English Meaning Prompt -->
+        <div class="text-center space-y-2 bg-white p-5 rounded-2xl border border-sand-200">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">English Meaning / Vibe</p>
+          <h4 id="clozeEnglishPrompt" class="text-lg sm:text-2xl font-extrabold text-slate-800"></h4>
+          <p id="clozeTranslitPrompt" class="text-xs sm:text-sm text-levant-terracotta italic"></p>
+        </div>
+
+        <!-- Arabic Sentence with Missing Blank -->
+        <div
+          class="text-center py-4 px-3 rounded-2xl bg-levant-tealDark/5 border-2 border-dashed border-levant-teal/30">
+          <p id="clozeArabicSentence" dir="rtl"
+            class="font-arabic arabic-hero-text font-bold text-slate-800 leading-relaxed"></p>
+        </div>
+
+        <!-- 4 Word Tiles to Fill the Blank -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center">Select the Missing
+            Arabic Word:</p>
+          <div id="clozeOptionsGrid" class="grid grid-cols-2 gap-3.5">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Cloze Feedback Banner -->
+        <div id="clozeFeedbackBar"
+          class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-300 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div id="clozeFeedbackIcon"
+              class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <p id="clozeFeedbackTitle" class="text-sm font-extrabold text-emerald-900"></p>
+              <p id="clozeFeedbackSub" dir="rtl" class="font-arabic text-base font-bold text-slate-800"></p>
+            </div>
+          </div>
+          <button onclick="nextClozeQuestion()"
+            class="px-5 py-2.5 rounded-xl bg-levant-teal hover:bg-levant-tealLight text-white font-bold text-xs sm:text-sm shadow transition">
+            Next Idiom <i class="fa-solid fa-arrow-right ml-1.5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MODE 5: WORD VAULT (SEARCHABLE DICTIONARY) -->
+    <!-- ========================================== -->
+    <section id="section-vault" class="hidden space-y-5">
+      <!-- Search & Filter Bar -->
+      <div
+        class="bg-sand-50 rounded-2xl p-4 shadow-sm border border-sand-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <!-- Search Input -->
+        <div class="relative flex-grow">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input id="vaultSearchInput" type="text" oninput="renderWordVault()"
+            placeholder="Search Arabic script, Arabizi (e.g. Ma7roog, Sa7eej), transliteration, or English..."
+            class="w-full pl-10 pr-9 py-2.5 rounded-xl bg-white border border-sand-300 text-sm focus:outline-none focus:ring-2 focus:ring-levant-teal" />
+          <button onclick="clearVaultSearch()" id="clearVaultSearchBtn"
+            class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Status Filter Pills -->
+        <div class="flex items-center gap-2 shrink-0 flex-wrap">
+          <div class="inline-flex rounded-xl bg-sand-100 p-1 border border-sand-200">
+            <button id="vaultStatusAll" onclick="setVaultStatusFilter('all')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white">
+              All
+            </button>
+            <button id="vaultStatusWeak" onclick="setVaultStatusFilter('weak')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              ⚠️ Review
+            </button>
+            <button id="vaultStatusNew" onclick="setVaultStatusFilter('new')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              New
+            </button>
+            <button id="vaultStatusMastered" onclick="setVaultStatusFilter('mastered')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900">
+              Mastered
+            </button>
+          </div>
+          <span id="vaultCountBadge" class="text-xs font-bold text-slate-500 px-2">340 words</span>
+        </div>
+      </div>
+
+      <!-- Dictionary Cards Grid -->
+      <div id="vaultGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- UX & CODE AUDIT MODAL (Explains all v3.0 fixes) -->
+  <div id="auditModal"
+    class="fixed inset-0 z-50 hidden bg-slate-900/65 backdrop-blur-xs flex items-center justify-center p-4">
+    <div
+      class="bg-sand-50 rounded-3xl max-w-2xl w-full max-h-[88vh] flex flex-col shadow-2xl border border-sand-200 overflow-hidden animate-pop">
+      <div class="p-5 sm:p-6 bg-levant-teal text-white flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-levant-gold/20 border border-levant-gold/40 flex items-center justify-center text-levant-gold text-lg">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-extrabold">UX, UI &amp; Code Audit Changelog (v3.0)</h3>
+            <p class="text-xs text-sand-200">6 Key Gotchas Identified &amp; Fixed in This Build</p>
+          </div>
+        </div>
+        <button onclick="closeAuditModal()"
+          class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+        <div class="p-3.5 rounded-2xl bg-white border border-sand-200 space-y-1">
+          <p class="font-extrabold text-levant-teal"><i
+              class="fa-solid fa-volume-high text-levant-terracotta mr-1.5"></i>1. Pure Arabic TTS Sanitizer + Arabizi
+            Script Mapping + 0.75x Slow Toggle</p>
+          <p class="text-slate-600">Previously, entries containing Arabizi notes like <code>(Ma7roog)</code> or
+            <code>(Sa7eej)</code> caused TTS engines to spell out Latin letters aloud. Every single entry now has a
+            dedicated pure Arabic script target (<code>ttsArabic</code>) and passes through a strict Unicode Arabic
+            regex (<code>/[^\u0600-\u06FF\s]/g</code>) before speaking. Added a <strong>1.0x / 0.75x Slow</strong>
+            toggle in the header.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-sand-200 space-y-1">
+          <p class="font-extrabold text-levant-teal"><i
+              class="fa-solid fa-bullseye text-levant-terracotta mr-1.5"></i>2. Length-Balanced Quiz Distractor
+            Algorithm</p>
+          <p class="text-slate-600">Randomly pairing a 12-word Jordanian proverb against three 1-word nouns made the
+            correct choice obvious by length alone. Quiz Blitz now groups distractors by <strong>word-count &amp;
+              character-length buckets</strong> within the same category so options always look equally plausible.</p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-sand-200 space-y-1">
+          <p class="font-extrabold text-levant-teal"><i
+              class="fa-solid fa-table-cells text-levant-terracotta mr-1.5"></i>3. Grid Match Tile Length Guard
+            ("Overflow Fix")</p>
+          <p class="text-slate-600">Long conversational paragraphs broke the visual symmetry of 4×3 and 4×4
+            speed-matching tiles. Grid Match now automatically filters for concise words and idioms
+            (<code>≤ 36 Arabic chars</code>), while full sentences and dialogues remain in Flashcards, Quiz Blitz, Cloze
+            Builder, and Word Vault.</p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-sand-200 space-y-1">
+          <p class="font-extrabold text-levant-teal"><i
+              class="fa-solid fa-puzzle-piece text-levant-terracotta mr-1.5"></i>4. New Mode 4: Jordanian Idiom &amp;
+            Sentence Cloze Builder</p>
+          <p class="text-slate-600">Added an interactive fill-in-the-blank Cloze mode specifically designed to help you
+            actively recall key words inside your Jordanian street idioms (e.g., <code>غرقان لشوشتي بالشغل</code>,
+            <code>علقانة بين حانا ومانا</code>, <code>اللي فات مات</code>).
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-sand-200 space-y-1">
+          <p class="font-extrabold text-levant-teal"><i
+              class="fa-solid fa-layer-group text-levant-terracotta mr-1.5"></i>5. 3-Tier Spaced Repetition (New / Needs
+            Review / Mastered)</p>
+          <p class="text-slate-600">Upgraded binary mastery into a 3-state SRS tracker. Any card you miss in Grid Match,
+            Quiz Blitz, or Cloze Builder is automatically flagged as <strong>⚠️ Needs Review</strong> so you can drill
+            your weak spots with one click in the top bar.</p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white border border-sand-200 space-y-1">
+          <p class="font-extrabold text-levant-teal"><i class="fa-solid fa-font text-levant-terracotta mr-1.5"></i>6.
+            Diacritic Line-Height Protection &amp; Live Zoom (A- / A+)</p>
+          <p class="text-slate-600">Added vertical padding and <code>line-height: 1.9</code> on all RTL Arabic
+            containers so vowel marks (<em>shadda, fatḥa, ḍamma</em>) never clip, plus live <strong>A- / A+</strong>
+            font scaling in the header.</p>
+        </div>
+      </div>
+
+      <div class="p-4 bg-sand-100 border-t border-sand-200 flex justify-end">
+        <button onclick="closeAuditModal()"
+          class="px-5 py-2 rounded-xl bg-levant-teal text-white font-bold text-xs sm:text-sm">
+          Got It, Let's Practice!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Progress Confirmation Modal -->
+  <div id="resetModal"
+    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-sand-50 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-sand-200 space-y-4 animate-pop">
+      <div class="flex items-center gap-3 text-rose-600">
+        <div class="w-11 h-11 rounded-2xl bg-rose-100 flex items-center justify-center text-xl">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3 class="text-lg font-extrabold text-slate-800">Reset All SRS &amp; Score Progress?</h3>
+      </div>
+      <p class="text-sm text-slate-600 leading-relaxed">
+        This will clear your saved Mastered and Needs Review tags, streaks, and best times across all vocabulary items.
+      </p>
+      <div class="flex items-center justify-end gap-2.5 pt-2">
+        <button onclick="closeResetModal()"
+          class="px-4 py-2 rounded-xl bg-sand-200 hover:bg-sand-300 text-slate-700 font-bold text-xs sm:text-sm transition">
+          Cancel
+        </button>
+        <button onclick="confirmResetProgress()"
+          class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs sm:text-sm shadow transition">
+          Yes, Reset Everything
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBanner"
+    class="fixed bottom-5 right-5 z-40 hidden bg-levant-tealDark text-white px-4 py-3 rounded-2xl shadow-xl border border-levant-gold/40 flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+    <i id="toastIcon" class="fa-solid fa-volume-high text-levant-gold"></i>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-sand-200 bg-sand-100/70 py-4 px-4 text-center text-xs text-slate-500 mt-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>Al-Mufradat v3.0 — Built from your personal "Words for study" doc &amp; Levantine/Jordanian archive.</p>
+      <p class="flex items-center gap-2">
+        <span><i class="fa-solid fa-keyboard mr-1"></i>Shortcuts: <strong>Space</strong> flip card, <strong>←/→</strong>
+          grade card, <strong>1-4</strong> quiz options, <strong>R</strong> replay audio</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- COMPLETE APPLICATION LOGIC & DATASET       -->
+  <!-- ========================================== -->
+  <script>
+    /**
+     * Curated, Normalized Dataset of 340+ Personal Levantine, Jordanian & MSA Entries
+     * Format: [category, arabicDisplay, transliteration, englishMeaning, tags, optionalPureTtsOverride]
+     * Every Arabizi entry has clean Arabic script in arabicDisplay and pure Arabic TTS target.
+     */
+    const RAW_VOCAB = [
+      // =========================================================================
+      // 1. STREET SLANG & IDIOMS (Jordanian & Levantine Street Idioms & Proverbs)
+      // =========================================================================
+      ["Street Slang & Idioms", "علقانة بين حانا ومانا", "'Alqaneh bain Haana wa Maana", "Stuck in a Catch-22 / damned if you do, damned if you don't (stuck between Hana and Mana)", "doc,idiom"],
+      ["Street Slang & Idioms", "بين المطرقة والسندان", "Bain al-mitraqah was-sindaan", "Between a rock and a hard place (lit: between the hammer and the anvil)", "doc,idiom"],
+      ["Street Slang & Idioms", "غرقان لشوشتي بالشغل", "Gharqaan la-shoshti bish-shoghol", "Drowning up to my forelock/hairline in work", "doc,idiom"],
+      ["Street Slang & Idioms", "مش ملحق على الشغل", "Mish mlahhiq 'ala ash-shoghol", "I can't keep up with the work", "doc,idiom"],
+      ["Street Slang & Idioms", "ماصّين دمي", "Maasseen dammi", "They are sucking my blood (draining all my energy at work)", "doc,idiom"],
+      ["Street Slang & Idioms", "هلكوا سماي / هلكوا خيبتي", "Halako samai / Halako khaibti", "They completely exhausted me / wore me down physically and mentally", "doc,idiom"],
+      ["Street Slang & Idioms", "عاصريني عسر", "'Aasreeni 'asir", "They are squeezing every last drop out of me (like juicing a lemon)", "doc,idiom"],
+      ["Street Slang & Idioms", "سلاح ذو حدين / سَيْف ذُو حَدَّيْن", "Silaah thoo haddain / Sayf dhu haddayn", "Double-edged sword (has both an advantage and a risk)", "doc,orig,idiom"],
+      ["Street Slang & Idioms", "اللي فات مات", "Illi fat mat", "Let bygones be bygones / water under the bridge (what has passed is dead)", "doc,idiom"],
+      ["Street Slang & Idioms", "المسامح كريم", "Al-musamih kareem", "The forgiver is generous (it takes a big person to forgive)", "doc,idiom"],
+      ["Street Slang & Idioms", "قلبه أبيض / قلبي أبيض", "Qalbo abyad / Qalbi abyad", "Pure-hearted / holds no grudges or malice (lit: his/my heart is white)", "doc,idiom"],
+      ["Street Slang & Idioms", "صافي يا لبن؟ — حليب يا قشطة", "Safi ya laban? — Haleeb ya ishta", "Are we cool / no hard feelings? — Yes, completely good! (Pure oh milk? Milk oh cream!)", "doc,idiom"],
+      ["Street Slang & Idioms", "طنش تعش تنتعش", "Tannesh, ta'esh, tantai'sh", "Ignore it, you'll live, you'll thrive (don't dwell on things)", "doc,idiom"],
+      ["Street Slang & Idioms", "امسحها بوجهي", "Imsahha b-wijhi", "Let it slide for my sake / wipe it on my face (de-escalating an argument)", "doc,idiom"],
+      ["Street Slang & Idioms", "سحيج (Sa7eej)", "Sa7eej / Sahhij", "Blind follower / sycophant (Jordanian slang: someone who blindly claps for authority)", "doc,arabizi,idiom", "سحيج"],
+      ["Street Slang & Idioms", "حطّ الكرش في السلّة", "Hett el kirsh fi s-salla", "Put the belly in the basket (Mind your own business / stop interfering)", "doc,idiom"],
+      ["Street Slang & Idioms", "طبّاخ السمّ بيدوقه", "Tabbakh es-simm bidooqo", "One who cooks poison tastes it (What goes around comes around)", "doc,idiom"],
+      ["Street Slang & Idioms", "الكفن مالوش جيوب", "El-kafan maloosh juyoob", "The shroud has no pockets (You can't take wealth with you when you die)", "doc,idiom"],
+      ["Street Slang & Idioms", "اِتعُب حالك ولا تتعُب لسانك", "It3ob 7alak wala tit3ob lisanak", "Better to do something yourself than beg someone else (tire your body, not your tongue)", "doc,idiom"],
+      ["Street Slang & Idioms", "كُل تأخيرة فيها خيرة", "Kull ta'kheera feeha kheira", "Every delay has a silver lining (everything happens for the best)", "doc,idiom"],
+      ["Street Slang & Idioms", "على قد لحافك مد رجليك", "'Ala qadd lihafak midd rijlayk", "Live within your means (stretch your legs to the length of your quilt)", "doc,orig,idiom"],
+      ["Street Slang & Idioms", "أنا وأخي على ابن عمي، وأنا وابن عمي على الغريب", "Ana wa akhi 'ala ibn 'ammi, wa ana wa ibn 'ammi 'al-gharib", "The enemy of my enemy is my friend (Me and my brother against my cousin, me and my cousin against the stranger)", "doc,idiom"],
+      ["Street Slang & Idioms", "احنا في الهوى سوى", "Ihna fil-hawa sawa", "We are in the same boat (humorous: we're both in the same mess together)", "doc,idiom"],
+      ["Street Slang & Idioms", "دموع تماسيح", "Dumoo' tamaseeh", "Crocodile tears (fake sympathy)", "doc,idiom"],
+      ["Street Slang & Idioms", "لا تحفر قبرك بيدك", "La tihfor qabrak b-eedak", "Don't dig your own grave", "doc,idiom"],
+      ["Street Slang & Idioms", "مش كل أصابعك زي بعض", "Mish kull asab'ak zay ba'd", "Not all your fingers are the same (people are different)", "doc,idiom"],
+      ["Street Slang & Idioms", "من راقب الناس مات هماً", "Man raqaba an-nas mata hamman", "He who watches/envies others dies of worry (Mind your own life)", "doc,idiom"],
+      ["Street Slang & Idioms", "راسه ناشف (Raso nashef)", "Raso nashef", "Stubborn / hard-headed (lit: his head is dry)", "doc,arabizi,idiom", "راسه ناشف"],
+      ["Street Slang & Idioms", "زي الأطرش بالزفة (Zay alo6rosh bezeffe)", "Zay al-atrash biz-zaffe", "Like the deaf person at a wedding procession (clueless about what's going on)", "doc,arabizi,idiom", "زي الأطرش بالزفة"],
+      ["Street Slang & Idioms", "عصرت على حالها ليمونة", "Asrat 'ala halha laymooneh", "She bit the bullet / forced herself to deal with a bitter situation", "doc,idiom"],
+      ["Street Slang & Idioms", "مطرح ما تِرزق إرزق", "Matrah ma tirzaq ilzaq", "Stick to where your livelihood/luck is", "doc,idiom"],
+      ["Street Slang & Idioms", "الكلام مش بفلوس", "Al-kalam mish bi-floos", "Talking doesn't cost money (talk is cheap)", "doc,idiom"],
+      ["Street Slang & Idioms", "مفيش حلاوة من غير نار", "Mafeesh halaweh min ghair nar", "No sweets without flames (no pain, no gain)", "doc,idiom"],
+      ["Street Slang & Idioms", "بدي اروح احاسب الخوري", "Biddi arooh ahasib al-khoori", "Humorous Levantine euphemism for 'I'm going to the bathroom'", "doc,idiom"],
+      ["Street Slang & Idioms", "هاد اللي كان ناقص", "Had illi kan naqis", "That's the last thing I need! (lit: that's what was missing)", "doc,idiom"],
+      ["Street Slang & Idioms", "من كل عقلك...", "Min kull 'aqlak...", "Are you for real? / Are you out of your mind?", "doc,idiom"],
+      ["Street Slang & Idioms", "بطلع منه", "Bitla' minno", "He has it in him / he's capable of it", "doc,idiom"],
+      ["Street Slang & Idioms", "بدي أضل أعيد وأزيد", "Biddi adall a'eed wa azeed", "Must I keep repeating myself over and over?", "doc,idiom"],
+      ["Street Slang & Idioms", "شادة حالها", "Shaddeh halha", "Full of herself / uptight", "doc,idiom"],
+      ["Street Slang & Idioms", "فكك منهُ / سيبك منه", "Fikkak minno / Seebak minno", "Forget about it / leave him be / let it go", "doc,idiom"],
+      ["Street Slang & Idioms", "إعتّقني / إعتقوني", "I'tiqni / I'tiqooni", "GET OFF MY BACK! / Leave me alone!", "doc,idiom"],
+      ["Street Slang & Idioms", "سفّاح", "Saffah", "Killer! (Slang: awesome / mind-blowing; Literal: serial killer)", "doc,idiom"],
+      ["Street Slang & Idioms", "خرافي", "Khurafi", "Cool / legendary / unreal", "doc,idiom"],
+      ["Street Slang & Idioms", "شلفقة", "Shalfaqa", "Half-assed / slapdash work", "doc,orig,idiom"],
+      ["Street Slang & Idioms", "طوشة", "Tawsheh", "Fight / brawl / commotion", "doc,idiom"],
+      ["Street Slang & Idioms", "غلبت حالك", "Ghallabt halak", "You troubled yourself / you shouldn't have (or exhausted yourself)", "doc,idiom"],
+      ["Street Slang & Idioms", "ما تتركني معلق هيك", "Ma titrukni m'allaq heik", "Don't leave me hanging like this", "doc,idiom"],
+      ["Street Slang & Idioms", "لفت نظري / لفت انتباهي", "Lafat nazari / Lafat intibahi", "Caught my attention", "doc,idiom"],
+      ["Street Slang & Idioms", "ما تكسر خاطري", "Ma tiksir khatri", "Don't let me down / don't break my heart", "doc,idiom"],
+      ["Street Slang & Idioms", "طولي بالك / طول بالك", "Tawwli balak / Tawwil balak", "Take it easy / be patient", "doc,idiom"],
+      ["Street Slang & Idioms", "كبر عقلك", "Kabbir 'aqlak", "Chill out / be the bigger person", "doc,idiom"],
+      ["Street Slang & Idioms", "بياخذ العقل", "Byakhodh al-'aql", "Mind-blowing / breathtaking", "doc,idiom"],
+      ["Street Slang & Idioms", "بيشِق القلب", "Bishiqq al-qalb", "Moving / heart-wrenching / hits deep", "doc,idiom"],
+      ["Street Slang & Idioms", "هانت", "Hanat", "The hard part is over / almost there!", "doc,idiom"],
+      ["Street Slang & Idioms", "يا دوب", "Ya doob", "Hardly / barely", "doc,idiom"],
+      ["Street Slang & Idioms", "بتتخوث؟", "Btitkhawwath?", "Are you kidding me? / Are you messing with me?", "doc,idiom"],
+      ["Street Slang & Idioms", "بلا عاد!", "Bala 'aad!", "Come on already!", "doc,idiom"],
+      ["Street Slang & Idioms", "ولا على باله (Wala a'la balo)", "Wala 'ala balo", "He doesn't care at all / completely oblivious", "doc,arabizi,idiom", "ولا على باله"],
+      ["Street Slang & Idioms", "توكلنا على الله (Tawakkalna a'la Allah)", "Tawakkalna 'ala Allah", "Let's make the deal / shake on it (lit: we trust in God)", "doc,arabizi,idiom", "توكلنا على الله"],
+      ["Street Slang & Idioms", "هاد حده (Had haddo)", "Had haddo", "That's its absolute limit / not worth a penny more", "doc,arabizi,idiom", "هاد حده"],
+      ["Street Slang & Idioms", "الدحيحة", "Ad-dahheeha", "The nerd / top studier", "doc,idiom"],
+      ["Street Slang & Idioms", "اختصر", "Ikhtasir", "Drop it / cut to the chase / keep it short", "doc,idiom"],
+      ["Street Slang & Idioms", "بيخزي", "Bikhzi", "It sucks / it's shameful or terrible", "doc,idiom"],
+      ["Street Slang & Idioms", "إيدو خفيفة", "Eedo khafeefeh", "Quick to throw a punch or pickpocket (light-handed)", "doc,idiom"],
+      ["Street Slang & Idioms", "يخرب بيتك", "Yikhrib baytak", "Expression of shock, awe, or disbelief", "doc,idiom"],
+      ["Street Slang & Idioms", "أنا مصمط", "Ana msammat", "I'm having a rough/bad day (lit: scalded/chafed)", "doc,idiom"],
+      ["Street Slang & Idioms", "حلقولي", "Halaqooli", "They ditched me / stood me up (lit: they shaved me)", "doc,idiom"],
+      ["Street Slang & Idioms", "شقفة", "Shuqfeh", "Hottie / total knockout (lit: a piece)", "doc,idiom"],
+      ["Street Slang & Idioms", "صاروخ / سروخ", "Sarookh", "Rocket (also slang for super cool or attractive)", "doc,idiom"],
+      ["Street Slang & Idioms", "كاشفتك (Kashifatek)", "Kashifatek", "I found out about you / discovered what you did", "doc,arabizi,idiom", "كاشفتك"],
+      ["Street Slang & Idioms", "خُز نشيت", "Khuz nasheet", "Goon / thug", "doc,idiom"],
+      ["Street Slang & Idioms", "الحق مش علي", "Al-haqq mish 'alayyi", "It's not my fault", "doc,orig,idiom"],
+      ["Street Slang & Idioms", "محروق (Ma7roog)", "Ma7roog / Mahrooq", "Burnt (or exposed/ruined in slang)", "doc,arabizi", "محروق"],
+      ["Street Slang & Idioms", "بالترتيب (Bilterteeb)", "Bil-tarteeb", "In order / step by step", "doc,arabizi", "بالترتيب"],
+      ["Street Slang & Idioms", "مرقني / مرقوني (Marragni)", "Marragni / Marrigooni", "He let me through / let me pass through", "doc,arabizi,idiom", "مرقني"],
+      ["Street Slang & Idioms", "مفعوص (Maf3oos)", "Maf3oos / Maf'oos", "Crushed / flattened / squished", "doc,arabizi,idiom", "مفعوص"],
+      ["Street Slang & Idioms", "دفش / دبْش (Difish)", "Difish / Dabsh", "Blunt / tactless / direct / clumsy", "doc,arabizi,idiom", "دفش"],
+      ["Street Slang & Idioms", "بعجق / عجقة (3jga)", "Bi'ajjiq / 'Ajqa (3jga)", "Causing chaos / traffic / crowding", "doc,arabizi,idiom", "عجقة"],
+      ["Street Slang & Idioms", "مسخرة (Mas5ara)", "Mas5ara / Maskhara", "Nonsense / mockery / total joke", "doc,arabizi,idiom", "مسخرة"],
+      ["Street Slang & Idioms", "هو على ضمانتي (3la damanti)", "Huwwe 'ala damanti", "He's cool / I vouch for him", "doc,arabizi,idiom", "هو على ضمانتي"],
+      ["Street Slang & Idioms", "دندول (Dandool)", "Dandool", "Pushover / kiss-ass / dumb person", "doc,arabizi,idiom", "دندول"],
+      ["Street Slang & Idioms", "إسفينجي (Asfanji)", "Asfanji / Isfeenji", "Snitch / instigator (from driving a wedge 'isfeen')", "doc,arabizi,idiom", "إسفينجي"],
+      ["Street Slang & Idioms", "شَمَّر", "Shammar", "Roll up (especially sleeves to get to work)", "doc,idiom"],
+      ["Street Slang & Idioms", "مسّيح جوخ", "Masseeh jookh", "Brown-noser / sycophant / flatterer (lit: cloth polisher)", "doc,idiom"],
+      ["Street Slang & Idioms", "بتستهبل؟ (Tasta7abal?)", "Tasta7abal / Btistahbil?", "Are you playing dumb / messing with me?", "doc,arabizi,idiom", "بتستهبل"],
+      ["Street Slang & Idioms", "من جدك؟ (MenJeddak?)", "MenJeddak / Min jaddak?", "Really? / Are you serious?", "doc,arabizi,idiom", "من جدك"],
+      ["Street Slang & Idioms", "ما نخسر إشي (Ma ne5sar eshe)", "Ma nikhsar ishi", "We have nothing to lose", "doc,arabizi,idiom", "ما نخسر إشي"],
+      ["Street Slang & Idioms", "ما تعديني من سلبيتك (Ma t3ditni m3 salbiyyetak)", "Ma ti'deeni min salbiyyitak", "Don't infect me with your negativity", "doc,arabizi,idiom", "ما تعديني من سلبيتك"],
+      ["Street Slang & Idioms", "بح (Ba7)", "Ba7 / Bah", "All gone / doesn't matter / nothing left", "doc,arabizi,idiom", "بح"],
+      ["Street Slang & Idioms", "خف علينا (5of 3layna)", "5of 3layna / Khiff 'alayna", "Go easy on us / tone it down", "doc,arabizi,idiom", "خف علينا"],
+      ["Street Slang & Idioms", "هضامة / مهْدوم (Hadame)", "Hadameh / Mahdoom", "Humor / witty, charming, and friendly", "doc,arabizi,idiom", "مهضوم"],
+      ["Street Slang & Idioms", "هدا يوم حظي (Hatha yom hazzy)", "Hada yawm hazzi", "It's my lucky day!", "doc,arabizi,idiom", "هذا يوم حظي"],
+      ["Street Slang & Idioms", "فرْفِش", "Farfish", "Take it easy / cheer up / have fun", "doc,idiom"],
+      ["Street Slang & Idioms", "يلا شد حالك!", "Yalla shidd halak!", "Come on, pull yourself together / you can do it!", "doc,idiom"],
+      ["Street Slang & Idioms", "غير شكل", "Ghayr shakil", "One of a kind / extraordinary", "doc,idiom"],
+      ["Street Slang & Idioms", "طنشيهم / ما تطنشني / مطنشني", "Tannshihom / Ma ttannishni / Mtannishni", "Ignore them / don't ignore me / ignoring me", "doc,idiom"],
+      ["Street Slang & Idioms", "غصبا عنك", "Ghasban 'annak", "Against your will / whether you like it or not", "doc,idiom"],
+      ["Street Slang & Idioms", "خف عقله (5af aglo)", "5af aglo / Khaff 'aqlo", "Scared half to death / lost his mind", "doc,arabizi,idiom", "خف عقله"],
+      ["Street Slang & Idioms", "صلّي على النبي!", "Salli 'ala an-nabi!", "Be reasonable! / Calm down! / Give me a break!", "doc,idiom"],
+      ["Street Slang & Idioms", "يقطع عمرك", "Yiqta' 'umrak", "God you're annoying! (affectionate or exasperated: 'cut your life')", "doc,idiom"],
+      ["Street Slang & Idioms", "مقلب / مغلب (Maglab)", "Maglab / Maqlab", "Prank / practical joke", "doc,arabizi,idiom", "مقلب"],
+      ["Street Slang & Idioms", "مخيفة (Mo5eefeh)", "Mo5eefeh / Mukheefeh", "Unbelievable / insane (slang intensifier)", "doc,arabizi,idiom", "مخيفة"],
+      ["Street Slang & Idioms", "وكالة / أصلي (Wakala)", "Wakaleh / Asli", "Original / factory-mint / LEGIT", "doc,arabizi,idiom", "وكالة أصلي"],
+      ["Street Slang & Idioms", "مش منطق", "Mish mantiq", "It doesn't make sense / illogical", "doc,idiom"],
+      ["Street Slang & Idioms", "بلاوي", "Balawi", "Huge amount / tons of / disasters", "doc,idiom"],
+      ["Street Slang & Idioms", "انجلط / رح انجلط (Anjalat)", "Anjalat / Rah anjilit", "Driven crazy / about to have a stroke from stress", "doc,arabizi,idiom", "رح أنجلط"],
+      ["Street Slang & Idioms", "عايف الناس", "'Aayif an-nas", "Fed up with / bored of people", "doc,idiom"],
+      ["Street Slang & Idioms", "الله سِتر", "Allah satar", "Thank God it went okay / God protected us", "doc,idiom"],
+      ["Street Slang & Idioms", "والله الدنيا بالشقلوب", "Wallah ad-dinya bish-shaqloob", "Swear to God, the world is upside down", "doc,idiom"],
+      ["Street Slang & Idioms", "غطيلي (3’a6eeli)", "3'a6eeli / Ghatteeli", "Cover me! (in combat or covering for a friend)", "doc,arabizi,idiom", "غطيلي"],
+      ["Street Slang & Idioms", "مالي خلق أسمع كلامك الفاضي", "Mali khulq asma' kalamak al-fadi", "I'm not in the mood to listen to your nonsense", "doc,idiom"],
+      ["Street Slang & Idioms", "هسا طافي على الآخر", "Hassa tafi 'al-akhir", "I'm completely wiped out / exhausted right now", "doc,idiom"],
+      ["Street Slang & Idioms", "نق / نقّاق", "Naqq / Naqqaq", "Nagging or whining / a constant complainer", "doc,idiom"],
+      ["Street Slang & Idioms", "يزم (Yazam)", "Yazam / Ya zalameh", "Dude / man (fast Jordanian street pronunciation of 'ya zalameh')", "doc,arabizi,idiom", "يا زلمة"],
+      ["Street Slang & Idioms", "براحته (Bi-rahto)", "Bi-rahto", "At his own pace / as he pleases", "doc,arabizi,idiom", "براحته"],
+      ["Street Slang & Idioms", "بخسارة عليّ (Bi-khasara a'lay)", "Bi-khasara 'alay", "At a loss for me! (Classic merchant bargaining guilt trip)", "doc,arabizi,idiom", "بخسارة علي"],
+      ["Street Slang & Idioms", "أنا مش سايح", "Ana mish sayih", "I'm not a tourist! (Don't overcharge me)", "doc,idiom"],
+      ["Street Slang & Idioms", "ما أزنخك!", "Ma aznakhak!", "Don't be so obnoxious / annoying!", "doc,idiom"],
+      ["Street Slang & Idioms", "دقرة / دقر (Digra)", "Digra / Digr", "Stubborn; someone you cannot argue with", "orig,arabizi,idiom", "دقرة"],
+      ["Street Slang & Idioms", "تنحة / تنح (Tin7ah)", "Tin7ah / Tini7", "Impossible to argue with; hard-headed", "orig,arabizi,idiom", "تنحة"],
+      ["Street Slang & Idioms", "بفقع / فقعت (Bifg3 / Fg3it)", "Bifg3 / Fg3it", "Explode or burst / I'm bored or fed up", "orig,arabizi,idiom", "فقعت"],
+
+      // =========================================================================
+      // 2. WORK, TECH & HUSTLE (Coding, Business, Finance & Bargaining)
+      // =========================================================================
+      ["Work, Tech & Hustle", "اعتبريني ما بعرف إشي عن الكود، اشرحيلي من الأول", "I'tibrini ma ba'rif ishi 'an al-kod, ishrahili min al-awwal", "Pretend I know nothing about the code and explain it to me from the beginning", "doc,sentence"],
+      ["Work, Tech & Hustle", "اعمل بذكاء وليس بجهد", "I'mal bi-dhaka' wa laysa bi-juhd", "Work smart, not hard", "doc,idiom"],
+      ["Work, Tech & Hustle", "ثغرة أمنية / ثغرات", "Thaghra amniyya / Thaghrat", "Security breach / loopholes or vulnerabilities", "doc"],
+      ["Work, Tech & Hustle", "مبرمجين", "Mubarmijeen", "Programmers / developers", "doc"],
+      ["Work, Tech & Hustle", "اختراق", "Ikhtiraq", "Breakthrough / hacking / penetration", "doc"],
+      ["Work, Tech & Hustle", "تعليمات", "Ta'leemat", "Instructions", "doc"],
+      ["Work, Tech & Hustle", "بيّنات / دليل", "Bayyinat / Daleel", "Evidence / data / proof", "doc"],
+      ["Work, Tech & Hustle", "تعقيد / مُعقد", "Ta'qeed / Mu'aqqad", "Complexity / complicated", "doc"],
+      ["Work, Tech & Hustle", "منضبط", "Mundabit", "Disciplined", "doc"],
+      ["Work, Tech & Hustle", "رأس المال", "Ra's al-mal", "Startup capital", "orig"],
+      ["Work, Tech & Hustle", "تضخم", "Tadakhkhum", "Inflation", "doc"],
+      ["Work, Tech & Hustle", "الأقساط", "Al-aqsat", "Installments / payments", "doc"],
+      ["Work, Tech & Hustle", "الفائدة", "Al-fa'ida", "Interest (financial) / benefit", "doc"],
+      ["Work, Tech & Hustle", "أمان وظيفي", "Aman wazeefi", "Job security", "doc"],
+      ["Work, Tech & Hustle", "عقاريات / أملاك", "'Aqariyyat / Amlak", "Real estate / properties", "doc"],
+      ["Work, Tech & Hustle", "نكاسر", "Nkasir", "Haggle / bargain over price", "doc"],
+      ["Work, Tech & Hustle", "السعر ثابت", "As-si'r thabit", "The price is fixed", "doc"],
+      ["Work, Tech & Hustle", "السعر الحقيقي / القيمة الفعلية", "As-si'r al-haqeeqi / Al-qeema al-fi'liyya", "Real price / actual value", "doc"],
+      ["Work, Tech & Hustle", "هتزيد البطالة", "Hatzeed al-batala", "Unemployment will rise", "doc"],
+      ["Work, Tech & Hustle", "الواجبات", "Al-wajibat", "The obligations / duties", "doc"],
+      ["Work, Tech & Hustle", "مستمر / استمرارية", "Mustamirr / Istimrariyya", "Continuous / continuation", "doc"],
+      ["Work, Tech & Hustle", "تأثير / تأثير سلبي", "Ta'theer / Ta'theer salbi", "Impact or effect / negative influence", "doc"],
+      ["Work, Tech & Hustle", "مستوى تاني / مستواك / مرحلة", "Mustawa tani / Mustawak / Marhala", "Next level / your level / stage", "doc"],
+      ["Work, Tech & Hustle", "إحنا قاعدين بنضيّع وقت", "Ihna qa'deen bindayyi' waqt", "We're wasting time", "doc,sentence"],
+      ["Work, Tech & Hustle", "شروط", "Shuroot", "Conditions / terms", "doc"],
+      ["Work, Tech & Hustle", "عرض", "'Ard", "Feature / presentation / offer", "doc"],
+      ["Work, Tech & Hustle", "نِقْسِم المصاري", "Niqsim al-masari", "Let's split the money", "doc"],
+      ["Work, Tech & Hustle", "بخسر مساري / مصاري", "Bakhsor masari / Masari", "Wasting money / money", "doc,orig"],
+      ["Work, Tech & Hustle", "مَربح / مَكسَب / مُرْبح", "Marbah / Maksab / Murbih", "Profit / profitable", "doc,orig"],
+      ["Work, Tech & Hustle", "مصاريف", "Masareef", "Expenses", "doc,orig"],
+      ["Work, Tech & Hustle", "إدارة", "Idara", "Management", "doc,orig"],
+      ["Work, Tech & Hustle", "مُهام", "Maham", "To-do list / tasks", "doc,orig"],
+      ["Work, Tech & Hustle", "سهم", "Sahm", "Share of a stock (or arrow)", "doc"],
+      ["Work, Tech & Hustle", "تعليقات", "Ta'leeqat", "Comments", "doc"],
+      ["Work, Tech & Hustle", "توزيع", "Tawzee'", "Distribution", "doc"],
+      ["Work, Tech & Hustle", "مشمول", "Mashmool", "Included", "doc"],
+      ["Work, Tech & Hustle", "تبدع / الإبداع", "Tubdi' / Al-ibda'", "Be creative / creativity", "doc"],
+      ["Work, Tech & Hustle", "مهلة", "Muhla", "Time limit / deadline", "doc"],
+      ["Work, Tech & Hustle", "يسلّط الضوء", "Yusallit ad-daw'", "Shedding light on", "doc"],
+      ["Work, Tech & Hustle", "معادلة", "Mu'adala", "Formula / equation", "doc"],
+      ["Work, Tech & Hustle", "مَلغية", "Malghiyyeh", "Cancelled", "doc"],
+      ["Work, Tech & Hustle", "معدل", "Mu'addal", "Average / GPA", "doc"],
+      ["Work, Tech & Hustle", "صناعة", "Sina'a", "Industry", "doc"],
+      ["Work, Tech & Hustle", "إختراع / اخترع", "Ikhtira' / Ikhtara'", "Invention / invent", "doc,orig"],
+      ["Work, Tech & Hustle", "علامات / علاماتك", "'Alamat / 'Alamatak", "Grades / your grades", "doc,orig"],
+      ["Work, Tech & Hustle", "اطوّر", "Atawwir", "Develop", "doc,orig"],
+      ["Work, Tech & Hustle", "الشهادة لازم تتصدق", "Ash-shahada lazim titsaddaq", "The certificate needs to be legalized/authenticated", "doc,orig"],
+      ["Work, Tech & Hustle", "رقمي", "Raqami", "Digital", "doc"],
+      ["Work, Tech & Hustle", "مُعالَجة / معالجة فورية", "Mu'alaja / Mu'alaja fawriyya", "Processing / real-time processing", "doc,orig"],
+      ["Work, Tech & Hustle", "أنظمة التشغيل", "Anzimat at-tashgheel", "Operating systems", "orig"],
+      ["Work, Tech & Hustle", "تركيز / أركز", "Tarkeez / Urakkiz", "Focus / concentration / I concentrate", "doc"],
+      ["Work, Tech & Hustle", "أُقارن / مُقارنة", "Uqarin / Muqarana", "I compare / comparison", "doc"],
+      ["Work, Tech & Hustle", "نُمّوُ", "Numuww", "Growth", "doc"],
+      ["Work, Tech & Hustle", "اُوَسع", "Uwassi'", "I expand", "doc"],
+      ["Work, Tech & Hustle", "صفقة", "Safqa", "Transaction / deal", "doc"],
+      ["Work, Tech & Hustle", "سري", "Sirri", "Confidential / secret", "doc"],
+      ["Work, Tech & Hustle", "مُبَاْدَرَة", "Mubadara", "Initiative", "doc"],
+      ["Work, Tech & Hustle", "اجباري", "Ijbari", "Mandatory / compulsory", "doc"],
+      ["Work, Tech & Hustle", "أداء", "Ada'", "Performance", "doc"],
+      ["Work, Tech & Hustle", "لقطة الشاشة", "Laqtat ash-shasha", "Screenshot", "doc"],
+      ["Work, Tech & Hustle", "ملخص", "Mulakhkhas", "Summary", "doc"],
+      ["Work, Tech & Hustle", "النظرية", "An-nazariyya", "The theory", "doc"],
+      ["Work, Tech & Hustle", "تأسيس (Ta2sees)", "Ta2sees / Ta'sees", "Foundation / establishment", "doc,arabizi", "تأسيس"],
+      ["Work, Tech & Hustle", "مرتبط", "Murtabit", "Relevant / connected", "doc"],
+      ["Work, Tech & Hustle", "تكلفة", "Taklifa", "Cost", "doc"],
+      ["Work, Tech & Hustle", "الضرايب", "Ad-darayib", "Taxes", "doc"],
+      ["Work, Tech & Hustle", "قروض", "Qurood", "Loans", "doc"],
+      ["Work, Tech & Hustle", "إجراءات / جدول", "Ijra'at / Jadwal", "Procedures / schedule", "doc"],
+      ["Work, Tech & Hustle", "اجتهاد / مجتهد", "Ijtihad / Mujtahid", "Diligence / hard-working student", "doc"],
+      ["Work, Tech & Hustle", "اتفاق (Intifa2)", "Intifa2 / Ittifaq", "Deal / agreement", "doc,arabizi", "اتفاق"],
+      ["Work, Tech & Hustle", "مستشار", "Mustashar", "Advisor / consultant", "doc"],
+      ["Work, Tech & Hustle", "مُؤتَمَر", "Mu'tamar", "Conference / congress", "doc"],
+      ["Work, Tech & Hustle", "ضمان إجتماعي", "Daman ijtima'i", "Social security / retirement fund", "doc"],
+      ["Work, Tech & Hustle", "ميزة", "Meeza", "Characteristic / quality / feature", "doc"],
+      ["Work, Tech & Hustle", "مصادر", "Masadir", "Resources / sources", "doc"],
+      ["Work, Tech & Hustle", "توصيات", "Tawsiyat", "Recommendations", "doc"],
+      ["Work, Tech & Hustle", "جلسات", "Jalasat", "Sessions / meetings", "doc"],
+
+      // =========================================================================
+      // 3. EMOTIONS & CHARACTER (Deep Psychology, Feelings & Personality)
+      // =========================================================================
+      ["Emotions & Character", "قهر", "Qahr", "Deep feeling when life feels unfair and you are powerless", "doc"],
+      ["Emotions & Character", "خيبة", "Khayba", "A quiet disappointment that sits heavy in your chest", "doc"],
+      ["Emotions & Character", "حرقة", "Harqa", "A burning mix of regret and emotional pain", "doc"],
+      ["Emotions & Character", "غصة", "Ghassa", "An emotional lump/ache stuck in your throat you can't release", "doc"],
+      ["Emotions & Character", "وحدة", "Wahda", "Feeling alone even when surrounded by people", "doc"],
+      ["Emotions & Character", "اكتئاب / مكتئب", "Ikti'ab / Mukta'ib", "Depression / depressed", "doc,orig"],
+      ["Emotions & Character", "نوبة الهلع", "Nawbat al-hala'", "Panic attack", "doc"],
+      ["Emotions & Character", "رُهاب", "Ruhab", "Paranoia / phobia", "doc"],
+      ["Emotions & Character", "ضميري مرتاح / ضميري يأنبني", "Dameeri murtah / Dameeri yu'annibni", "My conscience is clear (I don't feel bad) vs. my conscience is eating at me", "doc,idiom"],
+      ["Emotions & Character", "الوعي الذاتي", "Al-wa'i adh-dhati", "Self-awareness / self-consciousness", "doc"],
+      ["Emotions & Character", "العقل الباطن", "Al-'aql al-batin", "The subconscious mind", "doc"],
+      ["Emotions & Character", "عقد نفسية", "'Uqad nafsiyya", "Mental complexes", "doc"],
+      ["Emotions & Character", "حاجز ذهني", "Hajiz dhihni", "Mental block", "doc"],
+      ["Emotions & Character", "أفكار مسبقة سيئة", "Afkar musbaqa sayyi'a", "Negative preconceptions", "doc"],
+      ["Emotions & Character", "الاعتماد على النَّفْس", "Al-i'timad 'ala an-nafs", "Self-reliance", "doc"],
+      ["Emotions & Character", "ثأر", "Tha'r", "Revenge / vendetta", "doc"],
+      ["Emotions & Character", "تحيّز", "Tahayyuz", "Bias", "doc"],
+      ["Emotions & Character", "نفسية", "Nafsiyyeh", "Psycho / moody / having an attitude", "doc"],
+      ["Emotions & Character", "مهزوزة", "Mahzoozeh", "Insecure / shaken", "doc"],
+      ["Emotions & Character", "مهْووسة بالنظافة", "Mahwooseh bin-nazafeh", "Obsessed with cleaning (clean freak)", "doc"],
+      ["Emotions & Character", "متنمرة", "Mutanammireh", "Bully (f.)", "doc"],
+      ["Emotions & Character", "سلوك", "Sulook", "Behavior", "doc"],
+      ["Emotions & Character", "أخلاقك / أخلاق", "Akhlaqak / Akhlaq", "Your morals / manners", "doc"],
+      ["Emotions & Character", "مكشر", "Mkashshir", "Frowning / scowling", "doc"],
+      ["Emotions & Character", "دهشة", "Dahsha", "Astonishment / surprise", "doc"],
+      ["Emotions & Character", "خبيثة", "Khabeetha", "Malicious / sly", "doc"],
+      ["Emotions & Character", "تقدير", "Taqdeer", "Appreciation", "doc"],
+      ["Emotions & Character", "تردد", "Taraddud", "To hesitate / hesitation", "doc"],
+      ["Emotions & Character", "تحمل", "Tahammul", "Endurance / tolerance", "doc"],
+      ["Emotions & Character", "أنانيّ", "Anani", "Selfish", "doc"],
+      ["Emotions & Character", "اِتْكسفت", "Itkasafat", "Blushed / felt shy or embarrassed", "doc"],
+      ["Emotions & Character", "بِتِخْطفْني", "Btikhtufni", "It enchants / captivates me", "doc"],
+      ["Emotions & Character", "مهتم (mohtem)", "Mohtem / Muhtamm", "Interested", "doc,arabizi", "مهتم"],
+      ["Emotions & Character", "غموض", "Ghumood", "Mystery", "doc"],
+      ["Emotions & Character", "مألوف / شكلك مألوف", "Ma'loof / Shaklak ma'loof", "Familiar / you look familiar", "doc"],
+      ["Emotions & Character", "مُذْنب / ذنبي / ذنبنا", "Mudhnib / Dhanbi / Dhanbna", "Guilty / my fault / our fault", "doc,orig"],
+      ["Emotions & Character", "فضيحة", "Fadeeha", "Scandal", "doc,orig"],
+      ["Emotions & Character", "مهجور / هجرني", "Mahjoor / Hajarni", "Abandoned / you abandoned me", "doc"],
+      ["Emotions & Character", "خائن / غدار", "Kha'in / Ghaddar", "Traitor / treacherous", "doc,orig"],
+      ["Emotions & Character", "بنصدم / نصدمت", "Binsadim / Nsadamt", "Shocked / I was shocked", "doc"],
+      ["Emotions & Character", "انحرجت / انخجلت (En5arajat)", "En5arajat / Inkhajalt", "I got embarrassed", "doc,orig,arabizi", "انخجلت"],
+      ["Emotions & Character", "طاقة / حافز", "Taqa / Hafiz", "Energy / motivation", "doc"],
+      ["Emotions & Character", "نصيب", "Naseeb", "Destiny / fate", "doc"],
+      ["Emotions & Character", "انا قلق عليك", "Ana qaliq 'alayk", "I'm concerned / worried about you", "doc"],
+      ["Emotions & Character", "محرج / محرجة", "Muhrij / Muhrajeh", "Embarrassing / embarrassed", "doc"],
+      ["Emotions & Character", "طماعة", "Tamma'a", "Greedy", "doc"],
+      ["Emotions & Character", "مرهقة / مُرْهَق", "Murhaqa / Murhaq", "Exhausted", "doc"],
+      ["Emotions & Character", "حريصة", "Hareesa", "Cautious / careful", "doc"],
+      ["Emotions & Character", "متشائمة", "Mutasha'imeh", "Pessimistic", "doc"],
+      ["Emotions & Character", "مستهترة", "Mustahtireh", "Careless / reckless", "doc"],
+      ["Emotions & Character", "مغرورة", "Maghroora", "Self-centered / arrogant", "doc"],
+      ["Emotions & Character", "متفائلة / مُتفائل", "Mutafa'ileh / Mutafa'il", "Optimistic", "doc"],
+      ["Emotions & Character", "علاج نفسي / صحة نفسية", "'Ilaj nafsi / Sihha nafsiyya", "Therapy / mental health", "doc"],
+      ["Emotions & Character", "لغة الجسد", "Lughat al-jasad", "Body language", "doc"],
+      ["Emotions & Character", "مشوش / مِتحَير / مُحْتَار", "Mushawwash / Mithayyir / Muhtar", "Confused / bewildered", "doc,orig"],
+      ["Emotions & Character", "الأرق / كابوس", "Al-araq / Kaboos", "Insomnia / nightmare", "doc"],
+      ["Emotions & Character", "عنيد", "'Aneed", "Stubborn", "doc"],
+      ["Emotions & Character", "المواهب", "Al-mawahib", "Talents", "doc"],
+      ["Emotions & Character", "إدمان / مدمن", "Idman / Mudmin", "Addiction / addict", "doc"],
+      ["Emotions & Character", "رحمة", "Rahma", "Mercy / compassion", "doc"],
+      ["Emotions & Character", "تكبت", "Takbit", "She suppresses (feelings)", "doc"],
+      ["Emotions & Character", "مؤدب / مؤدبين / مش مؤدب", "Mu'addab / Mu'addabeen / Mish mu'addab", "Polite / disciplined / impolite", "doc"],
+      ["Emotions & Character", "متوَّازن", "Mutawazin", "Balanced", "doc"],
+      ["Emotions & Character", "سلبية / إيجابية (Salbiyye / Jabiyye)", "Salbiyyeh / Ijabiyyeh", "Negative / positive", "doc,arabizi", "سلبية وإيجابية"],
+      ["Emotions & Character", "خواطر", "Khawatir", "Thoughts / reflections", "doc"],
+      ["Emotions & Character", "تبري جروحي", "Tibri jroohi", "Heal my wounds", "doc"],
+      ["Emotions & Character", "مظلوم / ظالم / ظُلم", "Mazloom / Zalim / Zulm", "Oppressed / oppressor / injustice", "doc"],
+      ["Emotions & Character", "منرفزة", "Mnarfizeh", "Nervous / irritated", "doc"],
+      ["Emotions & Character", "إنفصام فالشخصية", "Infisam fish-shakhsiyya", "Split personality", "doc"],
+      ["Emotions & Character", "شرسين", "Sharisin", "Aggressive / fierce", "doc"],
+      ["Emotions & Character", "سقع / كشر", "Saqi' / Kashir", "Cold, unemotional person / stone-faced", "doc"],
+      ["Emotions & Character", "إستفزاز — مها مستفزة", "Istifzaz — Maha mustafizzeh", "Provocation / egging on — 'Maha is provoking'", "doc"],
+      ["Emotions & Character", "منافقة / منافقين", "Munafiqa / Munafiqeen", "Hypocrite / hypocrites", "doc,orig"],
+      ["Emotions & Character", "طَموح", "Tamooh", "Ambitious / passionate", "doc"],
+      ["Emotions & Character", "رِضا", "Rida", "Satisfaction / contentment", "doc"],
+      ["Emotions & Character", "فضولي", "Fudooli", "Curious / nosy", "doc"],
+      ["Emotions & Character", "دؤوب", "Da'oob", "Diligent / perseverant", "doc"],
+      ["Emotions & Character", "بستحي / بخجل", "Bastahi / Bakhjal", "I am ashamed / I am shy", "doc"],
+      ["Emotions & Character", "قدوة", "Qudwa", "Role model / example", "doc"],
+      ["Emotions & Character", "متواضع", "Mutawadi'", "Humble / modest", "doc"],
+      ["Emotions & Character", "قاسي", "Qasi", "Harsh / cruel", "doc"],
+      ["Emotions & Character", "حساس", "Hassas", "Sensitive", "doc"],
+      ["Emotions & Character", "ساخر", "Sakhir", "Sarcastic", "doc"],
+      ["Emotions & Character", "نوايا سيئة", "Nawaya sayyi'a", "Bad intentions", "doc"],
+      ["Emotions & Character", "الوم حالي / اندم", "Aloom hali / Andam", "I blame myself / I regret", "doc"],
+      ["Emotions & Character", "شعور مش متبادل", "Shu'oor mish mutabadal", "The feeling is not mutual", "doc"],
+      ["Emotions & Character", "مُمْتَنّ", "Mumtann", "Grateful", "orig"],
+      ["Emotions & Character", "نَمِيمَة", "Nameema", "Gossip", "orig"],
+
+      // =========================================================================
+      // 4. SOCIAL & CONVERSATION (Everyday Sentences, Prompts & Greetings)
+      // =========================================================================
+      ["Social & Conversation", "بقدر أطلب طلب؟ (Bagdar a6lob 6alab?)", "Bagdar a6lob 6alab?", "Can I ask you a favor?", "doc,arabizi,sentence", "بقدر أطلب طلب"],
+      ["Social & Conversation", "اِتْشرًفْت بمعرفتك — شرفت فيك", "Itsharraft bi-ma'riftak — Sharraft feek", "Nice to meet you — and nice to meet you too (response)", "doc,arabizi,sentence"],
+      ["Social & Conversation", "الله يخليك — ولا يهمك", "Allah yikhallik — Wala yihimmak", "May God preserve you — Don't mention it (warm polite exchange)", "doc,orig,sentence"],
+      ["Social & Conversation", "ما تآخزيني / لا تؤاخذيني", "Ma t'akhzeeni", "Don't be offended / excuse me", "doc,sentence"],
+      ["Social & Conversation", "أنا آسفة إني مصدر إحراج لحضرتك", "Ana asfeh inni masdar ihraj li-hadritak", "I'm sorry that I'm an embarrassment to you", "doc,sentence"],
+      ["Social & Conversation", "كنا أعز أصحاب", "Kunna a'azz ashab", "We used to be best friends", "doc,sentence"],
+      ["Social & Conversation", "ما بقدر أمنعك", "Ma baqdar amna'ak", "I can't stop you", "doc,sentence"],
+      ["Social & Conversation", "سكوتك مش حماية إلهم", "Sukootak mish himayeh ilhom", "Your silence doesn't protect them", "doc,sentence"],
+      ["Social & Conversation", "هذا تخبيص. لو عندك جرأة، كان وقفت بوجهه!", "Hadha takhbees. Law 'indak jur'a, kan waqqaft bi-wijho!", "That's messed up. If you had guts, you'd stand up to him!", "doc,sentence"],
+      ["Social & Conversation", "وين بدك تقضّي الويكند؟", "Wayn biddak tqaddi al-weekend?", "Where do you want to spend the weekend?", "doc,sentence"],
+      ["Social & Conversation", "هو استغلني عشان مصلحته", "Huwwe istaghallni 'ashan maslahto", "He took advantage of me for his own benefit", "doc,sentence"],
+      ["Social & Conversation", "بس نصيحة ما تنخدعي فيهم", "Bas naseeha ma tinkhad'i feehom", "Just some advice: don't be fooled by them", "doc,sentence"],
+      ["Social & Conversation", "أنا بطلت قادر أتحمل", "Ana battalt qadir athammal", "I can't take it anymore", "doc,sentence"],
+      ["Social & Conversation", "جريتكم معي — رح يجروكي معهم", "Jarraytkum ma'i — Rah yjurrooki ma'hom", "I dragged you guys with me — they're going to drag you down with them", "doc,sentence"],
+      ["Social & Conversation", "زمان، ما كنت رح أنقي هاد", "Zaman, ma kunt rah anaqqi had", "A long time ago, I wouldn't have picked this", "doc,sentence"],
+      ["Social & Conversation", "أنا أشجعك", "Ana ushajji'ak", "I'm rooting for you / encouraging you", "doc,sentence"],
+      ["Social & Conversation", "مستاهل أحسن من هيك", "Mustahil ahsan min heik", "You deserve better than this", "doc,sentence"],
+      ["Social & Conversation", "نتواصل مع بعض", "Nitwasal ma' ba'd", "We communicate with each other", "doc,sentence"],
+      ["Social & Conversation", "كل حاجة فالحارة بتخصني", "Kull hajeh fil-hara bitkhussni", "Everything in the neighborhood concerns me", "doc,sentence"],
+      ["Social & Conversation", "متى ناوية؟", "Mata nawyeh?", "When do you intend to?", "doc,sentence"],
+      ["Social & Conversation", "أنا دافعت عنك", "Ana dafa't 'annak", "I stood up for / defended you", "doc,sentence"],
+      ["Social & Conversation", "فيه حاجة إسْمها الحُبّ مِن أوِّل نظْرة؟", "Feeh hajeh isimha al-hubb min awwal nazra?", "Is there such a thing as love at first sight?", "doc,sentence"],
+      ["Social & Conversation", "إنْتو أحْبطْتوني", "Intu ahbattooni", "You guys disappointed me", "doc,sentence"],
+      ["Social & Conversation", "اِقْبل الحقيقة", "Iqbal al-haqeeqa", "Accept reality / accept the truth", "doc,sentence"],
+      ["Social & Conversation", "خبرني إذا بتغير رأيك", "Khabbirni idha bitghayyir ra'yak", "Tell me if you change your mind", "doc,sentence"],
+      ["Social & Conversation", "أي ساعة فاتحين؟", "Ayy sa'a fatheen?", "Until what time are you open?", "doc,sentence"],
+      ["Social & Conversation", "كم بدو وقت؟", "Kam biddo waqt?", "How long does it take?", "doc,sentence"],
+      ["Social & Conversation", "كَمْ مَرّة بِتْسافرو؟", "Kam marra bitsafru?", "How often do you travel?", "doc,sentence"],
+      ["Social & Conversation", "عنده طاقة خرافية", "'Indo taqa khurafiyyeh", "He has amazing / legendary energy", "doc,sentence"],
+      ["Social & Conversation", "ما عملش إشي غلط عن عمد", "Ma 'amalish ishi ghalat 'an 'amd", "He didn't do anything wrong on purpose", "doc,sentence"],
+      ["Social & Conversation", "ما في داعي", "Ma fi da'i", "There is no need / you shouldn't have!", "doc,sentence"],
+      ["Social & Conversation", "رجعني البيت", "Rajji'ni al-bayt", "Take me home", "doc,sentence"],
+      ["Social & Conversation", "منبقا نحكي", "Mnibqa nihki", "We'll keep talking / we'll stay in touch", "doc,sentence"],
+      ["Social & Conversation", "إنتِ انطوائية أو اجتماعية؟", "Inti intiwa'iyyeh aw ijtima'iyyeh?", "Are you introverted or extroverted?", "doc,sentence"],
+      ["Social & Conversation", "شو هي الأشياء اللي بتخليكي مبسوطة؟", "Shu hiyyeh al-ashya' illi bitkhalliki mabsoota?", "What are the things that make you happy?", "doc,sentence"],
+      ["Social & Conversation", "لازم تدرس كل يوم — أكيد رح تنجح", "Lazim tidrus kull yawm — Akeed rah tinjah", "You must study every day — you will succeed for sure", "doc,sentence"],
+      ["Social & Conversation", "المتل", "Al-matal", "The saying / proverb / idiom", "doc"],
+      ["Social & Conversation", "سُمعتي / سمعة", "Sum'ati / Sum'a", "My reputation / reputation", "doc,orig"],
+      ["Social & Conversation", "معروف", "Ma'roof", "Favor", "doc"],
+      ["Social & Conversation", "نصيحة / نصايّح", "Naseeha / Nasayih", "Advice", "doc"],
+      ["Social & Conversation", "حجة", "Hijjeh / Hujja", "Excuse", "doc,orig"],
+      ["Social & Conversation", "نقاش / حديث (Hadees)", "Niqash / Hadeeth", "Discussion / argument / conversation", "doc,orig,arabizi", "نقاش وحديث"],
+      ["Social & Conversation", "تفاعلات اجتماعية", "Tafa'ulat ijtima'iyya", "Social interactions", "orig"],
+      ["Social & Conversation", "الإِيجَابِيَّات وَالسَّلْبِيَّات", "Al-ijabiyyat wa-s-salbiyyat", "Pros and cons", "orig"],
+
+      // =========================================================================
+      // 5. CRIME, LAW & POLITICS
+      // =========================================================================
+      ["Crime, Law & Politics", "مسرح الجريمة", "Masrah al-jareema", "Crime scene", "doc"],
+      ["Crime, Law & Politics", "المحقق / تحقيق", "Al-muhaqqiq / Tahqeeq", "The detective / investigation", "doc"],
+      ["Crime, Law & Politics", "مشتبه", "Mushtabah", "Suspect", "doc"],
+      ["Crime, Law & Politics", "حجة غياب (7oja 3'ayyab)", "Hujjat ghiyab", "Alibi", "doc,arabizi", "حجة غياب"],
+      ["Crime, Law & Politics", "البصمات", "Al-basamat", "The fingerprints", "doc"],
+      ["Crime, Law & Politics", "في أدلة ناقصة", "Fi adilla naqisa", "There is incomplete evidence", "doc"],
+      ["Crime, Law & Politics", "بحاجة لدليل يدعم هالإحساس", "Bi-hajeh li-daleel yid'am hal-ihsas", "I need proof to support this feeling/hunch", "doc,sentence"],
+      ["Crime, Law & Politics", "القبض / اعتقال", "Al-qabd / I'tiqal", "Arrest", "doc"],
+      ["Crime, Law & Politics", "أصفاد", "Asfad", "Handcuffs", "doc"],
+      ["Crime, Law & Politics", "غسل أموال", "Ghasl amwal", "Money laundering", "doc"],
+      ["Crime, Law & Politics", "القاضي", "Al-qadi", "The judge", "doc"],
+      ["Crime, Law & Politics", "مُذكرة", "Mudhakkira", "Warrant / legal memo", "doc"],
+      ["Crime, Law & Politics", "يعترف / اعترف!", "Ya'tarif / I'tarif!", "He's confessing / Confess!", "doc"],
+      ["Crime, Law & Politics", "خطف / اختطف", "Khatf / Ikhtataf", "Kidnap", "doc"],
+      ["Crime, Law & Politics", "مجرمين / المجرم", "Mujrimeen / Al-mujrim", "Criminals / the criminal", "doc"],
+      ["Crime, Law & Politics", "ملاحقة / مطاردة", "Mulahaqa / Mutarada", "Chase / pursuit", "doc"],
+      ["Crime, Law & Politics", "تزوير / أزور (Azawar)", "Tazweer / Azawwir", "Forgery / to forge something", "doc,arabizi", "تزوير"],
+      ["Crime, Law & Politics", "نصب / الاحتيال", "Nasb / Al-ihtiyal", "Fraud / scam", "doc,orig"],
+      ["Crime, Law & Politics", "رشوة", "Rashwa", "Bribe", "doc,orig"],
+      ["Crime, Law & Politics", "مؤامرة", "Mu'amara", "Conspiracy / plot", "doc,orig"],
+      ["Crime, Law & Politics", "مسموح / قانوني (Masmoo7)", "Masmoo7 / Qanooni", "Legal / allowed / permitted", "doc,orig,arabizi", "مسموح وقانوني"],
+      ["Crime, Law & Politics", "عِقاب", "'Iqab", "Punishment", "doc"],
+      ["Crime, Law & Politics", "عواقب", "'Awaqib", "Consequences", "doc"],
+      ["Crime, Law & Politics", "ضحية العنف / ضحية", "Dahiyyat al-'unf / Dahiyya", "Victim of violence / victim", "doc"],
+      ["Crime, Law & Politics", "متحرش", "Mutaharrish", "Harasser / molester", "doc"],
+      ["Crime, Law & Politics", "حرية التعبير", "Hurriyyat at-ta'beer", "Freedom of speech", "doc"],
+      ["Crime, Law & Politics", "حقوق مدنية", "Huqooq madaniyya", "Civil rights", "doc"],
+      ["Crime, Law & Politics", "مُساواة", "Musawah", "Equality", "doc"],
+      ["Crime, Law & Politics", "تمييز في الوظائف", "Tamyeez fil-waza'if", "Job discrimination", "doc"],
+      ["Crime, Law & Politics", "استعباد و تسلط", "Isti'bad wa tasallut", "Slavery and tyranny", "doc"],
+      ["Crime, Law & Politics", "مقاطعة المنتجات", "Muqata'at al-muntajat", "Boycott products", "doc"],
+      ["Crime, Law & Politics", "انتخابات / صوّت", "Intikhabat / Sawwat", "Elections / voted", "doc,orig"],
+      ["Crime, Law & Politics", "مقاومة", "Muqawama", "Resistance / struggle", "doc"],
+      ["Crime, Law & Politics", "احتلال / الاستعمار", "Ihtilal / Al-isti'mar", "Occupation / colonization", "doc"],
+      ["Crime, Law & Politics", "تعذيب", "Ta'dheeb", "Torture", "doc"],
+      ["Crime, Law & Politics", "متطرف", "Mutatarrif", "Radicalized / extremist", "doc,orig"],
+      ["Crime, Law & Politics", "مرتزقة", "Murtazaqa", "Mercenaries", "doc,orig"],
+      ["Crime, Law & Politics", "حليف", "Haleef", "Ally", "doc"],
+      ["Crime, Law & Politics", "أثارت الجدل", "Atharat al-jadal", "It caused a controversy", "doc"],
+      ["Crime, Law & Politics", "المراقبة", "Al-muraqaba", "Surveillance / monitoring", "doc"],
+      ["Crime, Law & Politics", "إعدام", "I'dam", "Execution", "doc"],
+
+      // =========================================================================
+      // 6. HEALTH & BODY (Anatomy, Medicine & Fitness)
+      // =========================================================================
+      ["Health & Body", "ربو", "Rabu", "Asthma", "doc,orig"],
+      ["Health & Body", "أصلع (صلَّطع)", "Asla'", "Bald", "doc"],
+      ["Health & Body", "ذراع / أجريه", "Dhira' / Ijrayh", "Arm / his legs", "doc"],
+      ["Health & Body", "انخنق", "Inkhanaq", "Choke / suffocate", "doc,orig"],
+      ["Health & Body", "اتشردق", "Itshardaq", "Choke on liquid/food (went down the wrong pipe)", "doc"],
+      ["Health & Body", "انقطع نفسي", "Inqata' nafasi", "I'm out of breath", "doc"],
+      ["Health & Body", "قلبت معدتي", "Qalabat mi'dati", "I got nauseous / my stomach turned", "doc"],
+      ["Health & Body", "وباء / طاعون", "Waba' / Ta'oon", "Pandemic / plague", "doc,orig"],
+      ["Health & Body", "جراثيم", "Jaratheem", "Germs", "doc,orig"],
+      ["Health & Body", "حلق / حلقي وجعني", "Halq / Halqi waja'ni", "Throat / my throat hurts (sore throat)", "doc,orig"],
+      ["Health & Body", "فحص كوفيد", "Fahs Kofeed", "Covid test", "doc,orig"],
+      ["Health & Body", "صداع", "Suda'", "Headache", "doc"],
+      ["Health & Body", "علاج", "'Ilaj", "Treatment", "doc"],
+      ["Health & Body", "حُمى", "Humma", "Fever", "doc"],
+      ["Health & Body", "الإسعاف / مشفى", "Al-is'af / Mashfa", "The ambulance / hospital", "doc"],
+      ["Health & Body", "أنزف", "Anzif", "I bleed", "doc"],
+      ["Health & Body", "هيكل عظمي / عظم", "Haykal 'azmi / 'Azm", "Skeleton / bone", "doc"],
+      ["Health & Body", "العمود الفقري", "Al-'amood al-faqari", "The spine", "doc"],
+      ["Health & Body", "الحمل / التخصيب / جنين", "Al-haml / At-takhseeb / Janeen", "Pregnancy / conception / fetus", "doc"],
+      ["Health & Body", "عدوى / إلتهاب", "'Adwa / Iltihab", "Infection / inflammation", "doc"],
+      ["Health & Body", "منظار", "Minzar", "Colonoscopy / endoscope", "doc"],
+      ["Health & Body", "عملية تجميل", "'Amaliyyat tajmeel", "Plastic surgery", "doc"],
+      ["Health & Body", "ما بطيب (ma ba6eeb)", "Ma ba6eeb / Ma biteeb", "Not able to heal / incurable", "doc,arabizi", "ما بطيب"],
+      ["Health & Body", "قيصري", "Qaysari", "C-section (Caesarean)", "doc"],
+      ["Health & Body", "سماط / سماطت (Sma6)", "Sma6 / Smat", "Rash / chafing", "doc,arabizi", "سماط"],
+      ["Health & Body", "نبض", "Nabd", "Pulse", "doc"],
+      ["Health & Body", "سرطان", "Saratan", "Cancer", "doc"],
+      ["Health & Body", "تمرين الحديد", "Tamreen al-hadeed", "Weight lifting", "doc"],
+      ["Health & Body", "تحميلة", "Tahmeeleh", "Suppository", "doc"],
+      ["Health & Body", "بُقرُت / قَرطة بالحكي (Bogrot)", "Buqrut / Qarta bil-haki", "Speech impediment / lisp", "doc,arabizi", "قرطة بالحكي"],
+      ["Health & Body", "وريد", "Wareed", "Vein", "orig"],
+      ["Health & Body", "جفون", "Jufoon", "Eyelids", "orig"],
+      ["Health & Body", "غمزات", "Ghamzat", "Dimples", "orig"],
+
+      // =========================================================================
+      // 7. NATURE, ANIMALS & SHAPES
+      // =========================================================================
+      ["Nature, Animals & Shapes", "قوْس", "Qaws", "Arch / bow", "doc"],
+      ["Nature, Animals & Shapes", "مُكعب", "Muka''ab", "Cube", "doc"],
+      ["Nature, Animals & Shapes", "مخروط", "Makhroot", "Cone", "doc"],
+      ["Nature, Animals & Shapes", "اُسطوَّانة", "Ustuwana", "Cylinder", "doc"],
+      ["Nature, Animals & Shapes", "مُثّمن", "Muthamman", "Octagon", "doc"],
+      ["Nature, Animals & Shapes", "بيضاوي", "Baydawi", "Oval", "doc"],
+      ["Nature, Animals & Shapes", "مخمس", "Mukhammas", "Pentagon", "doc"],
+      ["Nature, Animals & Shapes", "هَرَم", "Haram", "Pyramid", "doc"],
+      ["Nature, Animals & Shapes", "مُستطيل", "Mustateel", "Rectangle", "doc"],
+      ["Nature, Animals & Shapes", "مسدس", "Musaddas", "Hexagon (also revolver)", "doc"],
+      ["Nature, Animals & Shapes", "كرة", "Kura", "Sphere / ball", "doc"],
+      ["Nature, Animals & Shapes", "مُربّع", "Murabba'", "Square", "doc"],
+      ["Nature, Animals & Shapes", "مُثلّث", "Muthallath", "Triangle", "doc"],
+      ["Nature, Animals & Shapes", "وتد", "Watad", "Wedge / peg", "doc"],
+      ["Nature, Animals & Shapes", "طائر الطنان", "Ta'ir at-tannan", "Hummingbird", "doc"],
+      ["Nature, Animals & Shapes", "غُراب", "Ghurab", "Crow / raven", "doc"],
+      ["Nature, Animals & Shapes", "صقر", "Saqr", "Falcon / hawk", "doc"],
+      ["Nature, Animals & Shapes", "بَجّعة", "Baja'a", "Pelican / swan", "doc"],
+      ["Nature, Animals & Shapes", "ديك", "Deek", "Rooster", "doc"],
+      ["Nature, Animals & Shapes", "نوْرس", "Nawras", "Seagull", "doc"],
+      ["Nature, Animals & Shapes", "نحام", "Nuham", "Flamingo", "doc"],
+      ["Nature, Animals & Shapes", "نسر", "Nisr", "Eagle / vulture", "doc"],
+      ["Nature, Animals & Shapes", "طاووس", "Tawoos", "Peacock", "doc"],
+      ["Nature, Animals & Shapes", "ريشة", "Reesheh", "Feather", "doc"],
+      ["Nature, Animals & Shapes", "صَدَف / صدفة", "Sadaf / Sadafa", "Seashell", "doc"],
+      ["Nature, Animals & Shapes", "مرجان", "Marjan", "Coral", "doc"],
+      ["Nature, Animals & Shapes", "سلحفاة", "Sulahfah", "Turtle / tortoise", "doc"],
+      ["Nature, Animals & Shapes", "فقمة", "Faqma", "Walrus / seal", "doc"],
+      ["Nature, Animals & Shapes", "قُندس", "Qundus", "Otter / beaver", "doc"],
+      ["Nature, Animals & Shapes", "كُنْغُر", "Kunghur", "Kangaroo", "doc"],
+      ["Nature, Animals & Shapes", "ذُبابة / حشرات", "Dhubaba / Hasharat", "A fly / insects", "doc"],
+      ["Nature, Animals & Shapes", "خلية", "Khaliyya", "Hive / cell", "doc"],
+      ["Nature, Animals & Shapes", "شبكة عنكبوت", "Shabakat 'ankaboot", "Spider web", "doc,orig"],
+      ["Nature, Animals & Shapes", "خَيزران", "Khayzaran", "Bamboo", "doc"],
+      ["Nature, Animals & Shapes", "فرع / جذع الشجرة / جذر", "Far' / Jidh' ash-shajara / Jadhr", "Branch / tree trunk (log) / root", "doc"],
+      ["Nature, Animals & Shapes", "صبّار", "Sabbar", "Cactus", "doc"],
+      ["Nature, Animals & Shapes", "عُشب / أعشاب", "'Ushb / A'shab", "Grass / herbs", "doc"],
+      ["Nature, Animals & Shapes", "شجرة النخيل / شجرة الصنوبر", "Shajarat an-nakheel / Shajarat as-sanawbar", "Palm tree / pine tree", "doc"],
+      ["Nature, Animals & Shapes", "بذرة / تُرْبة / برْعُم", "Badhra / Turba / Bur'um", "Seed / soil / sprout", "doc"],
+      ["Nature, Animals & Shapes", "زهرة / ذرة / ذرّة", "Zahra / Dhura / Dharra", "Cauliflower / corn / atom", "doc"],
+      ["Nature, Animals & Shapes", "إعصار / فَيضان", "I'sar / Fayadan", "Typhoon or hurricane / flood", "doc"],
+      ["Nature, Animals & Shapes", "قوس قزح", "Qaws quzah", "Rainbow", "doc,orig"],
+      ["Nature, Animals & Shapes", "غامض / غائم", "Ghamid / Gha'im", "Mysterious / cloudy", "doc,orig"],
+      ["Nature, Animals & Shapes", "ضباب / غيوم / مشمس", "Dabab / Ghuyoom / Mushmis", "Fog / clouds / sunny", "doc"],
+      ["Nature, Animals & Shapes", "أمْواج", "Amwaj", "Waves", "doc"],
+      ["Nature, Animals & Shapes", "المجموعة الشمسية", "Al-majmoo'a ash-shamsiyya", "Solar system", "doc"],
+      ["Nature, Animals & Shapes", "صدأ", "Sada'", "Rust", "doc,orig"],
+      ["Nature, Animals & Shapes", "رغوة / رغوى", "Raghwa", "Foam / suds", "doc,orig"],
+      ["Nature, Animals & Shapes", "غرقان", "Gharqan", "Drowning", "doc,orig"],
+
+      // =========================================================================
+      // 8. EVERYDAY, CARS & HOUSE
+      // =========================================================================
+      ["Everyday, Cars & House", "طريق مسدود", "Tareeq masdood", "Dead end", "doc"],
+      ["Everyday, Cars & House", "سيارتي تعطلت", "Sayyarti t'attalat", "My car broke down", "doc"],
+      ["Everyday, Cars & House", "عجلة قيادة", "'Ajalat qiyada", "Steering wheel", "doc"],
+      ["Everyday, Cars & House", "الزُجاج الأمامي / الزُجاج الخلفي", "Az-zujaj al-amami / Az-zujaj al-khalfi", "Windshield / rear car window", "doc"],
+      ["Everyday, Cars & House", "الضواو الأمامية / الضواو العالية", "Ad-dawaw al-amamiyya / Ad-dawaw al-'aliya", "Headlights / high beams (brights)", "doc"],
+      ["Everyday, Cars & House", "المراية الخلفية (Almrai 5alfiyyeh)", "Al-mrayeh al-khalfiyyeh", "Rearview mirror", "doc,arabizi", "المراية الخلفية"],
+      ["Everyday, Cars & House", "خزان الغاز / مُحرِّك", "Khazzan al-ghaz / Muharrik", "Gas tank / engine", "doc"],
+      ["Everyday, Cars & House", "تأجير سيارات / غسيل السيارة", "Ta'jeer sayyarat / Ghaseel as-sayyara", "Car rental / car wash", "doc"],
+      ["Everyday, Cars & House", "رافعة شوكية", "Rafi'a shawkiyya", "Forklift", "doc"],
+      ["Everyday, Cars & House", "صامولة", "Samoola", "Nut (for bolts, cars, and machines)", "doc"],
+      ["Everyday, Cars & House", "تقاطع", "Taqatu'", "Intersection", "doc"],
+      ["Everyday, Cars & House", "مطب", "Matabb", "Speedbump", "orig"],
+      ["Everyday, Cars & House", "مصعد / المواصلات", "Mis'ad / Al-muwasalat", "Elevator / public transport", "doc"],
+      ["Everyday, Cars & House", "السمكرة / مكبس غطاس", "As-samkara / Mikbas ghattas", "Plumbing / plunger", "doc"],
+      ["Everyday, Cars & House", "بالوعة / مصرف", "Balloo'a / Masraf", "Sewer / drain", "doc,orig"],
+      ["Everyday, Cars & House", "ما تسحب السيفون الحمام", "Ma tishab as-seefon al-hammam", "Don't flush the toilet", "doc"],
+      ["Everyday, Cars & House", "مدْخل / مدْخنة / عتبة / مقبض", "Madkhal / Madkhana / 'Ataba / Miqbad", "Hallway / chimney / doorway / doorknob", "doc"],
+      ["Everyday, Cars & House", "مُرَطّب", "Murattib", "Humidifier / moisturizer", "doc"],
+      ["Everyday, Cars & House", "غلاية / دلة", "Ghallaya / Dalla", "Turkish coffee pot / traditional Arabic coffee pot", "doc"],
+      ["Everyday, Cars & House", "مقلايه / تَنور", "Miqlayeh / Tannoor", "Frying pan / traditional clay oven", "orig"],
+      ["Everyday, Cars & House", "قُمَامَة / زِبَالَة", "Qumama / Zibala", "Garbage", "orig"],
+      ["Everyday, Cars & House", "فانوس / فوانيس (Fanoos)", "Fanoos / Fawanees", "Lantern / lanterns", "doc,arabizi", "فانوس وفوانيس"],
+      ["Everyday, Cars & House", "برواز / تطريز", "Birwaz / Tatreez", "Picture frame / embroidery", "doc"],
+      ["Everyday, Cars & House", "جاروف", "Jaroof", "Dustpan / shovel", "doc"],
+      ["Everyday, Cars & House", "باروكة / طاقية / كرافة", "Barooka / Taqiyya / Krafat", "Wig / hat / necktie", "doc"],
+      ["Everyday, Cars & House", "قناع الغاز", "Qina' al-ghaz", "Gas mask", "doc"],
+      ["Everyday, Cars & House", "رذاذ / بخاخ", "Radhadh / Bakhkhakh", "Spray / mist", "doc"],
+      ["Everyday, Cars & House", "معطر / رائحة", "Mu'attar / Ra'iha", "Scented / odor or scent", "doc"],
+      ["Everyday, Cars & House", "ملمس / طبقة", "Malmas / Tabaqa", "Texture / layer", "doc"],
+      ["Everyday, Cars & House", "مخلوط / مُختَلَط (Ma5loo6 / Ma5tala6)", "Ma5loo6 / Mukhtalat", "Mixed (for things) / mixed (for people)", "doc,arabizi", "مخلوط ومختلط"],
+      ["Everyday, Cars & House", "الخردة / كراكيب", "Al-khurda / Karakeeb", "Scrap metal / junk or clutter", "doc"],
+      ["Everyday, Cars & House", "تمثال / تذكار", "Timthal / Tidhkar", "Statue / souvenir", "doc"],
+      ["Everyday, Cars & House", "محل / لافتة / زبون", "Mahall / Lafita / Zaboon", "Shop / banner or sign / customer", "doc"],
+      ["Everyday, Cars & House", "وصفة / مكوّن", "Wasfa / Mukawwin", "Recipe / ingredient", "doc"],
+      ["Everyday, Cars & House", "الطازج / قَرُمش", "At-tazaj / Qarmash", "Fresh / crunchy", "doc"],
+      ["Everyday, Cars & House", "مقلية / نية / حامض / بهارات", "Maqliyyeh / Nayyeh / Hamid / Baharat", "Fried / raw / sour / spices", "doc"],
+      ["Everyday, Cars & House", "كفتة بطحينية (Kofta bt7niyyeh)", "Kofta bi-tahiniyyeh", "Kofta baked in tahini sauce", "doc,arabizi", "كفتة بطحينية"],
+      ["Everyday, Cars & House", "فاصوليا / فتوش", "Fasoolya / Fattoosh", "Bean stew / Fattoush salad", "orig"],
+      ["Everyday, Cars & House", "سُكَّر / سَكِرَ", "Sukkar / Sakira", "Sugar / to get drunk", "orig"],
+      ["Everyday, Cars & House", "الأجواء / ضجيج", "Al-ajwa' / Dajeej", "The atmosphere (vibes) / noise", "doc"],
+      ["Everyday, Cars & House", "أحفاد / أرملة / يتيم (Yeteem)", "Ahfad / Armala / Yateem", "Grandchildren / widow / orphan", "doc,orig,arabizi", "أحفاد وأرملة ويتيم"]
+    ];
+
+    /**
+     * Build Normalized VOCAB_DATA Objects with Pure Arabic TTS Target & Word-Length Buckets
+     */
+    const VOCAB_DATA = RAW_VOCAB.map((row, idx) => {
+      const displayArabic = row[1];
+      const rawOverride = row[5] || displayArabic;
+      // Extract Arabizi note if present in parentheses
+      const arabiziMatch = displayArabic.match(/\(([A-Za-z0-9\s'’_\-\/\?]+)\)/);
+      const arabiziNote = arabiziMatch ? arabiziMatch[1] : null;
+      // Clean Arabic display without Latin parentheticals for cleaner card rendering
+      const cleanDisplayArabic = displayArabic.replace(/\s*\([A-Za-z0-9\s'’_\-\/\?]+\)/g, '').trim();
+      // Strict Pure Arabic Unicode sanitizer for TTS
+      const pureTtsArabic = rawOverride
+        .replace(/\([A-Za-z0-9\s'’_\-\/\?]+\)/g, '')
+        .split('/')[0]
+        .split('—')[0]
+        .replace(/[^\u0600-\u06FF\s]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      const arabicWordsCount = cleanDisplayArabic.split(/\s+/).filter(Boolean).length;
+      let lengthBucket = 'short';
+      if (arabicWordsCount >= 6 || row[3].length > 65) {
+        lengthBucket = 'long';
+      } else if (arabicWordsCount >= 3 || row[3].length > 32) {
+        lengthBucket = 'medium';
+      }
+
+      return {
+        id: idx + 1,
+        category: row[0],
+        arabic: cleanDisplayArabic,
+        fullLabel: displayArabic,
+        arabiziNote: arabiziNote,
+        ttsArabic: pureTtsArabic || cleanDisplayArabic,
+        translit: row[2],
+        english: row[3],
+        tags: row[4] || 'doc',
+        wordCount: arabicWordsCount,
+        lengthBucket: lengthBucket
+      };
+    });
+
+    /**
+     * 3-Tier Spaced Repetition (SRS) State & Storage
+     * 0 = New, 1 = Learning / Needs Review (Weak), 2 = Mastered
+     */
+    const STORAGE_KEYS = {
+      SRS_MAP: 'almufradat_srs_map_v3',
+      LEGACY_MASTERED: 'almufradat_mastered_ids_v2',
+      BEST_TIME_6: 'almufradat_best_time_6_v1',
+      BEST_TIME_8: 'almufradat_best_time_8_v1',
+      BEST_STREAK: 'almufradat_best_streak_v1'
+    };
+
+    let srsState = {}; // { [id]: 0 | 1 | 2 }
+    let currentCategory = 'all';
+    let currentDeckFocus = 'all';
+    let showTranslit = true;
+    let soundEffectsEnabled = true;
+    let ttsSpeed = 1.0; // 1.0 or 0.75
+    let arabicUserZoom = 1.0;
+    let activeTab = 'match';
+
+    function getWordSrs(id) {
+      return srsState[id] || 0;
+    }
+
+    function setWordSrs(id, status) {
+      if (status === 0) {
+        delete srsState[id];
+      } else {
+        srsState[id] = status;
+      }
+      saveSrsProgress();
+    }
+
+    function loadSavedProgress() {
+      try {
+        const rawV3 = localStorage.getItem(STORAGE_KEYS.SRS_MAP);
+        if (rawV3) {
+          srsState = JSON.parse(rawV3) || {};
+        } else {
+          // Migrate legacy v2 mastered IDs if present
+          const legacyRaw = localStorage.getItem(STORAGE_KEYS.LEGACY_MASTERED);
+          if (legacyRaw) {
+            const legacyArr = JSON.parse(legacyRaw);
+            if (Array.isArray(legacyArr)) {
+              legacyArr.forEach(id => { srsState[id] = 2; });
+            }
+          }
+        }
+      } catch (e) {
+        srsState = {};
+      }
+      updateMasteryUI();
+    }
+
+    function saveSrsProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.SRS_MAP, JSON.stringify(srsState));
+      } catch (e) { }
+      updateMasteryUI();
+    }
+
+    function updateMasteryUI() {
+      const total = VOCAB_DATA.length;
+      let masteredCount = 0;
+      let learningCount = 0;
+      VOCAB_DATA.forEach(w => {
+        const st = getWordSrs(w.id);
+        if (st === 2) masteredCount++;
+        else if (st === 1) learningCount++;
+      });
+
+      const pct = Math.round((masteredCount / total) * 100);
+      document.getElementById('masteredCountText').textContent = masteredCount;
+      document.getElementById('learningCountText').textContent = learningCount;
+      document.getElementById('totalCountText').textContent = total;
+      document.getElementById('masteryProgressBar').style.width = `${pct}%`;
+
+      const vaultTabLabel = document.getElementById('vaultTabLabel');
+      if (vaultTabLabel) vaultTabLabel.textContent = `5. Word Vault (${total})`;
+    }
+
+    function activateWeakWordsFilter() {
+      const weakCount = VOCAB_DATA.filter(w => getWordSrs(w.id) === 1).length;
+      if (weakCount === 0) {
+        showToast('No words in "Needs Review" yet! Any missed Quiz or Match word will appear here.');
+        return;
+      }
+      document.getElementById('globalDeckFocusSelect').value = 'weak';
+      handleDeckFocusChange('weak');
+    }
+
+    /**
+     * Web Audio API Synthesizer for Tactile Game Feedback
+     */
+    let audioCtx = null;
+    function playTone(type) {
+      if (!soundEffectsEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const now = audioCtx.currentTime;
+
+        if (type === 'match' || type === 'correct') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.12);
+          gain.gain.setValueAtTime(0.11, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.26);
+        } else if (type === 'wrong') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(160, now + 0.18);
+          gain.gain.setValueAtTime(0.13, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.24);
+        } else if (type === 'flip') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(360, now);
+          osc.frequency.exponentialRampToValueAtTime(490, now + 0.06);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.07);
+        } else if (type === 'win') {
+          const notes = [523.25, 659.25, 783.99, 1046.5];
+          notes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.09);
+            gain.gain.setValueAtTime(0.1, now + idx * 0.09);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.28);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.09);
+            osc.stop(now + idx * 0.09 + 0.28);
+          });
+        }
+      } catch (e) { }
+    }
+
+    /**
+     * =====================================================
+     * SANITIZED ARABIC TTS ENGINE (1.0x / 0.75x Slow)
+     * =====================================================
+     */
+    let cachedVoices = [];
+    window.activeArabicUtterance = null;
+    let activeSpeakerBtn = null;
+
+    if ('speechSynthesis' in window) {
+      const loadVoices = () => {
+        cachedVoices = window.speechSynthesis.getVoices() || [];
+      };
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function sanitizeForArabicTts(rawString) {
+      if (!rawString) return '';
+      // Remove anything in parentheses, take primary phrase, strip all non-Arabic characters
+      const noParens = rawString.replace(/\([^\)]*\)/g, ' ');
+      const primary = noParens.split('/')[0].split('—')[0];
+      const pureArabic = primary.replace(/[^\u0600-\u06FF\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      return pureArabic || rawString.trim();
+    }
+
+    function toggleTtsSpeed() {
+      ttsSpeed = ttsSpeed === 1.0 ? 0.75 : 1.0;
+      const label = ttsSpeed === 1.0 ? '1.0x' : '0.75x Slow';
+      const dText = document.getElementById('desktopSpeedText');
+      const mBtn = document.getElementById('mobileSpeedBtn');
+      if (dText) dText.textContent = label;
+      if (mBtn) mBtn.textContent = label;
+      showToast(`Audio Pronunciation Speed: ${label}`);
+    }
+
+    function setSpeakerButtonState(btnEl, isPlaying) {
+      if (activeSpeakerBtn && activeSpeakerBtn !== btnEl) {
+        activeSpeakerBtn.classList.remove('speaker-playing');
+      }
+      if (!btnEl) return;
+      if (isPlaying) {
+        activeSpeakerBtn = btnEl;
+        btnEl.classList.add('speaker-playing');
+      } else {
+        btnEl.classList.remove('speaker-playing');
+        if (activeSpeakerBtn === btnEl) activeSpeakerBtn = null;
+      }
+    }
+
+    function speakArabicById(wordId, btnEl = null) {
+      const item = VOCAB_DATA.find(w => w.id === wordId);
+      if (item) {
+        speakArabic(item.ttsArabic || item.arabic, btnEl);
+      }
+    }
+
+    function speakArabic(rawText, btnEl = null) {
+      const cleanText = sanitizeForArabicTts(rawText);
+      if (!cleanText) return;
+
+      setSpeakerButtonState(btnEl, true);
+      showToast(`🔊 ${cleanText} (${ttsSpeed === 1 ? '1.0x' : '0.75x'})`);
+
+      // Cancel any ongoing speech or audio stream immediately
+      const audioEl = document.getElementById('cloudArabicAudio');
+      if (audioEl) {
+        try { audioEl.pause(); } catch (e) { }
+      }
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch (e) { }
+      }
+
+      const ttsUrl = `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=ar&dt=t&q=${encodeURIComponent(cleanText)}`;
+      let settled = false;
+
+      const fallbackTimer = setTimeout(() => {
+        if (!settled) {
+          settled = true;
+          speakViaWebSpeech(cleanText, btnEl);
+        }
+      }, 1050);
+
+      if (audioEl) {
+        try {
+          audioEl.src = ttsUrl;
+          audioEl.playbackRate = ttsSpeed === 1.0 ? 0.94 : 0.72;
+
+          audioEl.onplaying = () => {
+            settled = true;
+            clearTimeout(fallbackTimer);
+          };
+          audioEl.onended = () => {
+            setSpeakerButtonState(btnEl, false);
+          };
+          audioEl.onerror = () => {
+            if (!settled) {
+              settled = true;
+              clearTimeout(fallbackTimer);
+              speakViaWebSpeech(cleanText, btnEl);
+            }
+          };
+
+          const playPromise = audioEl.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              if (!settled) {
+                settled = true;
+                clearTimeout(fallbackTimer);
+                speakViaWebSpeech(cleanText, btnEl);
+              }
+            });
+          }
+          return;
+        } catch (err) {
+          clearTimeout(fallbackTimer);
+        }
+      }
+
+      speakViaWebSpeech(cleanText, btnEl);
+    }
+
+    function speakViaWebSpeech(cleanText, btnEl = null) {
+      if (!('speechSynthesis' in window)) {
+        setSpeakerButtonState(btnEl, false);
+        return;
+      }
+
+      setTimeout(() => {
+        try {
+          if (cachedVoices.length === 0) {
+            cachedVoices = window.speechSynthesis.getVoices() || [];
+          }
+
+          const utterance = new SpeechSynthesisUtterance(cleanText);
+          window.activeArabicUtterance = utterance;
+
+          const preferredLocales = ['ar-JO', 'ar-PS', 'ar-LB', 'ar-SY', 'ar-EG', 'ar-SA', 'ar-AE', 'ar-001', 'ar'];
+          let chosenVoice = null;
+          for (const loc of preferredLocales) {
+            chosenVoice = cachedVoices.find(v => v.lang && v.lang.toLowerCase().replace('_', '-') === loc.toLowerCase());
+            if (chosenVoice) break;
+          }
+          if (!chosenVoice) {
+            chosenVoice = cachedVoices.find(v => v.lang && v.lang.toLowerCase().startsWith('ar'));
+          }
+
+          if (chosenVoice) {
+            utterance.voice = chosenVoice;
+            utterance.lang = chosenVoice.lang;
+          } else {
+            utterance.lang = 'ar-JO';
+          }
+
+          utterance.rate = ttsSpeed === 1.0 ? 0.88 : 0.65;
+          utterance.pitch = 1.0;
+          utterance.volume = 1.0;
+
+          utterance.onend = () => setSpeakerButtonState(btnEl, false);
+          utterance.onerror = () => setSpeakerButtonState(btnEl, false);
+
+          window.speechSynthesis.speak(utterance);
+        } catch (err) {
+          setSpeakerButtonState(btnEl, false);
+        }
+      }, 55);
+    }
+
+    /**
+     * Typography & UI Helpers
+     */
+    function changeArabicFontMode(mode) {
+      document.body.classList.remove('arabic-mode-naskh', 'arabic-mode-modern', 'arabic-mode-classic');
+      document.body.classList.add(`arabic-mode-${mode}`);
+      const names = {
+        naskh: 'Clear Naskh (Noto Naskh Arabic)',
+        modern: 'Modern Sans (IBM Plex Sans Arabic)',
+        classic: 'Classic Large (Scheherazade New)'
+      };
+      showToast(`Arabic Font: ${names[mode] || mode}`);
+    }
+
+    function adjustArabicZoom(delta) {
+      arabicUserZoom = Math.min(1.35, Math.max(0.8, +(arabicUserZoom + delta).toFixed(2)));
+      document.documentElement.style.setProperty('--arabic-user-zoom', String(arabicUserZoom));
+      showToast(`Arabic Text Scale: ${Math.round(arabicUserZoom * 100)}%`);
+    }
+
+    function showToast(message) {
+      const banner = document.getElementById('toastBanner');
+      const textEl = document.getElementById('toastText');
+      textEl.textContent = message;
+      banner.classList.remove('hidden');
+      clearTimeout(window.toastTimeout);
+      window.toastTimeout = setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 2200);
+    }
+
+    function updateFilterDropdownCounts() {
+      const catSelect = document.getElementById('globalCategorySelect');
+      if (!catSelect) return;
+      Array.from(catSelect.options).forEach(opt => {
+        if (opt.value === 'all') {
+          opt.textContent = `All 8 Categories (${VOCAB_DATA.length})`;
+        } else {
+          const c = VOCAB_DATA.filter(w => w.category === opt.value).length;
+          opt.textContent = `${opt.value} (${c})`;
+        }
+      });
+    }
+
+    function getCategoryFilteredWords() {
+      let list = [...VOCAB_DATA];
+      if (currentCategory !== 'all') {
+        list = list.filter(w => w.category === currentCategory);
+      }
+
+      if (currentDeckFocus === 'weak') {
+        list = list.filter(w => getWordSrs(w.id) === 1);
+      } else if (currentDeckFocus === 'unmastered') {
+        list = list.filter(w => getWordSrs(w.id) !== 2);
+      } else if (currentDeckFocus === 'idioms') {
+        list = list.filter(w => w.tags.includes('idiom') || w.category === 'Street Slang & Idioms');
+      } else if (currentDeckFocus === 'words') {
+        list = list.filter(w => w.lengthBucket === 'short');
+      } else if (currentDeckFocus === 'arabizi') {
+        list = list.filter(w => w.tags.includes('arabizi') || w.arabiziNote);
+      } else if (currentDeckFocus === 'sentences') {
+        list = list.filter(w => w.tags.includes('sentence') || w.wordCount >= 4);
+      }
+
+      if (list.length === 0) {
+        return currentCategory === 'all' ? [...VOCAB_DATA] : VOCAB_DATA.filter(w => w.category === currentCategory);
+      }
+      return list;
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function handleCategoryChange(newCategory) {
+      currentCategory = newCategory;
+      initMatchGame();
+      startNewQuizRound();
+      initFlashcards();
+      initClozeBuilder();
+      renderWordVault();
+    }
+
+    function handleDeckFocusChange(newFocus) {
+      currentDeckFocus = newFocus;
+      initMatchGame();
+      startNewQuizRound();
+      initFlashcards();
+      initClozeBuilder();
+      renderWordVault();
+    }
+
+    function toggleTransliteration() {
+      showTranslit = !showTranslit;
+      const btn = document.getElementById('translitToggleBtn');
+      const text = document.getElementById('translitBtnText');
+      if (showTranslit) {
+        text.textContent = 'Translit: ON';
+        btn.className = 'flex items-center gap-1.5 text-xs font-bold px-2.5 py-2 rounded-xl border transition bg-levant-gold text-levant-tealDark border-levant-gold shadow-sm';
+      } else {
+        text.textContent = 'Translit: OFF';
+        btn.className = 'flex items-center gap-1.5 text-xs font-bold px-2.5 py-2 rounded-xl border transition bg-white/10 text-sand-100 border-white/20';
+      }
+      refreshMatchTranslit();
+      refreshQuizTranslit();
+      renderFlashcard();
+      renderClozeQuestion();
+      renderWordVault();
+    }
+
+    function toggleSoundEffects() {
+      soundEffectsEnabled = !soundEffectsEnabled;
+      const iconClass = soundEffectsEnabled ? 'fa-solid fa-bell' : 'fa-solid fa-bell-slash';
+      const dIcon = document.getElementById('desktopSoundIcon');
+      if (dIcon) dIcon.className = iconClass;
+      showToast(soundEffectsEnabled ? 'UI Sound Effects Enabled' : 'UI Sound Effects Muted');
+    }
+
+    function switchTab(tabName) {
+      activeTab = tabName;
+      const tabs = ['match', 'quiz', 'flashcards', 'cloze', 'vault'];
+      tabs.forEach(t => {
+        const sec = document.getElementById(`section-${t}`);
+        const btn = document.getElementById(`tab-${t}`);
+        if (t === tabName) {
+          sec.classList.remove('hidden');
+          btn.className = 'tab-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap bg-sand-50 text-levant-teal shadow';
+        } else {
+          sec.classList.add('hidden');
+          btn.className = 'tab-btn flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap text-sand-100 hover:bg-white/10';
+        }
+      });
+
+      if (tabName === 'vault') renderWordVault();
+      else if (tabName === 'flashcards') renderFlashcard();
+      else if (tabName === 'cloze') renderClozeQuestion();
+    }
+
+    /**
+     * =====================================================
+     * MODE 1: GRID MATCH (WITH TILE LENGTH GUARD)
+     * =====================================================
+     */
+    let matchPairCount = 6;
+    let matchRoundWords = [];
+    let matchMistakeIds = new Set();
+    let matchTiles = [];
+    let selectedTile = null;
+    let matchedPairsCount = 0;
+    let matchScore = 0;
+    let matchCombo = 1;
+    let matchSeconds = 0;
+    let matchTimerInterval = null;
+    let matchBusy = false;
+
+    function setMatchPairs(pairs) {
+      matchPairCount = pairs;
+      const btn6 = document.getElementById('gridSize6Btn');
+      const btn8 = document.getElementById('gridSize8Btn');
+      if (pairs === 6) {
+        btn6.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white shadow-sm';
+        btn8.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900';
+      } else {
+        btn8.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white shadow-sm';
+        btn6.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900';
+      }
+      initMatchGame();
+    }
+
+    function formatTime(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function updateBestTimeDisplay() {
+      const key = matchPairCount === 6 ? STORAGE_KEYS.BEST_TIME_6 : STORAGE_KEYS.BEST_TIME_8;
+      const saved = localStorage.getItem(key);
+      document.getElementById('matchBestTime').textContent = saved ? formatTime(parseInt(saved, 10)) : '--:--';
+    }
+
+    function initMatchGame() {
+      clearInterval(matchTimerInterval);
+      const rawPool = getCategoryFilteredWords();
+      // Tile Length Guard: Prefer concise words/idioms that fit cleanly on speed tiles
+      let tilePool = rawPool.filter(w => w.arabic.length <= 36 && w.english.length <= 68);
+      if (tilePool.length < matchPairCount) {
+        tilePool = rawPool;
+      }
+
+      const count = Math.min(matchPairCount, tilePool.length);
+      matchRoundWords = shuffleArray(tilePool).slice(0, count);
+      matchMistakeIds = new Set();
+
+      const rawTiles = [];
+      matchRoundWords.forEach(word => {
+        rawTiles.push({
+          uid: `ar-${word.id}`,
+          wordId: word.id,
+          type: 'arabic',
+          arabic: word.arabic,
+          arabiziNote: word.arabiziNote,
+          translit: word.translit,
+          english: word.english,
+          matched: false
+        });
+        rawTiles.push({
+          uid: `en-${word.id}`,
+          wordId: word.id,
+          type: 'english',
+          arabic: word.arabic,
+          translit: word.translit,
+          english: word.english,
+          matched: false
+        });
+      });
+
+      matchTiles = shuffleArray(rawTiles);
+      selectedTile = null;
+      matchedPairsCount = 0;
+      matchScore = 0;
+      matchCombo = 1;
+      matchSeconds = 0;
+      matchBusy = false;
+
+      document.getElementById('matchScore').textContent = '0';
+      document.getElementById('matchCombo').textContent = '1x';
+      document.getElementById('matchTimer').textContent = '00:00';
+      document.getElementById('matchRemainingText').textContent = `${count} pairs left`;
+      document.getElementById('matchWinBanner').classList.add('hidden');
+      document.getElementById('matchGridContainer').classList.remove('hidden');
+
+      const markBtn = document.getElementById('markBatchMasteredBtn');
+      markBtn.innerHTML = '<i class="fa-solid fa-check-double mr-2 text-emerald-300"></i>Mark All Cleanly Matched Words as Mastered';
+      markBtn.disabled = false;
+
+      updateBestTimeDisplay();
+      renderMatchGrid();
+
+      matchTimerInterval = setInterval(() => {
+        if (activeTab === 'match' && matchedPairsCount < matchRoundWords.length) {
+          matchSeconds++;
+          document.getElementById('matchTimer').textContent = formatTime(matchSeconds);
+        }
+      }, 1000);
+    }
+
+    function renderMatchGrid() {
+      const container = document.getElementById('matchGridContainer');
+      container.innerHTML = '';
+
+      matchTiles.forEach(tile => {
+        const card = document.createElement('div');
+        card.id = `tile-${tile.uid}`;
+        card.onclick = () => handleTileClick(tile.uid);
+
+        const isSelected = selectedTile && selectedTile.uid === tile.uid;
+        let baseClasses = 'relative min-h-[120px] sm:min-h-[135px] rounded-2xl p-3.5 flex flex-col items-center justify-center text-center cursor-pointer select-none transition-all duration-150 border-2 shadow-xs ';
+
+        if (tile.matched) {
+          baseClasses += 'tile-matched bg-emerald-50 border-emerald-400 text-emerald-900 ';
+        } else if (isSelected) {
+          baseClasses += 'bg-levant-teal text-white border-levant-gold scale-[1.03] shadow-md ';
+        } else if (tile.type === 'arabic') {
+          baseClasses += 'bg-sand-50 hover:bg-white text-slate-800 border-sand-200 hover:border-levant-teal/50 ';
+        } else {
+          baseClasses += 'bg-white hover:bg-sand-50 text-slate-700 border-sand-200 hover:border-levant-terracotta/50 ';
+        }
+
+        card.className = baseClasses;
+
+        if (tile.type === 'arabic') {
+          const isMediumArabic = tile.arabic.length > 22;
+          card.innerHTML = `
+            <button onclick="event.stopPropagation(); speakArabicById(${tile.wordId}, this)" 
+              class="absolute top-2 right-2 w-8 h-8 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-sand-100 hover:bg-levant-teal text-levant-teal hover:text-white'} flex items-center justify-center text-xs shadow-2xs transition"
+              title="Hear Pure Arabic Pronunciation">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+            <span class="text-[10px] font-bold uppercase tracking-wider ${isSelected ? 'text-sand-200' : 'text-levant-teal/70'} mb-0.5">عربي</span>
+            <p dir="rtl" class="font-arabic ${isMediumArabic ? 'text-lg sm:text-xl' : 'arabic-tile-text'} font-bold px-1">${tile.arabic}</p>
+            <p class="match-translit text-xs mt-1 italic ${isSelected ? 'text-sand-100' : 'text-levant-terracotta'} ${showTranslit ? '' : 'hidden'}">${tile.translit}</p>
+          `;
+        } else {
+          card.innerHTML = `
+            <span class="text-[10px] font-bold uppercase tracking-wider ${isSelected ? 'text-sand-200' : 'text-levant-terracotta/80'} mb-1">English</span>
+            <p class="text-xs sm:text-sm font-bold leading-snug px-1">${tile.english}</p>
+          `;
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    function refreshMatchTranslit() {
+      document.querySelectorAll('.match-translit').forEach(el => {
+        el.classList.toggle('hidden', !showTranslit);
+      });
+    }
+
+    function handleTileClick(uid) {
+      if (matchBusy) return;
+      const clicked = matchTiles.find(t => t.uid === uid);
+      if (!clicked || clicked.matched) return;
+
+      if (!selectedTile) {
+        selectedTile = clicked;
+        playTone('flip');
+        renderMatchGrid();
+        return;
+      }
+
+      if (selectedTile.uid === clicked.uid) {
+        selectedTile = null;
+        renderMatchGrid();
+        return;
+      }
+
+      if (selectedTile.wordId === clicked.wordId && selectedTile.type !== clicked.type) {
+        playTone('match');
+        selectedTile.matched = true;
+        clicked.matched = true;
+        selectedTile = null;
+        matchedPairsCount++;
+
+        matchScore += 100 * matchCombo;
+        matchCombo++;
+
+        document.getElementById('matchScore').textContent = matchScore.toLocaleString();
+        document.getElementById('matchCombo').textContent = `${matchCombo}x`;
+        const remaining = matchRoundWords.length - matchedPairsCount;
+        document.getElementById('matchRemainingText').textContent = `${remaining} pair${remaining === 1 ? '' : 's'} left`;
+
+        renderMatchGrid();
+
+        if (matchedPairsCount === matchRoundWords.length) {
+          handleMatchBoardComplete();
+        }
+      } else {
+        // Mismatch: Record both words as Needs Review (SRS = 1)
+        playTone('wrong');
+        matchMistakeIds.add(selectedTile.wordId);
+        matchMistakeIds.add(clicked.wordId);
+        setWordSrs(selectedTile.wordId, 1);
+        setWordSrs(clicked.wordId, 1);
+
+        matchCombo = 1;
+        document.getElementById('matchCombo').textContent = '1x';
+        matchBusy = true;
+
+        const firstEl = document.getElementById(`tile-${selectedTile.uid}`);
+        const secondEl = document.getElementById(`tile-${clicked.uid}`);
+        if (firstEl) firstEl.classList.add('animate-shake', 'bg-rose-100', 'border-rose-500', 'text-rose-900');
+        if (secondEl) secondEl.classList.add('animate-shake', 'bg-rose-100', 'border-rose-500', 'text-rose-900');
+
+        setTimeout(() => {
+          selectedTile = null;
+          matchBusy = false;
+          renderMatchGrid();
+        }, 480);
+      }
+    }
+
+    function handleMatchBoardComplete() {
+      clearInterval(matchTimerInterval);
+      playTone('win');
+
+      const key = matchPairCount === 6 ? STORAGE_KEYS.BEST_TIME_6 : STORAGE_KEYS.BEST_TIME_8;
+      const prevBest = localStorage.getItem(key);
+      let isNewRecord = false;
+      if (!prevBest || matchSeconds < parseInt(prevBest, 10)) {
+        localStorage.setItem(key, String(matchSeconds));
+        isNewRecord = true;
+      }
+      updateBestTimeDisplay();
+
+      const statsEl = document.getElementById('matchWinStats');
+      statsEl.innerHTML = `You matched all <strong>${matchRoundWords.length} pairs</strong> in <strong>${formatTime(matchSeconds)}</strong> with a score of <strong>${matchScore.toLocaleString()}</strong>! ${isNewRecord ? '<span class="inline-block ml-1 px-2 py-0.5 rounded bg-levant-gold text-levant-tealDark font-bold text-xs">NEW BEST TIME!</span>' : ''}`;
+
+      setTimeout(() => {
+        document.getElementById('matchWinBanner').classList.remove('hidden');
+      }, 320);
+    }
+
+    function markCurrentMatchWordsMastered() {
+      matchRoundWords.forEach(w => {
+        if (!matchMistakeIds.has(w.id)) {
+          srsState[w.id] = 2;
+        }
+      });
+      saveSrsProgress();
+      const btn = document.getElementById('markBatchMasteredBtn');
+      btn.innerHTML = '<i class="fa-solid fa-check mr-2 text-emerald-300"></i>Cleanly Matched Words Marked Mastered!';
+      btn.disabled = true;
+      playTone('win');
+    }
+
+    /**
+     * =====================================================
+     * MODE 2: SMART QUIZ BLITZ (LENGTH-MATCHED DISTRACTORS)
+     * =====================================================
+     */
+    let quizDirection = 'ar-en';
+    let quizSurvivalMode = true;
+    let quizQueue = [];
+    let quizCurrentIndex = 0;
+    let quizCurrentQuestion = null;
+    let quizLives = 3;
+    let quizStreak = 0;
+    let quizBestStreak = 0;
+    let quizCorrectCount = 0;
+    let quizMissedWords = [];
+    let quizAnswered = false;
+
+    function loadQuizStreak() {
+      const saved = localStorage.getItem(STORAGE_KEYS.BEST_STREAK);
+      if (saved) quizBestStreak = parseInt(saved, 10) || 0;
+      document.getElementById('quizBestStreak').textContent = quizBestStreak;
+    }
+
+    function setQuizDirection(dir) {
+      quizDirection = dir;
+      ['ar-en', 'en-ar', 'mixed'].forEach(d => {
+        const btn = document.getElementById(`dir-${d}`);
+        btn.className = d === dir
+          ? 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white shadow-sm'
+          : 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900';
+      });
+      startNewQuizRound();
+    }
+
+    function toggleQuizSurvivalMode() {
+      quizSurvivalMode = !quizSurvivalMode;
+      const label = document.getElementById('quizModeLabel');
+      const heartsContainer = document.getElementById('quizHeartsContainer');
+      if (quizSurvivalMode) {
+        label.textContent = 'Mode: 10-Q Round (3 Hearts)';
+        heartsContainer.classList.remove('hidden');
+      } else {
+        label.textContent = 'Mode: Endless Practice';
+        heartsContainer.classList.add('hidden');
+      }
+      startNewQuizRound();
+    }
+
+    function renderQuizHearts() {
+      const container = document.getElementById('quizHeartsContainer');
+      container.innerHTML = '';
+      for (let i = 0; i < 3; i++) {
+        const heart = document.createElement('i');
+        heart.className = i < quizLives ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart text-slate-300';
+        container.appendChild(heart);
+      }
+    }
+
+    function startNewQuizRound() {
+      const pool = getCategoryFilteredWords();
+      const roundSize = quizSurvivalMode ? Math.min(10, pool.length) : pool.length;
+      quizQueue = shuffleArray(pool).slice(0, roundSize);
+      quizCurrentIndex = 0;
+      quizLives = 3;
+      quizCorrectCount = 0;
+      quizMissedWords = [];
+      renderQuizHearts();
+
+      document.getElementById('quizSummaryContainer').classList.add('hidden');
+      document.getElementById('quizActiveContainer').classList.remove('hidden');
+
+      loadQuizQuestion();
+    }
+
+    /**
+     * Smart Distractor Picker:
+     * Prioritizes distractors in the same lengthBucket & category so a 10-word proverb
+     * is never paired against three 1-word nouns.
+     */
+    function pickSmartDistractors(targetWord, count = 3) {
+      const tier1 = VOCAB_DATA.filter(w =>
+        w.id !== targetWord.id &&
+        w.category === targetWord.category &&
+        w.lengthBucket === targetWord.lengthBucket
+      );
+      const tier2 = VOCAB_DATA.filter(w =>
+        w.id !== targetWord.id &&
+        w.category !== targetWord.category &&
+        w.lengthBucket === targetWord.lengthBucket
+      );
+      const tier3 = VOCAB_DATA.filter(w =>
+        w.id !== targetWord.id &&
+        w.lengthBucket !== targetWord.lengthBucket
+      );
+
+      const combined = [...shuffleArray(tier1), ...shuffleArray(tier2), ...shuffleArray(tier3)];
+      return combined.slice(0, count);
+    }
+
+    function loadQuizQuestion() {
+      if (quizCurrentIndex >= quizQueue.length || (quizSurvivalMode && quizLives <= 0)) {
+        showQuizSummary();
+        return;
+      }
+
+      quizAnswered = false;
+      const targetWord = quizQueue[quizCurrentIndex];
+      let dir = quizDirection;
+      if (dir === 'mixed') {
+        dir = Math.random() < 0.5 ? 'ar-en' : 'en-ar';
+      }
+
+      const distractors = pickSmartDistractors(targetWord, 3);
+      const options = shuffleArray([targetWord, ...distractors]);
+
+      quizCurrentQuestion = {
+        word: targetWord,
+        direction: dir,
+        options
+      };
+
+      document.getElementById('quizQuestionCounter').textContent = quizSurvivalMode
+        ? `Question ${quizCurrentIndex + 1} of ${quizQueue.length}`
+        : `Practice Card #${quizCurrentIndex + 1}`;
+      document.getElementById('quizCategoryBadge').textContent = targetWord.category;
+
+      const promptEl = document.getElementById('quizPromptText');
+      const translitEl = document.getElementById('quizPromptTranslit');
+      const arabiziBadge = document.getElementById('quizArabiziBadge');
+      const audioBtn = document.getElementById('quizAudioBtn');
+
+      if (dir === 'ar-en') {
+        promptEl.textContent = targetWord.arabic;
+        promptEl.setAttribute('dir', 'rtl');
+        promptEl.className = 'font-arabic arabic-hero-text font-bold text-slate-800';
+        translitEl.textContent = targetWord.translit;
+        translitEl.className = `text-sm sm:text-base font-medium text-levant-terracotta italic ${showTranslit ? '' : 'hidden'}`;
+        if (targetWord.arabiziNote) {
+          arabiziBadge.textContent = `Note: ${targetWord.arabiziNote}`;
+          arabiziBadge.classList.remove('hidden');
+        } else {
+          arabiziBadge.classList.add('hidden');
+        }
+        audioBtn.classList.remove('hidden');
+      } else {
+        promptEl.textContent = targetWord.english;
+        promptEl.removeAttribute('dir');
+        promptEl.className = 'text-xl sm:text-3xl font-extrabold text-slate-800';
+        translitEl.textContent = 'Select the matching Arabic expression';
+        translitEl.className = 'text-xs sm:text-sm font-medium text-slate-400';
+        arabiziBadge.classList.add('hidden');
+        audioBtn.classList.add('hidden');
+      }
+
+      const grid = document.getElementById('quizOptionsGrid');
+      grid.innerHTML = '';
+
+      options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `quiz-opt-${opt.id}`;
+        btn.onclick = () => submitQuizAnswer(opt.id);
+        btn.className = 'group relative text-left p-4 rounded-2xl bg-white hover:bg-sand-100/70 border-2 border-sand-200 hover:border-levant-teal transition-all flex items-center justify-between gap-3 shadow-xs';
+
+        if (dir === 'ar-en') {
+          btn.innerHTML = `
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-sand-100 group-hover:bg-levant-teal group-hover:text-white text-slate-500 font-bold text-xs flex items-center justify-center shrink-0 transition">${idx + 1}</span>
+              <span class="text-sm sm:text-base font-bold text-slate-700 leading-snug">${opt.english}</span>
+            </div>
+          `;
+        } else {
+          btn.innerHTML = `
+            <div class="flex items-center gap-3 w-full justify-between">
+              <span class="w-7 h-7 rounded-lg bg-sand-100 group-hover:bg-levant-teal group-hover:text-white text-slate-500 font-bold text-xs flex items-center justify-center shrink-0 transition">${idx + 1}</span>
+              <div class="text-right flex-grow px-2">
+                <p dir="rtl" class="font-arabic arabic-tile-text font-bold text-slate-800">${opt.arabic}</p>
+                <p class="quiz-opt-translit text-xs text-levant-terracotta italic ${showTranslit ? '' : 'hidden'}">${opt.translit}</p>
+              </div>
+              <span onclick="event.stopPropagation(); speakArabicById(${opt.id}, this)"
+                class="w-8 h-8 rounded-full bg-sand-100 hover:bg-levant-teal text-levant-teal hover:text-white flex items-center justify-center text-xs shrink-0 transition"
+                title="Listen to Arabic option">
+                <i class="fa-solid fa-volume-high"></i>
+              </span>
+            </div>
+          `;
+        }
+
+        grid.appendChild(btn);
+      });
+
+      document.getElementById('quizFeedbackBar').classList.add('hidden');
+    }
+
+    function refreshQuizTranslit() {
+      if (!quizCurrentQuestion) return;
+      if (quizCurrentQuestion.direction === 'ar-en') {
+        document.getElementById('quizPromptTranslit').classList.toggle('hidden', !showTranslit);
+      }
+      document.querySelectorAll('.quiz-opt-translit').forEach(el => {
+        el.classList.toggle('hidden', !showTranslit);
+      });
+    }
+
+    function speakCurrentQuizWord() {
+      if (quizCurrentQuestion && quizCurrentQuestion.word) {
+        const btn = document.getElementById('quizAudioBtn');
+        speakArabicById(quizCurrentQuestion.word.id, btn);
+      }
+    }
+
+    function submitQuizAnswer(selectedId) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+
+      const target = quizCurrentQuestion.word;
+      const isCorrect = selectedId === target.id;
+
+      quizCurrentQuestion.options.forEach(opt => {
+        const btn = document.getElementById(`quiz-opt-${opt.id}`);
+        if (!btn) return;
+        btn.disabled = true;
+        if (opt.id === target.id) {
+          btn.className = 'text-left p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-500 flex items-center justify-between gap-3 shadow-sm';
+        } else if (opt.id === selectedId && !isCorrect) {
+          btn.className = 'text-left p-4 rounded-2xl bg-rose-50 border-2 border-rose-500 flex items-center justify-between gap-3 animate-shake';
+        } else {
+          btn.className = 'text-left p-4 rounded-2xl bg-white/50 border-2 border-sand-200 opacity-55 flex items-center justify-between gap-3';
+        }
+      });
+
+      const fbBar = document.getElementById('quizFeedbackBar');
+      const fbIcon = document.getElementById('quizFeedbackIcon');
+      const fbTitle = document.getElementById('quizFeedbackTitle');
+      const fbSub = document.getElementById('quizFeedbackSub');
+
+      if (isCorrect) {
+        playTone('correct');
+        quizCorrectCount++;
+        quizStreak++;
+        if (quizStreak > quizBestStreak) {
+          quizBestStreak = quizStreak;
+          localStorage.setItem(STORAGE_KEYS.BEST_STREAK, String(quizBestStreak));
+        }
+        fbIcon.className = 'w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold shrink-0';
+        fbIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+        fbTitle.textContent = 'Sahh! Correct!';
+        fbTitle.className = 'text-sm font-extrabold text-emerald-800';
+      } else {
+        playTone('wrong');
+        quizStreak = 0;
+        // Automatically mark missed word as Needs Review (SRS = 1)
+        setWordSrs(target.id, 1);
+        if (quizSurvivalMode) {
+          quizLives--;
+          renderQuizHearts();
+        }
+        if (!quizMissedWords.some(w => w.id === target.id)) {
+          quizMissedWords.push(target);
+        }
+        fbIcon.className = 'w-9 h-9 rounded-xl bg-rose-600 flex items-center justify-center text-white font-bold shrink-0';
+        fbIcon.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        fbTitle.textContent = 'Added to "Needs Review" Deck';
+        fbTitle.className = 'text-sm font-extrabold text-rose-800';
+      }
+
+      fbSub.innerHTML = `<span dir="rtl" class="font-arabic font-bold text-slate-800">${target.arabic}</span> (${target.translit}) — ${target.english}`;
+      document.getElementById('quizStreak').textContent = quizStreak;
+      document.getElementById('quizBestStreak').textContent = quizBestStreak;
+
+      updateQuizMasterButtonUI();
+      fbBar.classList.remove('hidden');
+    }
+
+    function updateQuizMasterButtonUI() {
+      const target = quizCurrentQuestion.word;
+      const btn = document.getElementById('quizMasterToggleBtn');
+      const st = getWordSrs(target.id);
+      if (st === 2) {
+        btn.className = 'px-3 py-2 rounded-xl text-xs font-bold border bg-emerald-100 text-emerald-800 border-emerald-300 transition';
+        btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Mastered';
+      } else {
+        btn.className = 'px-3 py-2 rounded-xl text-xs font-bold border bg-white hover:bg-emerald-50 text-slate-700 border-sand-300 transition';
+        btn.innerHTML = '<i class="fa-regular fa-circle-check mr-1"></i>Mark Mastered';
+      }
+    }
+
+    function toggleMasteryFromQuiz() {
+      if (!quizCurrentQuestion) return;
+      const id = quizCurrentQuestion.word.id;
+      const nextState = getWordSrs(id) === 2 ? 0 : 2;
+      setWordSrs(id, nextState);
+      if (nextState === 2) playTone('match');
+      updateQuizMasterButtonUI();
+    }
+
+    function nextQuizQuestion() {
+      quizCurrentIndex++;
+      if (!quizSurvivalMode && quizCurrentIndex >= quizQueue.length) {
+        quizQueue = shuffleArray(getCategoryFilteredWords());
+        quizCurrentIndex = 0;
+      }
+      loadQuizQuestion();
+    }
+
+    function showQuizSummary() {
+      playTone('win');
+      document.getElementById('quizActiveContainer').classList.add('hidden');
+      const summary = document.getElementById('quizSummaryContainer');
+      summary.classList.remove('hidden');
+
+      const totalAttempted = quizCurrentIndex;
+      const accuracy = totalAttempted > 0 ? Math.round((quizCorrectCount / totalAttempted) * 100) : 0;
+
+      document.getElementById('quizSummaryTitle').textContent =
+        quizSurvivalMode && quizLives <= 0 ? 'Out of Hearts! Keep Going!' : 'Quiz Blitz Complete!';
+      document.getElementById('quizSummarySubtitle').textContent =
+        `You answered ${quizCorrectCount} of ${totalAttempted} correctly (${accuracy}% accuracy).`;
+
+      const missedSection = document.getElementById('quizMissedSection');
+      const missedList = document.getElementById('quizMissedList');
+      missedList.innerHTML = '';
+
+      if (quizMissedWords.length === 0) {
+        missedSection.classList.add('hidden');
+      } else {
+        missedSection.classList.remove('hidden');
+        quizMissedWords.forEach(w => {
+          const row = document.createElement('div');
+          row.className = 'p-3.5 rounded-2xl bg-white border border-sand-200 flex items-center justify-between gap-3';
+          row.innerHTML = `
+            <div>
+              <p class="text-sm font-bold text-slate-800">${w.english}</p>
+              <p class="text-xs text-levant-terracotta italic">${w.translit}</p>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span dir="rtl" class="font-arabic arabic-tile-text font-bold text-levant-teal">${w.arabic}</span>
+              <button onclick="speakArabicById(${w.id}, this)" class="w-8 h-8 rounded-full bg-sand-100 hover:bg-levant-teal text-levant-teal hover:text-white flex items-center justify-center text-xs transition">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+          `;
+          missedList.appendChild(row);
+        });
+      }
+    }
+
+    function drillWeakWordsInFlashcards() {
+      switchTab('flashcards');
+      setFlashcardFilter('weak');
+    }
+
+    /**
+     * =====================================================
+     * MODE 3: 3-TIER SRS SMART FLASHCARDS
+     * =====================================================
+     */
+    let fcFilter = 'all'; // 'all', 'weak', 'unmastered'
+    let fcDeck = [];
+    let fcIndex = 0;
+    let fcFlipped = false;
+
+    function setFlashcardFilter(filter) {
+      fcFilter = filter;
+      const map = {
+        all: 'fcFilterAll',
+        weak: 'fcFilterWeak',
+        unmastered: 'fcFilterUnmastered'
+      };
+      Object.keys(map).forEach(k => {
+        const btn = document.getElementById(map[k]);
+        btn.className = k === filter
+          ? 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white shadow-sm'
+          : 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900';
+      });
+      initFlashcards();
+    }
+
+    function initFlashcards() {
+      const catPool = getCategoryFilteredWords();
+      if (fcFilter === 'weak') {
+        fcDeck = catPool.filter(w => getWordSrs(w.id) === 1);
+      } else if (fcFilter === 'unmastered') {
+        fcDeck = catPool.filter(w => getWordSrs(w.id) !== 2);
+      } else {
+        fcDeck = [...catPool];
+      }
+      fcIndex = 0;
+      fcFlipped = false;
+      renderFlashcard();
+    }
+
+    function shuffleFlashcards() {
+      fcDeck = shuffleArray(fcDeck);
+      fcIndex = 0;
+      fcFlipped = false;
+      playTone('flip');
+      renderFlashcard();
+    }
+
+    function renderFlashcard() {
+      const emptyEl = document.getElementById('fcEmptyState');
+      const stageEl = document.getElementById('fcStage');
+
+      if (fcDeck.length === 0) {
+        emptyEl.classList.remove('hidden');
+        stageEl.classList.add('hidden');
+        document.getElementById('fcProgressText').textContent = '0 Cards';
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      stageEl.classList.remove('hidden');
+
+      if (fcIndex >= fcDeck.length) fcIndex = 0;
+      if (fcIndex < 0) fcIndex = fcDeck.length - 1;
+
+      const card = fcDeck[fcIndex];
+      const inner = document.getElementById('flashcardInner');
+      inner.classList.toggle('rotate-y-180', fcFlipped);
+
+      document.getElementById('fcProgressText').textContent = `Card ${fcIndex + 1} of ${fcDeck.length}`;
+      document.getElementById('fcFrontCategory').textContent = card.category;
+
+      const srsBadge = document.getElementById('fcFrontSrsBadge');
+      const st = getWordSrs(card.id);
+      if (st === 2) {
+        srsBadge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800';
+        srsBadge.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Mastered';
+      } else if (st === 1) {
+        srsBadge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800';
+        srsBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i>Needs Review';
+      } else {
+        srsBadge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-sand-200 text-slate-600';
+        srsBadge.textContent = 'New';
+      }
+
+      document.getElementById('fcFrontArabic').textContent = card.arabic;
+      const frontTranslit = document.getElementById('fcFrontTranslit');
+      frontTranslit.textContent = card.translit;
+      frontTranslit.classList.toggle('hidden', !showTranslit);
+
+      const frontArabizi = document.getElementById('fcFrontArabizi');
+      if (card.arabiziNote) {
+        frontArabizi.textContent = `Original Note: ${card.arabiziNote}`;
+        frontArabizi.classList.remove('hidden');
+      } else {
+        frontArabizi.classList.add('hidden');
+      }
+
+      document.getElementById('fcBackEnglish').textContent = card.english;
+      document.getElementById('fcBackArabic').textContent = card.arabic;
+      document.getElementById('fcBackTranslit').textContent = card.translit;
+    }
+
+    function flipFlashcard() {
+      if (fcDeck.length === 0) return;
+      fcFlipped = !fcFlipped;
+      playTone('flip');
+      document.getElementById('flashcardInner').classList.toggle('rotate-y-180', fcFlipped);
+    }
+
+    function speakCurrentFlashcard(btnEl = null) {
+      if (fcDeck.length === 0) return;
+      speakArabicById(fcDeck[fcIndex].id, btnEl);
+    }
+
+    function gradeFlashcard(newSrsState) {
+      if (fcDeck.length === 0) return;
+      const currentWord = fcDeck[fcIndex];
+      setWordSrs(currentWord.id, newSrsState);
+      playTone(newSrsState === 2 ? 'match' : 'flip');
+
+      fcFlipped = false;
+      if ((fcFilter === 'weak' && newSrsState === 2) || (fcFilter === 'unmastered' && newSrsState === 2)) {
+        fcDeck.splice(fcIndex, 1);
+      } else {
+        fcIndex++;
+      }
+      renderFlashcard();
+    }
+
+    /**
+     * =====================================================
+     * MODE 4: JORDANIAN IDIOM & SENTENCE CLOZE BUILDER
+     * =====================================================
+     */
+    let clozePool = [];
+    let clozeCurrent = null;
+    let clozeScore = 0;
+    let clozeAnswered = false;
+
+    function initClozeBuilder() {
+      const base = getCategoryFilteredWords().filter(w => {
+        const primaryPhrase = w.arabic.split('/')[0].split('—')[0].trim();
+        const words = primaryPhrase.split(/\s+/).filter(Boolean);
+        return words.length >= 3;
+      });
+      clozePool = base.length >= 4 ? shuffleArray(base) : shuffleArray(VOCAB_DATA.filter(w => w.wordCount >= 3));
+      nextClozeQuestion();
+    }
+
+    function nextClozeQuestion() {
+      if (clozePool.length === 0) {
+        initClozeBuilder();
+        return;
+      }
+      clozeAnswered = false;
+      const item = clozePool[Math.floor(Math.random() * clozePool.length)];
+      const primaryPhrase = item.arabic.split('/')[0].split('—')[0].trim();
+      const tokens = primaryPhrase.split(/\s+/).filter(Boolean);
+
+      // Pick a meaningful word (preferring >= 3 letters) to blank out
+      let candidateIndices = tokens.map((t, i) => ({ t, i })).filter(obj => obj.t.length >= 3);
+      if (candidateIndices.length === 0) candidateIndices = tokens.map((t, i) => ({ t, i }));
+      const chosen = candidateIndices[Math.floor(Math.random() * candidateIndices.length)];
+      const targetToken = chosen.t.replace(/[،.!؟]/g, '');
+
+      // Collect 3 single-word Arabic distractors from other multi-word idioms
+      const distractorTokens = [];
+      const shuffledVocab = shuffleArray(VOCAB_DATA);
+      for (const w of shuffledVocab) {
+        if (w.id === item.id) continue;
+        const wTokens = w.arabic.split('/')[0].trim().split(/\s+/);
+        const goodToken = wTokens.find(tok => tok.length >= 3 && tok !== targetToken);
+        if (goodToken) {
+          const cleanTok = goodToken.replace(/[،.!؟]/g, '');
+          if (!distractorTokens.includes(cleanTok)) {
+            distractorTokens.push(cleanTok);
+          }
+        }
+        if (distractorTokens.length >= 3) break;
+      }
+
+      const maskedTokens = tokens.map((tok, idx) =>
+        idx === chosen.i ? `<span id="clozeBlankSlot" class="inline-block mx-1 px-4 py-0.5 rounded-xl bg-levant-gold/25 border-2 border-levant-gold text-levant-teal font-extrabold">______</span>` : tok
+      );
+
+      clozeCurrent = {
+        item,
+        primaryPhrase,
+        targetToken,
+        maskedHtml: maskedTokens.join(' '),
+        options: shuffleArray([targetToken, ...distractorTokens])
+      };
+
+      renderClozeQuestion();
+    }
+
+    function renderClozeQuestion() {
+      if (!clozeCurrent) return;
+      document.getElementById('clozeCategoryBadge').textContent = clozeCurrent.item.category;
+      document.getElementById('clozeEnglishPrompt').textContent = clozeCurrent.item.english;
+      const translitEl = document.getElementById('clozeTranslitPrompt');
+      translitEl.textContent = clozeCurrent.item.translit;
+      translitEl.classList.toggle('hidden', !showTranslit);
+
+      document.getElementById('clozeArabicSentence').innerHTML = clozeCurrent.maskedHtml;
+      document.getElementById('clozeFeedbackBar').classList.add('hidden');
+
+      const grid = document.getElementById('clozeOptionsGrid');
+      grid.innerHTML = '';
+
+      clozeCurrent.options.forEach(tok => {
+        const btn = document.createElement('button');
+        btn.onclick = () => submitClozeChoice(tok, btn);
+        btn.className = 'p-4 rounded-2xl bg-white hover:bg-sand-100 border-2 border-sand-200 hover:border-levant-teal transition flex items-center justify-between gap-2 shadow-xs';
+        btn.innerHTML = `
+          <span onclick="event.stopPropagation(); speakArabic('${tok}', this)" class="w-8 h-8 rounded-full bg-sand-100 hover:bg-levant-teal text-levant-teal hover:text-white flex items-center justify-center text-xs transition" title="Hear word">
+            <i class="fa-solid fa-volume-high"></i>
+          </span>
+          <span dir="rtl" class="font-arabic arabic-tile-text font-bold text-slate-800">${tok}</span>
+        `;
+        grid.appendChild(btn);
+      });
+    }
+
+    function submitClozeChoice(chosenToken, btnEl) {
+      if (clozeAnswered) return;
+      const isCorrect = chosenToken === clozeCurrent.targetToken;
+
+      if (isCorrect) {
+        clozeAnswered = true;
+        playTone('win');
+        clozeScore += 50;
+        document.getElementById('clozeScore').textContent = clozeScore;
+
+        btnEl.className = 'p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-500 flex items-center justify-between gap-2 shadow-sm';
+        const slot = document.getElementById('clozeBlankSlot');
+        if (slot) {
+          slot.textContent = chosenToken;
+          slot.className = 'inline-block mx-1 px-3 py-0.5 rounded-xl bg-emerald-100 border-2 border-emerald-500 text-emerald-900 font-extrabold';
+        }
+
+        const fbBar = document.getElementById('clozeFeedbackBar');
+        document.getElementById('clozeFeedbackTitle').textContent = 'Ahsant! Complete Phrase Unlocked:';
+        document.getElementById('clozeFeedbackSub').textContent = clozeCurrent.primaryPhrase;
+        fbBar.classList.remove('hidden');
+
+        speakArabicById(clozeCurrent.item.id);
+      } else {
+        playTone('wrong');
+        setWordSrs(clozeCurrent.item.id, 1);
+        btnEl.classList.add('animate-shake', 'bg-rose-50', 'border-rose-400');
+      }
+    }
+
+    function speakCurrentClozeFull(btnEl) {
+      if (!clozeCurrent) return;
+      speakArabicById(clozeCurrent.item.id, btnEl);
+    }
+
+    /**
+     * =====================================================
+     * MODE 5: WORD VAULT (SEARCHABLE DICTIONARY)
+     * =====================================================
+     */
+    let vaultStatusFilter = 'all'; // 'all', 'weak', 'new', 'mastered'
+
+    function setVaultStatusFilter(status) {
+      vaultStatusFilter = status;
+      const map = {
+        all: 'vaultStatusAll',
+        weak: 'vaultStatusWeak',
+        new: 'vaultStatusNew',
+        mastered: 'vaultStatusMastered'
+      };
+      Object.keys(map).forEach(k => {
+        const btn = document.getElementById(map[k]);
+        btn.className = k === status
+          ? 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-levant-teal text-white'
+          : 'px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:text-slate-900';
+      });
+      renderWordVault();
+    }
+
+    function clearVaultSearch() {
+      document.getElementById('vaultSearchInput').value = '';
+      renderWordVault();
+    }
+
+    function renderWordVault() {
+      const query = (document.getElementById('vaultSearchInput').value || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('clearVaultSearchBtn');
+      clearBtn.classList.toggle('hidden', query.length === 0);
+
+      let list = getCategoryFilteredWords();
+
+      if (vaultStatusFilter === 'weak') {
+        list = list.filter(w => getWordSrs(w.id) === 1);
+      } else if (vaultStatusFilter === 'new') {
+        list = list.filter(w => getWordSrs(w.id) === 0);
+      } else if (vaultStatusFilter === 'mastered') {
+        list = list.filter(w => getWordSrs(w.id) === 2);
+      }
+
+      if (query) {
+        list = list.filter(w =>
+          w.fullLabel.toLowerCase().includes(query) ||
+          w.arabic.toLowerCase().includes(query) ||
+          w.translit.toLowerCase().includes(query) ||
+          w.english.toLowerCase().includes(query) ||
+          w.category.toLowerCase().includes(query)
+        );
+      }
+
+      document.getElementById('vaultCountBadge').textContent = `${list.length} item${list.length === 1 ? '' : 's'}`;
+
+      const grid = document.getElementById('vaultGrid');
+      grid.innerHTML = '';
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-sand-50 rounded-2xl p-8 text-center border border-sand-200 text-slate-500">
+            No vocabulary items match your current filter.
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(item => {
+        const st = getWordSrs(item.id);
+        const card = document.createElement('div');
+        card.className = `rounded-2xl p-4 border transition flex flex-col justify-between gap-3 ${st === 2
+          ? 'bg-emerald-50/50 border-emerald-300'
+          : st === 1
+            ? 'bg-amber-50/60 border-amber-300'
+            : 'bg-sand-50 border-sand-200 hover:border-levant-teal/40'
+          }`;
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-levant-teal/10 text-levant-teal">
+              ${item.category}
+            </span>
+            <div class="flex items-center gap-1">
+              <button onclick="speakArabicById(${item.id}, this)"
+                class="w-8 h-8 rounded-full bg-white hover:bg-levant-teal text-levant-teal hover:text-white border border-sand-200 flex items-center justify-center text-xs transition"
+                title="Listen to Pure Arabic Pronunciation">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+              <button onclick="cycleVaultItemSrs(${item.id})"
+                class="px-2.5 py-1 rounded-lg text-xs font-bold border transition ${st === 2
+            ? 'bg-emerald-600 text-white border-emerald-600'
+            : st === 1
+              ? 'bg-amber-500 text-white border-amber-500'
+              : 'bg-white hover:bg-sand-100 text-slate-600 border-sand-300'
+          }"
+                title="Click to cycle status: New → Needs Review → Mastered">
+                ${st === 2 ? '<i class="fa-solid fa-check mr-1"></i>Mastered' : st === 1 ? '<i class="fa-solid fa-triangle-exclamation mr-1"></i>Review' : 'New'}
+              </button>
+            </div>
+          </div>
+
+          <div class="my-1">
+            <p dir="rtl" class="font-arabic arabic-tile-text font-bold text-slate-800 text-right">${item.arabic}</p>
+            <p class="text-xs font-semibold text-levant-terracotta italic mt-1 ${showTranslit ? '' : 'hidden'}">${item.translit}</p>
+            ${item.arabiziNote ? `<span class="inline-block mt-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-sand-200/80 text-slate-600">Note: ${item.arabiziNote}</span>` : ''}
+          </div>
+
+          <div class="pt-2 border-t border-sand-200/80">
+            <p class="text-sm font-bold text-slate-700 leading-snug">${item.english}</p>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function cycleVaultItemSrs(id) {
+      const current = getWordSrs(id);
+      const next = current === 0 ? 2 : current === 2 ? 1 : 0;
+      setWordSrs(id, next);
+      if (next === 2) playTone('match');
+      renderWordVault();
+    }
+
+    /**
+     * Modals & Global Keyboard Shortcuts
+     */
+    function openAuditModal() {
+      document.getElementById('auditModal').classList.remove('hidden');
+    }
+    function closeAuditModal() {
+      document.getElementById('auditModal').classList.add('hidden');
+    }
+    function openResetModal() {
+      document.getElementById('resetModal').classList.remove('hidden');
+    }
+    function closeResetModal() {
+      document.getElementById('resetModal').classList.add('hidden');
+    }
+
+    function confirmResetProgress() {
+      srsState = {};
+      localStorage.removeItem(STORAGE_KEYS.SRS_MAP);
+      localStorage.removeItem(STORAGE_KEYS.LEGACY_MASTERED);
+      localStorage.removeItem(STORAGE_KEYS.BEST_TIME_6);
+      localStorage.removeItem(STORAGE_KEYS.BEST_TIME_8);
+      localStorage.removeItem(STORAGE_KEYS.BEST_STREAK);
+      quizBestStreak = 0;
+      document.getElementById('quizBestStreak').textContent = '0';
+      updateMasteryUI();
+      updateBestTimeDisplay();
+      initFlashcards();
+      renderWordVault();
+      closeResetModal();
+      showToast('All SRS states, streaks, and best times have been reset.');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+
+      if (activeTab === 'flashcards') {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          flipFlashcard();
+        } else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          gradeFlashcard(2);
+        } else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          gradeFlashcard(1);
+        } else if (e.code === 'KeyR') {
+          e.preventDefault();
+          speakCurrentFlashcard();
+        }
+      } else if (activeTab === 'quiz') {
+        if (e.code === 'KeyR') {
+          e.preventDefault();
+          speakCurrentQuizWord();
+        } else if (!quizAnswered && quizCurrentQuestion) {
+          if (['Digit1', 'Digit2', 'Digit3', 'Digit4'].includes(e.code)) {
+            const idx = parseInt(e.code.replace('Digit', ''), 10) - 1;
+            const chosen = quizCurrentQuestion.options[idx];
+            if (chosen) submitQuizAnswer(chosen.id);
+          }
+        } else if (quizAnswered && (e.code === 'Enter' || e.code === 'Space')) {
+          e.preventDefault();
+          nextQuizQuestion();
+        }
+      }
+    });
+
+    window.onload = function () {
+      updateFilterDropdownCounts();
+      loadSavedProgress();
+      loadQuizStreak();
+      initMatchGame();
+      startNewQuizRound();
+      initFlashcards();
+      initClozeBuilder();
+      renderWordVault();
+    };
+  </script>
+</body>
+
+</html>
